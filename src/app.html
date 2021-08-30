@@ -5,6 +5,18 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%svelte.head%
+
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				font-family: Menlo, monospace;
+				font-size: 12px;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="svelte">%svelte.body%</div>
