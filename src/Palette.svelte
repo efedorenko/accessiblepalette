@@ -1,12 +1,11 @@
 <script>
-	import chroma from 'chroma-js';
-
 	import { lightnessSteps, baseColors } from './stores';
 	import BaseColorControls from './BaseColorControls.svelte';
 	import LightnessControl from './LightnessControl.svelte';
 	import ColorCell from './ColorCell.svelte';
 	import HueControl from './HueControl.svelte';
 	import { generatePalette } from './generatePalette';
+	import BgColor from './BgColor.svelte';
 
 	/* Lightness
 	---------------------------------------- */
@@ -25,10 +24,10 @@
 	$: console.log(colors);
 
 	const changeHueCorrection = (name, value) => {
-		console.log(`Change Hue correction for ${name} to ${value}.`)
+		console.log(`Change Hue correction for ${name} to ${value}.`);
 		let index = colors.findIndex(bColor => bColor.name === name);
 		colors[index].hueCorrection = value;
-	}
+	};
 
 
 	/* Palette
@@ -54,7 +53,7 @@
 	<tbody>
 		{#each Object.keys(steps) as step, lightnessIndex}
 			<tr>
-				<LightnessControl step={step} lightness={steps[step]} />
+				<LightnessControl step={step} />
 
 				{#each colors as bColor}
 					<ColorCell color={getPaletteColor(bColor.name, step)} />
@@ -64,12 +63,20 @@
 	</tbody>
 
 	<tfoot>
-	<th><!-- Lightness --></th>
-		{#each colors as bColor}
-			<HueControl bColor={bColor} changeHueCorrection={changeHueCorrection} />
-		{/each}
+		<tr>
+			<th style='height: auto;'><!-- Lightness --></th>
+			<td colspan={colors.length} class='hue-title'>Hue correction</td>
+		</tr>
+		<tr>
+			<th><!-- Lightness --></th>
+			{#each colors as bColor}
+				<HueControl bColor={bColor} changeHueCorrection={changeHueCorrection} />
+			{/each}
+		</tr>
 	</tfoot>
 </table>
+
+<BgColor />
 
 <style>
 		table {
@@ -81,9 +88,12 @@
     :global(th),
     :global(td) {
 			width: 90px;
-			height: 80px;
 			padding: 10px;
 			font-weight: normal;
 			text-align: left;
     }
+		.hue-title {
+			padding-top: 20px;
+			text-align: center;
+		}
 </style>

@@ -19,6 +19,7 @@
 
 <style>
 	td {
+		height: 50px;
 		font-size: 10px;
 		letter-spacing: 0.1em;
 		text-align: center;
