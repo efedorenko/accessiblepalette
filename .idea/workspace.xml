@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7db1da83-07d9-4e3f-a773-33f4e6419e80" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.nvmrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/APCAonly.98e_d12e.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BaseColorControls.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ColorCell.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/HueControl.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LightnessControl.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Palette.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generatePalette.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LabPref.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/stores.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BaseColorControls.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseColorControls.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ColorCell.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/ColorCell.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LightnessControl.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/LightnessControl.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Palette.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Palette.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generatePalette.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/generatePalette.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +19,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1xSD0erGHqNCD4BI39JJiFIyCse" />
   <component name="ProjectViewState">
@@ -49,6 +53,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/defaultColors.js" />
       <recent name="$PROJECT_DIR$/src/BaseColors.js" />
       <recent name="$PROJECT_DIR$/src/generatePalette.js" />
     </key>
@@ -61,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1630339373493</updated>
-      <workItem from="1630339375430" duration="12986000" />
+      <workItem from="1630339375430" duration="29330000" />
     </task>
     <servers />
   </component>

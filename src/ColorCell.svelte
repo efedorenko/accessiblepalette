@@ -1,17 +1,19 @@
 <script>
+	import chroma from 'chroma-js';
+	import { roundTo10th } from './helpers';
+
 	export let color;
 
-
 	// let lightness = roundTo100th(color.lch()[0]);
-	// let chrome = roundTo100th(color.lch()[1]);
-	// let hue = roundTo100th(color.lch()[2]);
-	// let contrast = roundTo10th(chroma.contrast(colorHex, bgColor));
-	// let contrastBadge = contrast >= 4.5 ? `✓ ${contrast}` : `<s>${contrast}</s>`;
-	// let wcag3contrast = roundToWhole(APCAcontrast(bgColor.replace('#', '0x'), colorHex.replace('#', '0x')));
+	let c = roundTo10th(chroma(color.color).lch()[1]);
+	let h = roundTo10th(chroma(color.color).lch()[2]);
 
 </script>
 
-<td style='background-color: {color.color};' class={parseInt(color.step, 10) >= 600 ? 'light' : 'dark'}>
+<td style='background-color: {color.color};'
+		class={parseInt(color.step, 10) >= 600 ? 'light' : 'dark'}
+		title='Chroma: {c}, Hue: {h}'
+>
 	{color.color.toUpperCase()}
 </td>
 
@@ -19,11 +21,12 @@
 	td {
 		font-size: 10px;
 		letter-spacing: 0.1em;
+		text-align: center;
 	}
 	td.light {
-		color: rgba(255, 255, 255, .225)
+		color: rgba(255, 255, 255, .33)
 	}
 	td.dark {
-		color: rgba(0, 0, 0, .225)
+		color: rgba(0, 0, 0, .33)
 	}
 </style>
