@@ -25,9 +25,9 @@
 		text-align: center;
 	}
 	td.light {
-		color: rgba(255, 255, 255, .33)
+		color: rgba(255, 255, 255, .4);
 	}
 	td.dark {
-		color: rgba(0, 0, 0, .33)
+		color: rgba(0, 0, 0, .4);
 	}
 </style>

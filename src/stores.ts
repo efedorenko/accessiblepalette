@@ -29,12 +29,12 @@ export const baseColors = writable([
 		isLab: true,
 		hueCorrection: -10
 	},
-	{
-		name: 'yellow',
-		color: '#f3e203',
-		isLab: true,
-		hueCorrection: -15
-	},
+	// {
+	// 	name: 'yellow',
+	// 	color: '#f3e203',
+	// 	isLab: true,
+	// 	hueCorrection: -15
+	// },
 	{
 		name: 'lime',
 		color: '#89BF1D',
