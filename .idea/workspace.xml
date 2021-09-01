@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7db1da83-07d9-4e3f-a773-33f4e6419e80" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BgColor.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/BgColor.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ColorCell.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/ColorCell.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Palette.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Palette.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Palette.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Palette.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/stores.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,9 +45,12 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/vendor" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/typings.ts" />
       <recent name="$PROJECT_DIR$/src/defaultColors.js" />
       <recent name="$PROJECT_DIR$/src/BaseColors.js" />
       <recent name="$PROJECT_DIR$/src/generatePalette.js" />
@@ -62,7 +64,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1630339373493</updated>
-      <workItem from="1630339375430" duration="42012000" />
+      <workItem from="1630339375430" duration="43770000" />
     </task>
     <servers />
   </component>
