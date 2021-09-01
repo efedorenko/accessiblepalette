@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7db1da83-07d9-4e3f-a773-33f4e6419e80" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BaseColorControls.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseColorControls.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ColorCell.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/ColorCell.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HueControl.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/HueControl.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Palette.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Palette.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +59,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1630339373493</updated>
-      <workItem from="1630339375430" duration="37049000" />
+      <workItem from="1630339375430" duration="38353000" />
     </task>
     <servers />
   </component>
