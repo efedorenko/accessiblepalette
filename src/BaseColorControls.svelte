@@ -66,7 +66,7 @@
 	}
 </script>
 
-<th>
+<div class='header'>
 	{bColor.name}<br>
 	<span class='preview' style='background-color: {color}'></span>
 	<input type="text" size="7" bind:value={dirtyColor} class={isError ? 'error' : ''}><br>
@@ -76,13 +76,17 @@
 	H: <input type="number" size="5" value={h} on:change={setHue} min={0} max={360}><br>
 
 	<LabPref bColor={bColor} />
-</th>
+</div>
 
 <style>
+	.header {
+    border: 1px solid green;
+	}
+
 	.preview {
-			display: inline-block;
-			width: 1.2em;
-			height: 1.2em;
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
 	}
 
 	input[type="text"],

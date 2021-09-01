@@ -10,24 +10,24 @@
 
 </script>
 
-<td style='background-color: {color.color};'
+<div style='background-color: {color.color};'
 		class={parseInt(color.step, 10) >= 600 ? 'light' : 'dark'}
 		title='Chroma: {c}, Hue: {h}'
 >
 	{color.color.toUpperCase()}
-</td>
+</div>
 
 <style>
-	td {
-		height: 50px;
+	div {
+		height: 70px;
 		font-size: 10px;
 		letter-spacing: 0.1em;
 		text-align: center;
 	}
-	td.light {
+	.light {
 		color: rgba(255, 255, 255, .4);
 	}
-	td.dark {
+	.dark {
 		color: rgba(0, 0, 0, .4);
 	}
 </style>
