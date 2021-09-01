@@ -11,16 +11,16 @@ export const bgColor = writable<string>(get(defaultBgColor));
 ---------------------------------------- */
 
 export interface LightnessInterface {
-  50: number;
-  100: number;
-  200: number;
-  300: number;
-  400: number;
-  500: number;
-  600: number;
-  700: number;
-  800: number;
-  900: number;
+  '50': number;
+  '100': number;
+  '200': number;
+  '300': number;
+  '400': number;
+  '500': number;
+  '600': number;
+  '700': number;
+  '800': number;
+  '900': number;
 }
 const _lightnessSteps: LightnessInterface = {
   50: 98,
