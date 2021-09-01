@@ -7,21 +7,25 @@
 	import { bgColor } from './stores';
 	import chroma from 'chroma-js';
 
-	let value = $bgColor;
+	let color;
+  bgColor.subscribe(store => color = store);
+
 	let isError = false;
 
-	$: if (chroma.valid(value)) {
-		isError = false;
-		bgColor.update(store => value);
-		console.log('bgColor was updated in store')
-	} else {
-		isError = true;
-	}
+  const changeBgColor = (event) => {
+    const value = event.target.value;
 
+    if (chroma.valid(value)) {
+      isError = false;
+      bgColor.update(store => value);
+    } else {
+      isError = true;
+    }
+  }
 </script>
 
-<label style='padding: 1em; background-color: {value}'>
-	Background color: <input type='text' size='7' bind:value={value} class={isError ? 'error' : ''}>
+<label style='padding: 1em; background-color: {color}'>
+	Background color: <input type='text' size='7' value={color} class={isError ? 'error' : ''} on:change={changeBgColor}>
 </label>
 
 <style>

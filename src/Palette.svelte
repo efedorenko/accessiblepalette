@@ -21,10 +21,23 @@
 	---------------------------------------- */
 
 	let colors;
-	baseColors.subscribe(store => colors = store);
+	baseColors.subscribe(store => {
+	  colors = store.sort((a, b) => {
+	    const chromaLimit = 15;
+	    a = chroma(a.color);
+      b = chroma(b.color);
 
-	$: console.log('Base color was updated!');
-	$: console.log(colors);
+      if (isNaN(a.get('lch.h')) || a.get('lch.c') < chromaLimit) {
+        return 1;
+      } else if (isNaN(b.get('lch.h')) || b.get('lch.c') < chromaLimit) {
+        return -1;
+      } else {
+        return (a.get('lch.h') > b.get('lch.h')) ? 1 : -1;
+      }
+    })
+	});
+
+  // Adjust Hue
 
 	const changeHueCorrection = (name, value) => {
 		console.log(`Change Hue correction for ${name} to ${value}.`);
@@ -32,18 +45,7 @@
 		colors[index].hueCorrection = value;
 	};
 
-
-	/* Palette
-	---------------------------------------- */
-
-	$: palette = generatePalette(colors, steps);
-	$: console.log('New palette:');
-	$: console.log(palette);
-	const getPaletteColor = (name, step) => palette.filter(c => c.name === name).filter(c => c.step === step)[0];
-
-
-  /* Add color
-  ---------------------------------------- */
+  // Add color
 
   function addColor() {
     baseColors.update(oldStore => {
@@ -57,6 +59,15 @@
       return newStore;
     });
   }
+
+
+	/* Palette
+	---------------------------------------- */
+
+	$: palette = generatePalette(colors, steps);
+	$: console.log('New palette:');
+	$: console.log(palette);
+	const getPaletteColor = (name, step) => palette.filter(c => c.name === name).filter(c => c.step === step)[0];
 
 </script>
 

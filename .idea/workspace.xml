@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7db1da83-07d9-4e3f-a773-33f4e6419e80" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BgColor.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/BgColor.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ColorCell.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/ColorCell.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Palette.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/Palette.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1630339373493</updated>
-      <workItem from="1630339375430" duration="38353000" />
+      <workItem from="1630339375430" duration="42012000" />
     </task>
     <servers />
   </component>
