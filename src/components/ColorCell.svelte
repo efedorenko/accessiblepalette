@@ -1,7 +1,7 @@
 <script>
 	import chroma from 'chroma-js';
-  import { bgColor, defaultBgColor } from './stores';
-	import { roundTo10th } from './helpers';
+  import { bgColor, defaultBgColor } from '../stores';
+	import { roundTo10th } from '../helpers';
 
 	export let color;
 

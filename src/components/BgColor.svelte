@@ -4,7 +4,7 @@
 		every level should be selectable and then all contrast ratios should be recalculated from it.
 	*/
 
-	import { bgColor } from './stores';
+	import { bgColor } from '../stores';
 	import chroma from 'chroma-js';
 
 	let color;

@@ -1,7 +1,7 @@
 <script>
 	import chroma from 'chroma-js';
-	import { roundTo10th, roundToWhole } from './helpers';
-	import { baseColors } from './stores';
+	import { roundTo10th, roundToWhole } from '../helpers';
+	import { baseColors } from '../stores';
 	import LabPref from './LabPref.svelte';
 
 	export let bColor;

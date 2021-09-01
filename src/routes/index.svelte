@@ -1,5 +1,5 @@
 <script>
-	import Palette from '../Palette.svelte';
+	import Palette from '../components/Palette.svelte';
 </script>
 
 <Palette />

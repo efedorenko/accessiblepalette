@@ -1,12 +1,12 @@
 <script>
   import { nanoid } from 'nanoid';
   import chroma from 'chroma-js'
-	import { lightnessSteps, baseColors } from './stores';
+	import { lightnessSteps, baseColors } from '../stores';
 	import BaseColorControls from './BaseColorControls.svelte';
 	import LightnessControl from './LightnessControl.svelte';
 	import ColorCell from './ColorCell.svelte';
 	import HueControl from './HueControl.svelte';
-	import { generatePalette } from './generatePalette';
+	import { generatePalette } from '../generatePalette';
 	import BgColor from './BgColor.svelte';
 
 

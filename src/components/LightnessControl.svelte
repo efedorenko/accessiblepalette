@@ -1,8 +1,8 @@
 <script>
 	import chroma from 'chroma-js';
-	import { roundTo10th, roundToWhole } from './helpers';
-	import { lightnessSteps, bgColor } from './stores';
-	import { APCAcontrast } from './APCAonly.98e_d12e';
+	import { roundTo10th, roundToWhole } from '../helpers';
+	import { lightnessSteps, bgColor } from '../stores';
+	import { APCAcontrast } from '../vendor/APCAonly.98e_d12e';
 
 	export let step;
 

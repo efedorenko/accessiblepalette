@@ -1,5 +1,5 @@
 <script>
-	import { baseColors } from './stores';
+	import { baseColors } from '../stores';
 
 	export let bColor;
 
