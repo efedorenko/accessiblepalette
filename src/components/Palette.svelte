@@ -13,8 +13,8 @@
 	/* Lightness
 	---------------------------------------- */
 
-	let steps;
-	lightnessSteps.subscribe(store => steps = store);
+	let shades;
+	lightnessSteps.subscribe(store => shades = store);
 
 
 	/* Base Colors
@@ -66,15 +66,15 @@
 	/* Palette
 	---------------------------------------- */
 
-	$: palette = generatePalette(colors, steps);
 	$: console.log('New palette:');
 	$: console.log(palette);
+	$: palette = generatePalette(colors, shades);
 	const getPaletteColor = (name, step) => palette.filter(c => c.name === name).filter(c => c.step === step)[0];
 
 </script>
 
 
-<div class='palette' style='--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(steps).length}'>
+<div class='palette' style='--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(shades).length}'>
 
   <!-- Base Colors Title -->
 
@@ -102,14 +102,14 @@
     <GroupTitleVertical title="Set starting colors:" />
 
     <div class='palette_shades'>
-      {#each Object.keys(steps) as step}
+      {#each Object.keys(shades) as step}
         <LightnessControl step={step} />
       {/each}
     </div>
 
   {#each colors as bColor}
     <div class='palette_colors'>
-      {#each Object.keys(steps) as step}
+      {#each Object.keys(shades) as step}
         <ColorCell color={getPaletteColor(bColor.name, step)} shade={step} />
       {/each}
     </div>
