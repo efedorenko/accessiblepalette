@@ -99,7 +99,7 @@
 
   <!-- Colors -->
 
-    <GroupTitleVertical title="Set starting colors:" />
+    <GroupTitleVertical title="Lightness & Contrast" />
 
     <div class='palette_shades'>
       {#each Object.keys(shades) as step}
