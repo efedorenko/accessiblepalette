@@ -17,7 +17,8 @@
     height: 100%;
     flex-direction: column;
     align-items: center;
-    padding: .5em;
+    margin: 0;
+    padding: 0 .5em;
     color: #000;
     font-weight: bold;
     font-size: 0.875rem; /* 14px */
