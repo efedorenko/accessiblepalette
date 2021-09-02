@@ -11,6 +11,14 @@
   import { sortBaseColors } from '../helpers';
   import BaseColorControls from './BaseColorControls.svelte';
 
+  import { quintInOut } from 'svelte/easing';
+  import { fade } from 'svelte/transition';
+
+  const transitionParams = {
+    duration: 400,
+    easing: quintInOut
+  };
+
   /* Lightness
   ---------------------------------------- */
 
@@ -51,8 +59,12 @@
     <GroupTitle title='Set starting colors:' />
   </div>
 
-  {#each colors as bColor, index}
-    <div class='palette_head' style={index === 0 ? 'grid-column-start: 3' : ''}>
+  {#each colors as bColor, index (bColor.name)}
+    <div
+      class='palette_head'
+      style={index === 0 ? 'grid-column-start: 3' : ''}
+      transition:fade={transitionParams}
+    >
       <BaseColorControls bColor={bColor} />
     </div>
   {/each}
@@ -72,8 +84,11 @@
     {/each}
   </div>
 
-  {#each colors as bColor}
-    <div class='palette_colors'>
+  {#each colors as bColor, index (bColor.name)}
+    <div
+      class='palette_colors'
+      transition:fade={transitionParams}
+    >
       {#each Object.keys(shades) as step}
         <ColorCell color={getPaletteColor(bColor.name, step)} shade={step} />
       {/each}
@@ -83,8 +98,11 @@
 
   <!-- Hue Correction -->
 
-  {#each colors as bColor, index}
-    <div class='palette_hue' style={index === 0 ? 'grid-column-start: 3' : ''}>
+  {#each colors as bColor, index (bColor.name)}
+    <div class='palette_hue'
+         style={index === 0 ? 'grid-column-start: 3' : ''}
+         transition:fade={transitionParams}
+    >
       <HueControl bColor={bColor} />
     </div>
   {/each}
