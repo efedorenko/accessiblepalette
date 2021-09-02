@@ -22,7 +22,7 @@
   };
 </script>
 
-<div>
+<div class='hue-ctrl'>
   <input type='number'
          size='5'
          value={hueCorrection}
@@ -30,3 +30,10 @@
          min='-180'
          max='180'>
 </div>
+
+<style>
+  .hue-ctrl {
+    padding: 1em .5em 0;
+    text-align: center;
+  }
+</style>

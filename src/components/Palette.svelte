@@ -96,7 +96,9 @@
     </div>
   {/each}
 
-  <div class='palette_hue'>[empty]</div>
+  <div class='hue-ctrl-title'>
+    <GroupTitle title='Adjust Hue in a color range' />
+  </div>
 
 </div>
 
@@ -130,5 +132,10 @@
   .palette_hue {
 
   }
+  .hue-ctrl-title {
+    grid-column-start: 3;
+    grid-column-end: span var(--num-of-colors);
+  }
+
 
 </style>
