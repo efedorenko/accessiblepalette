@@ -33,7 +33,7 @@
 
 <style>
   .hue-ctrl {
-    padding: 1em .5em 0;
+    padding: 1em .5em .5em;
     text-align: center;
   }
   input[type="number"] {
