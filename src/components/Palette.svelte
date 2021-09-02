@@ -1,9 +1,6 @@
 <script lang='ts'>
-  import { nanoid } from 'nanoid';
-  import chroma, { Color } from 'chroma-js';
-  import { lightnessSteps, baseColors } from '../stores';
   import type { BaseColor } from '../stores';
-  import BaseColorControls from './BaseColorControls.svelte';
+  import { baseColors, lightnessSteps } from '../stores';
   import LightnessControl from './LightnessControl.svelte';
   import ColorCell from './ColorCell.svelte';
   import HueControl from './HueControl.svelte';
@@ -11,6 +8,7 @@
   import GroupTitle from './GroupTitle.svelte';
   import GroupTitleVertical from './GroupTitleVertical.svelte';
   import AddColor from './AddColor.svelte';
+  import { sortBaseColors } from '../helpers';
 
   /* Lightness
   ---------------------------------------- */
@@ -21,29 +19,6 @@
 
   /* Base Colors
   ---------------------------------------- */
-
-  function sortBaseColors(a: BaseColor, b: BaseColor): number {
-    const chromaLimit = 15;
-    const chromaA: Color = chroma(a.color);
-    const chromaB: Color = chroma(b.color);
-
-    if (chromaA.toString() === chromaB.toString()) {
-      // console.log(`${chromaA} and ${chromaB} are the same`);
-      return 0;
-    } else if (isNaN(chromaA.get('lch.h')) || chromaA.get('lch.c') < chromaLimit) {
-      // console.log(`${chromaA} is grey or desaturated, sort it to the end of the list`)
-      return 1;
-    } else if (isNaN(chromaB.get('lch.h')) || chromaB.get('lch.c') < chromaLimit) {
-      // console.log(`${chromaB} is grey or desaturated, sort it to the end of the list`)
-      return -1;
-    } else if (chromaA.get('lch.h') < chromaB.get('lch.h')) {
-      // console.log(`${chromaA}’s hue is less than ${chromaB}’s, sort it up front`)
-      return -1;
-    } else {
-      // console.log(`${chromaB}’s hue is less than ${chromaA}’s, sort it up front`)
-      return 1;
-    }
-  }
 
   let colors: BaseColor[];
   let numOfColors: number;
