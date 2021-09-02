@@ -46,11 +46,14 @@
     align-items: center;
     justify-content: center;
 
-		font: 12px 'iA Writer Duo', monospace, sans-serif;
+    padding: .5em .75em;
+		font: 0.75rem 'iA Writer Duo', monospace, sans-serif;
 		letter-spacing: 0.1em;
 		text-align: center;
     cursor: pointer;
 	}
+
+  /* TODO: Lightness levels can vary, so instead we should create CSS vars behind the scenes */
   /* Maintain 50 CR */
   [data-shade="50"] {
     color: #868686;

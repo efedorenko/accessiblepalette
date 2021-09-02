@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4a6cd9c8-02f3-4f25-8e3e-bdd023278535" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/GroupTitle.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/GroupTitleVertical.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Preview.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/fonts/ia-writer/ia-writer-duo.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BaseColorControls.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BaseColorControls.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ColorCell.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColorCell.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LightnessControl.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LightnessControl.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LabPref.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LabPref.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Palette.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Palette.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +43,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -58,7 +56,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1630548875019</updated>
-      <workItem from="1630548876983" duration="3100000" />
+      <workItem from="1630548876983" duration="12708000" />
     </task>
     <servers />
   </component>

@@ -1,7 +1,8 @@
-<script>
+<script lang='ts'>
   import { nanoid } from 'nanoid';
-  import chroma from 'chroma-js'
-  import { lightnessSteps, baseColors} from '../stores';
+  import chroma, { Color } from 'chroma-js';
+  import { lightnessSteps, baseColors } from '../stores';
+  import type { BaseColor } from '../stores';
 	import BaseColorControls from './BaseColorControls.svelte';
 	import LightnessControl from './LightnessControl.svelte';
 	import ColorCell from './ColorCell.svelte';
@@ -20,29 +21,44 @@
 	/* Base Colors
 	---------------------------------------- */
 
-	let colors;
-	let numOfColors = $baseColors.length;
-	baseColors.subscribe(store => {
-	  colors = store.sort((a, b) => {
-	    const chromaLimit = 15;
-	    a = chroma(a.color);
-      b = chroma(b.color);
+  function sortBaseColors (a: BaseColor, b: BaseColor): number {
+    const chromaLimit = 15;
+    const chromaA: Color = chroma(a.color);
+    const chromaB: Color = chroma(b.color);
 
-      if (isNaN(a.get('lch.h')) || a.get('lch.c') < chromaLimit) {
-        return 1;
-      } else if (isNaN(b.get('lch.h')) || b.get('lch.c') < chromaLimit) {
-        return -1;
-      } else {
-        return (a.get('lch.h') > b.get('lch.h')) ? 1 : -1;
-      }
-    });
-    numOfColors = colors.length;
+    if (chromaA.toString() === chromaB.toString()) {
+      // console.log(`${chromaA} and ${chromaB} are the same`);
+      return 0;
+    } else if (isNaN(chromaA.get('lch.h')) || chromaA.get('lch.c') < chromaLimit) {
+      // console.log(`${chromaA} is grey or desaturated, sort it to the end of the list`)
+      return 1;
+    } else if (isNaN(chromaB.get('lch.h')) || chromaB.get('lch.c') < chromaLimit) {
+      // console.log(`${chromaB} is grey or desaturated, sort it to the end of the list`)
+      return -1;
+    } else if (chromaA.get('lch.h') < chromaB.get('lch.h')) {
+      // console.log(`${chromaA}’s hue is less than ${chromaB}’s, sort it up front`)
+      return -1;
+    } else {
+      // console.log(`${chromaB}’s hue is less than ${chromaA}’s, sort it up front`)
+      return 1;
+    }
+  }
+
+	let colors: BaseColor[];
+	let numOfColors: number;
+
+  baseColors.subscribe((store: BaseColor[]): void => {
+    colors = store.sort(sortBaseColors);
+    numOfColors = store.length;
+
+	  console.log('Base colors were updated:')
+    console.log(store);
 	});
 
   // Adjust Hue
 
 	const changeHueCorrection = (name, value) => {
-		console.log(`Change Hue correction for ${name} to ${value}.`);
+		// console.log(`Change Hue correction for ${name} to ${value}.`);
 		let index = colors.findIndex(bColor => bColor.name === name);
 		colors[index].hueCorrection = value;
 	};
@@ -50,25 +66,37 @@
   // Add color
 
   function addColor() {
-    baseColors.update(oldStore => {
-      let newStore = oldStore;
-      newStore.push(	{
-        name: nanoid(10),
-        color: chroma.random(),
-        isLab: false,
-        hueCorrection: 0
-      });
-      return newStore;
-    });
+    console.log('➕ Add color');
+
+    function getRandomColor(): string {
+      let randomColor: Color = chroma.random();
+
+      if (chroma(randomColor).get('lch.c') < 20) {
+        console.log('Random color wasn’t saturated enough, let’s try again.');
+        return getRandomColor();
+      } else {
+        console.log('Random color: ' + randomColor.toString());
+        return randomColor.toString();
+      }
+    }
+
+    const newColor: BaseColor = {
+      name: nanoid(8),
+      color: getRandomColor(),
+      isLab: false,
+      hueCorrection: 0
+    };
+
+    baseColors.update((oldStore: BaseColor[]): BaseColor[] => [newColor, ...oldStore]);
   }
 
 
 	/* Palette
 	---------------------------------------- */
 
-	$: console.log('New palette:');
-	$: console.log(palette);
 	$: palette = generatePalette(colors, shades);
+	// $: console.log('New palette:');
+	// $: console.log(palette);
 	const getPaletteColor = (name, step) => palette.filter(c => c.name === name).filter(c => c.step === step)[0];
 
 </script>
@@ -90,7 +118,7 @@
 
   {#each colors as bColor, index}
     <div class='palette_head' style={index === 0 ? 'grid-column-start: 3' : ''}>
-      <BaseColorControls bColor={bColor} />
+<!--      <BaseColorControls bColor={bColor} />-->
     </div>
   {/each}
 
