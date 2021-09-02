@@ -10,6 +10,7 @@
   import { generatePalette } from '../generatePalette';
   import GroupTitle from './GroupTitle.svelte';
   import GroupTitleVertical from './GroupTitleVertical.svelte';
+  import AddColor from './AddColor.svelte';
 
   /* Lightness
   ---------------------------------------- */
@@ -63,33 +64,6 @@
     colors[index].hueCorrection = value;
   };
 
-  // Add color
-
-  function addColor() {
-    console.log('➕ Add color');
-
-    function getRandomColor(): string {
-      let randomColor: Color = chroma.random();
-
-      if (chroma(randomColor).get('lch.c') < 20) {
-        console.log('Random color wasn’t saturated enough, let’s try again.');
-        return getRandomColor();
-      } else {
-        console.log('Random color: ' + randomColor.toString());
-        return randomColor.toString();
-      }
-    }
-
-    const newColor: BaseColor = {
-      name: nanoid(8),
-      color: getRandomColor(),
-      isLab: false,
-      hueCorrection: 0
-    };
-
-    baseColors.update((oldStore: BaseColor[]): BaseColor[] => [newColor, ...oldStore]);
-  }
-
 
   /* Palette
   ---------------------------------------- */
@@ -123,7 +97,7 @@
   {/each}
 
   <div class='palette_head'>
-    <button on:click={addColor}>Add color</button>
+    <AddColor />
   </div>
 
 
