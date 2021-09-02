@@ -20,13 +20,17 @@
     lightness = store[step];
   });
 
-  const minContrastRatioWCAG2 = 4.5;
+
   $: previewColor = chroma('#808080').set('lch.l', lightness);
+
+  const minContrastRatioWCAG2 = 4.5;
   $: contrastWCAG2 = roundTo10th(chroma.contrast(previewColor, bg));
-  $: contrastWCAG2Badge = contrastWCAG2 >= minContrastRatioWCAG2 ? contrastWCAG2 : `<s class='fail'>${contrastWCAG2}</s>`;
-  $: contrastWCAG3 = APCAcontrast(bg.replace('#', '0x'), previewColor.toString().replace('#', '0x'));
-  $: wcag3contrast = roundToWhole(contrastWCAG3);
-  $: noContrast = (contrastWCAG2 === 1 && wcag3contrast >= -1 && wcag3contrast <= 1);
+
+  const minContrastRatioWCAG3 = 60;
+  $: contrastAPCA = APCAcontrast(bg.replace('#', '0x'), previewColor.toString().replace('#', '0x'));
+  $: contrastWCAG3 = roundToWhole(contrastAPCA);
+
+  $: noContrast = (contrastWCAG2 === 1 && contrastWCAG3 >= -1 && contrastWCAG3 <= 1);
 
   const changeLightness = (event) => {
     const value = event.target.value;
@@ -47,10 +51,10 @@
   </div>
 
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>
-    WCAG 2: <span class={contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}>{@html contrastWCAG2Badge}</span>
+    WCAG 2: <span class={contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}>{@html contrastWCAG2}</span>
   </div>
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>
-    WCAG 3: {@html wcag3contrast.toString().replace('-', '\u2212')}
+    WCAG 3: <span class={Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}>{@html contrastWCAG3.toString().replace('-', '\u2212')}</span>
   </div>
 </div>
 
@@ -91,5 +95,6 @@
 
   .fail {
     color: #AF6334;
+    text-decoration: line-through;
   }
 </style>

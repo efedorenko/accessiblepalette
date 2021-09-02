@@ -3,7 +3,8 @@ import { get, readable, writable } from 'svelte/store';
 /* Background Color & Contrast Check
 ---------------------------------------- */
 
-export const defaultBgColor = readable<string>('#FFF');
+// Keep Hex in full 6-digit format for APCA Contrast Calculator
+export const defaultBgColor = readable<string>('#FFFFFF');
 export const bgColor = writable<string>(get(defaultBgColor));
 
 
