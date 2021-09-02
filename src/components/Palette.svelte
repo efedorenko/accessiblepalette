@@ -31,15 +31,6 @@
     console.log(store);
   });
 
-  // Adjust Hue
-
-  const changeHueCorrection = (name, value) => {
-    // console.log(`Change Hue correction for ${name} to ${value}.`);
-    let index = colors.findIndex(bColor => bColor.name === name);
-    colors[index].hueCorrection = value;
-  };
-
-
   /* Palette
   ---------------------------------------- */
 
@@ -101,7 +92,7 @@
 
   {#each colors as bColor, index}
     <div class='palette_hue' style={index === 0 ? 'grid-column-start: 3' : ''}>
-      <HueControl bColor={bColor} changeHueCorrection={changeHueCorrection} />
+      <HueControl bColor={bColor} />
     </div>
   {/each}
 

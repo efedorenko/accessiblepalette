@@ -1,14 +1,32 @@
 <script>
-  export let bColor, changeHueCorrection;
+  import { baseColors } from '../stores';
 
-  let value = bColor.hueCorrection;
+  export let bColor;
+
+  let { hueCorrection } = bColor;
+
+  const changeHueCorrection = (event) => {
+    const value = event.target.value;
+
+    baseColors.update(oldStore => {
+      const newStore = oldStore;
+      const bColorIndex = newStore.findIndex(el => el.name === bColor.name);
+      if (bColorIndex !== -1) {
+        newStore[bColorIndex].hueCorrection = value;
+      } else {
+        throw 'Color not found.'
+      }
+
+      return newStore;
+    });
+  };
 </script>
 
 <div>
   <input type='number'
          size='5'
-         bind:value={value}
-         on:change={() => changeHueCorrection(bColor.name, value)}
+         value={hueCorrection}
+         on:change={changeHueCorrection}
          min='-180'
          max='180'>
 </div>
