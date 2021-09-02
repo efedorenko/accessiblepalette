@@ -9,7 +9,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: .5em;
+    margin: 0;
+    padding: .5em 0;
     color: #000;
     font-weight: bold;
     font-size: 0.875rem; /* 14px */

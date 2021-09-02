@@ -36,4 +36,8 @@
     padding: 1em .5em 0;
     text-align: center;
   }
+  input[type="number"] {
+    width: 4em;
+    font: .75em Inter, sans-serif;
+  }
 </style>

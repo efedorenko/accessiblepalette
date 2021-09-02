@@ -5,11 +5,10 @@
 
   let isLab = bColor.isLab;
 
-  const changeLabPref = (name, isLab) => {
-    console.log(`Set ${name} to ${isLab ? 'LAB' : 'RGB'}`);
+  const changeLabPref = (event) => {
     baseColors.update(oldStore => {
       let newStore = oldStore;
-      let index = newStore.findIndex(bColor => bColor.name === name);
+      let index = newStore.findIndex(el => el.name === bColor.name);
       newStore[index].isLab = isLab;
       return newStore;
     });
@@ -17,5 +16,5 @@
 </script>
 
 <label>
-  <input type='checkbox' bind:checked={isLab} on:change={() => changeLabPref(bColor.name, isLab)}> LAB
+  <input type='checkbox' bind:checked={isLab} on:change={changeLabPref}> Lab
 </label>

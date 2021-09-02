@@ -9,6 +9,7 @@
   import GroupTitleVertical from './GroupTitleVertical.svelte';
   import AddColor from './AddColor.svelte';
   import { sortBaseColors } from '../helpers';
+  import BaseColorControls from './BaseColorControls.svelte';
 
   /* Lightness
   ---------------------------------------- */
@@ -44,21 +45,15 @@
 
 <div class='palette' style='--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(shades).length}'>
 
-  <!-- Base Colors Title -->
+  <!-- Base Colors -->
 
   <div class='base-colors-title'>
     <GroupTitle title='Set starting colors:' />
   </div>
 
-
-  <!-- Header -->
-
-  <!--  <div class='palette_head'>[eh]</div>-->
-  <!--  <div class='palette_head'>[eh]</div>-->
-
   {#each colors as bColor, index}
     <div class='palette_head' style={index === 0 ? 'grid-column-start: 3' : ''}>
-      <!--      <BaseColorControls bColor={bColor} />-->
+      <BaseColorControls bColor={bColor} />
     </div>
   {/each}
 
@@ -84,8 +79,6 @@
       {/each}
     </div>
   {/each}
-
-  <div class='palette_colors'>[empty]</div>
 
 
   <!-- Hue Correction -->

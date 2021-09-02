@@ -75,10 +75,12 @@
 
   .shade label {
     flex: 1;
+    margin-right: .25em;
   }
 
   input {
     width: 4em;
+    font: 1em Inter, sans-serif;
   }
 
   .contrast-ratio {
