@@ -12,7 +12,7 @@
   $: color = bColor.color;
   $: l = roundToWhole(chroma(color).get('lch.l'));
   $: c = roundToWhole(chroma(color).get('lch.c'));
-  $: h = roundToWhole(chroma(color).get('lch.h'));
+  $: h = roundToWhole(chroma(color).get('lch.h') || 0);
 
   const updateBaseColor = (newColor: string): void => {
     baseColors.update((oldStore: BaseColor[]): BaseColor[] => {
