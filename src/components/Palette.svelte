@@ -63,7 +63,7 @@
     <div
       class='palette_head'
       style={index === 0 ? 'grid-column-start: 3' : ''}
-      transition:fade={transitionParams}
+      in:fade={transitionParams}
     >
       <BaseColorControls bColor={bColor} />
     </div>
@@ -87,7 +87,7 @@
   {#each colors as bColor, index (bColor.name)}
     <div
       class='palette_colors'
-      transition:fade={transitionParams}
+      in:fade={transitionParams}
     >
       {#each Object.keys(shades) as step}
         <ColorCell color={getPaletteColor(bColor.name, step)} shade={step} />
@@ -101,7 +101,7 @@
   {#each colors as bColor, index (bColor.name)}
     <div class='palette_hue'
          style={index === 0 ? 'grid-column-start: 3' : ''}
-         transition:fade={transitionParams}
+         in:fade={transitionParams}
     >
       <HueControl bColor={bColor} />
     </div>

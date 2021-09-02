@@ -93,6 +93,7 @@
 
   .pass {
     color: #308559;
+    font-weight: 500;
   }
 
   .fail {

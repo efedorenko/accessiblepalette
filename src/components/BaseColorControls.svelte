@@ -5,6 +5,7 @@
   import type { BaseColor } from '../stores';
   import LabPref from './LabPref.svelte';
   import Preview from './Preview.svelte';
+  import RemoveColor from './RemoveColor.svelte';
 
   export let bColor: BaseColor;
 
@@ -21,9 +22,9 @@
       newStore[index].color = newColor;
       return newStore;
     });
-  }
+  };
 
-  function setHex (event) {
+  function setHex(event) {
     const hex: string = event.target.value;
 
     if (chroma.valid(hex)) {
@@ -65,8 +66,9 @@
 
 <div class='base-color-ctrl'>
   <div class='hex-input'>
-    <Preview color={color} style='margin-right: .25em;' />
+    <Preview color={color} style='margin-right: .5em;' />
     <input type='text' size='7' value={color.toUpperCase()} class={isHexInvalid ? 'error' : ''} on:change={setHex}>
+    <RemoveColor bColor={bColor} style='margin-left: .5em;' />
   </div>
 
   <div class='level-input'>
@@ -96,15 +98,23 @@
     padding: .5em 1em .5em 0;
   }
   .hex-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     margin-bottom: .5em;
     white-space: nowrap;
   }
   .level-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     white-space: nowrap;
   }
   .level-input label {
     display: inline-block;
-    min-width: calc(0.625rem + 0.25em); /* Match Preview */
+    min-width: calc(0.625rem + 0.5em); /* Match Preview */
   }
 
   .lab-pref {
