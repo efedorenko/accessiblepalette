@@ -7,7 +7,8 @@
 	import ColorCell from './ColorCell.svelte';
 	import HueControl from './HueControl.svelte';
 	import { generatePalette } from '../generatePalette';
-	import BgColor from './BgColor.svelte';
+	import GroupTitle from './GroupTitle.svelte';
+  import GroupTitleVertical from './GroupTitleVertical.svelte';
 
 	/* Lightness
 	---------------------------------------- */
@@ -20,6 +21,7 @@
 	---------------------------------------- */
 
 	let colors;
+	let numOfColors = $baseColors.length;
 	baseColors.subscribe(store => {
 	  colors = store.sort((a, b) => {
 	    const chromaLimit = 15;
@@ -33,7 +35,8 @@
       } else {
         return (a.get('lch.h') > b.get('lch.h')) ? 1 : -1;
       }
-    })
+    });
+    numOfColors = colors.length;
 	});
 
   // Adjust Hue
@@ -71,47 +74,87 @@
 </script>
 
 
-<div class='palette'>
-	<div class='palette_col'>
-		{#each Object.keys(steps) as step, lightnessIndex}
-			<LightnessControl step={step} />
-		{/each}
-	</div>
+<div class='palette' style='--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(steps).length}'>
 
-  {#each colors as bColor(bColor.name)}
-    <div class='palette_col'>
+  <!-- Base Colors Title -->
+
+  <div class='base-colors-title'>
+    <GroupTitle title="Set starting colors:" />
+  </div>
+
+
+  <!-- Header -->
+
+<!--  <div class='palette_head'>[eh]</div>-->
+<!--  <div class='palette_head'>[eh]</div>-->
+
+  {#each colors as bColor, index}
+    <div class='palette_head' style={index === 0 ? 'grid-column-start: 3' : ''}>
       <BaseColorControls bColor={bColor} />
+    </div>
+  {/each}
 
-      {#each Object.keys(steps) as step, lightnessIndex}
-        <ColorCell color={getPaletteColor(bColor.name, step)} />
+  <div class='palette_head'><button on:click={addColor}>Add color</button></div>
+
+
+  <!-- Colors -->
+
+    <GroupTitleVertical title="Set starting colors:" />
+
+    <div class='palette_shades'>
+      {#each Object.keys(steps) as step}
+        <LightnessControl step={step} />
       {/each}
+    </div>
 
+  {#each colors as bColor}
+    <div class='palette_colors'>
+      {#each Object.keys(steps) as step}
+        <ColorCell color={getPaletteColor(bColor.name, step)} shade={step} />
+      {/each}
+    </div>
+  {/each}
+
+  <div class='palette_colors'>[empty]</div>
+
+
+  <!-- Hue Correction -->
+
+  {#each colors as bColor, index}
+    <div class='palette_hue' style={index === 0 ? 'grid-column-start: 3' : ''}>
       <HueControl bColor={bColor} changeHueCorrection={changeHueCorrection} />
     </div>
   {/each}
 
-  <div class='palette_col'>
-    <div>
-      <button on:click={addColor}>Add color</button>
-    </div>
-  </div>
-</div>
+  <div class='palette_hue'>[empty]</div>
 
-<BgColor />
+</div>
 
 <style>
 	.palette {
 		display: grid;
-		grid-auto-columns: auto;
-		grid-auto-flow: column;
-		margin: 0 0 10px;
-		font-size: 10px;
-		color: rgba(0, 0, 0, .35);
+    grid-template-columns: auto repeat(calc(1 + var(--num-of-colors) + 1), 1fr);
+    grid-auto-rows: auto;
+		margin: 20px;
+		color: var(--c-meta);
 	}
-	.palette_col {
-		display: grid;
-		grid-auto-flow: row;
-		width: 100px;
-		text-align: left;
-	}
+    .base-colors-title {
+      grid-column-start: 3;
+      grid-column-end: span var(--num-of-colors);
+    }
+    .palette_head {
+
+    }
+    .palette_shades,
+    .palette_colors {
+      display: grid;
+      grid-template-rows: repeat(var(--num-of-shades), 1fr);
+    }
+    .palette_colors {
+    }
+
+    .palette_hue {
+
+    }
+
 </style>
