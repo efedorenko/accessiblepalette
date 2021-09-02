@@ -7,7 +7,7 @@
 <style>
   .preview {
     display: inline-block;
-    width:  0.625rem; /* 10px */
+    width: 0.625rem; /* 10px */
     height: 0.625rem; /* 10px */
     background-color: #EEE;
   }

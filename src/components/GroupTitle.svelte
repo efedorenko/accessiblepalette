@@ -15,6 +15,7 @@
     font-size: 0.875rem; /* 14px */
     text-align: center;
   }
+
   h2::before,
   h2::after {
     content: '';
@@ -23,9 +24,11 @@
     margin-bottom: -1px;
     background-color: var(--c-rulers);
   }
+
   h2::before {
     margin-right: .5em;
   }
+
   h2::after {
     margin-left: .5em;
   }

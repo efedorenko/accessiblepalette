@@ -3,25 +3,25 @@
   import chroma, { Color } from 'chroma-js';
   import { lightnessSteps, baseColors } from '../stores';
   import type { BaseColor } from '../stores';
-	import BaseColorControls from './BaseColorControls.svelte';
-	import LightnessControl from './LightnessControl.svelte';
-	import ColorCell from './ColorCell.svelte';
-	import HueControl from './HueControl.svelte';
-	import { generatePalette } from '../generatePalette';
-	import GroupTitle from './GroupTitle.svelte';
+  import BaseColorControls from './BaseColorControls.svelte';
+  import LightnessControl from './LightnessControl.svelte';
+  import ColorCell from './ColorCell.svelte';
+  import HueControl from './HueControl.svelte';
+  import { generatePalette } from '../generatePalette';
+  import GroupTitle from './GroupTitle.svelte';
   import GroupTitleVertical from './GroupTitleVertical.svelte';
 
-	/* Lightness
-	---------------------------------------- */
+  /* Lightness
+  ---------------------------------------- */
 
-	let shades;
-	lightnessSteps.subscribe(store => shades = store);
+  let shades;
+  lightnessSteps.subscribe(store => shades = store);
 
 
-	/* Base Colors
-	---------------------------------------- */
+  /* Base Colors
+  ---------------------------------------- */
 
-  function sortBaseColors (a: BaseColor, b: BaseColor): number {
+  function sortBaseColors(a: BaseColor, b: BaseColor): number {
     const chromaLimit = 15;
     const chromaA: Color = chroma(a.color);
     const chromaB: Color = chroma(b.color);
@@ -44,24 +44,24 @@
     }
   }
 
-	let colors: BaseColor[];
-	let numOfColors: number;
+  let colors: BaseColor[];
+  let numOfColors: number;
 
   baseColors.subscribe((store: BaseColor[]): void => {
     colors = store.sort(sortBaseColors);
     numOfColors = store.length;
 
-	  console.log('Base colors were updated:')
+    console.log('Base colors were updated:');
     console.log(store);
-	});
+  });
 
   // Adjust Hue
 
-	const changeHueCorrection = (name, value) => {
-		// console.log(`Change Hue correction for ${name} to ${value}.`);
-		let index = colors.findIndex(bColor => bColor.name === name);
-		colors[index].hueCorrection = value;
-	};
+  const changeHueCorrection = (name, value) => {
+    // console.log(`Change Hue correction for ${name} to ${value}.`);
+    let index = colors.findIndex(bColor => bColor.name === name);
+    colors[index].hueCorrection = value;
+  };
 
   // Add color
 
@@ -91,13 +91,13 @@
   }
 
 
-	/* Palette
-	---------------------------------------- */
+  /* Palette
+  ---------------------------------------- */
 
-	$: palette = generatePalette(colors, shades);
-	// $: console.log('New palette:');
-	// $: console.log(palette);
-	const getPaletteColor = (name, step) => palette.filter(c => c.name === name).filter(c => c.step === step)[0];
+  $: palette = generatePalette(colors, shades);
+  // $: console.log('New palette:');
+  // $: console.log(palette);
+  const getPaletteColor = (name, step) => palette.filter(c => c.name === name).filter(c => c.step === step)[0];
 
 </script>
 
@@ -107,33 +107,35 @@
   <!-- Base Colors Title -->
 
   <div class='base-colors-title'>
-    <GroupTitle title="Set starting colors:" />
+    <GroupTitle title='Set starting colors:' />
   </div>
 
 
   <!-- Header -->
 
-<!--  <div class='palette_head'>[eh]</div>-->
-<!--  <div class='palette_head'>[eh]</div>-->
+  <!--  <div class='palette_head'>[eh]</div>-->
+  <!--  <div class='palette_head'>[eh]</div>-->
 
   {#each colors as bColor, index}
     <div class='palette_head' style={index === 0 ? 'grid-column-start: 3' : ''}>
-<!--      <BaseColorControls bColor={bColor} />-->
+      <!--      <BaseColorControls bColor={bColor} />-->
     </div>
   {/each}
 
-  <div class='palette_head'><button on:click={addColor}>Add color</button></div>
+  <div class='palette_head'>
+    <button on:click={addColor}>Add color</button>
+  </div>
 
 
   <!-- Colors -->
 
-    <GroupTitleVertical title="Lightness & Contrast" />
+  <GroupTitleVertical title='Lightness & Contrast' />
 
-    <div class='palette_shades'>
-      {#each Object.keys(shades) as step}
-        <LightnessControl step={step} />
-      {/each}
-    </div>
+  <div class='palette_shades'>
+    {#each Object.keys(shades) as step}
+      <LightnessControl step={step} />
+    {/each}
+  </div>
 
   {#each colors as bColor}
     <div class='palette_colors'>
@@ -159,30 +161,34 @@
 </div>
 
 <style>
-	.palette {
-		display: grid;
+  .palette {
+    display: grid;
     grid-template-columns: auto repeat(calc(1 + var(--num-of-colors) + 1), 1fr);
     grid-auto-rows: auto;
-		margin: 20px;
-		color: var(--c-meta);
-	}
-    .base-colors-title {
-      grid-column-start: 3;
-      grid-column-end: span var(--num-of-colors);
-    }
-    .palette_head {
+    margin: 20px;
+    color: var(--c-meta);
+  }
 
-    }
-    .palette_shades,
-    .palette_colors {
-      display: grid;
-      grid-template-rows: repeat(var(--num-of-shades), 1fr);
-    }
-    .palette_colors {
-    }
+  .base-colors-title {
+    grid-column-start: 3;
+    grid-column-end: span var(--num-of-colors);
+  }
 
-    .palette_hue {
+  .palette_head {
 
-    }
+  }
+
+  .palette_shades,
+  .palette_colors {
+    display: grid;
+    grid-template-rows: repeat(var(--num-of-shades), 1fr);
+  }
+
+  .palette_colors {
+  }
+
+  .palette_hue {
+
+  }
 
 </style>

@@ -1,5 +1,5 @@
 <script>
-	import Palette from '../components/Palette.svelte';
+  import Palette from '../components/Palette.svelte';
 </script>
 
 <Palette />
@@ -10,8 +10,9 @@
     background-color: #FFF;
     font: 1rem Inter, sans-serif;
   }
+
   :global(:root) {
-    --c-slate-50:  #F9F9FA;
+    --c-slate-50: #F9F9FA;
     --c-slate-100: #EAECEF;
     --c-slate-200: #DBDFE4;
     --c-slate-300: #C1C6D1;
@@ -23,6 +24,6 @@
     --c-slate-900: #23272E;
 
     --c-rulers: #E8EBF0;
-    --c-meta:   #6B778C;
+    --c-meta: #6B778C;
   }
 </style>

@@ -8,27 +8,27 @@ export interface Palette {
 }
 
 export function generatePalette(baseColors: BaseColor[], steps: LightnessInterface): Palette[] {
-	const p = [];
+  const p = [];
 
-	function getColorFromScale(scale, lightness): chroma.Color {
-		const color = scale(lightness / 100);
-		return chroma(color);
-	}
+  function getColorFromScale(scale, lightness): chroma.Color {
+    const color = scale(lightness / 100);
+    return chroma(color);
+  }
 
-	function applyHueCorrection(chromaColor: chroma.Color, hueCorrection: number, index: number): chroma.Color {
-		const lightnessStepsTotal = Object.keys(steps).length;
-		const hueAdjustment = (hueCorrection / lightnessStepsTotal) * (index + 1);
-		return chromaColor.set('lch.h', chromaColor.lch()[2] + hueAdjustment);
-	}
+  function applyHueCorrection(chromaColor: chroma.Color, hueCorrection: number, index: number): chroma.Color {
+    const lightnessStepsTotal = Object.keys(steps).length;
+    const hueAdjustment = (hueCorrection / lightnessStepsTotal) * (index + 1);
+    return chromaColor.set('lch.h', chromaColor.lch()[2] + hueAdjustment);
+  }
 
-	baseColors.forEach(function(bColor) {
-		const scale = chroma.scale(['black', bColor.color, 'white']).mode(bColor.isLab ? 'lab' : 'rgb').correctLightness();
+  baseColors.forEach(function(bColor) {
+    const scale = chroma.scale(['black', bColor.color, 'white']).mode(bColor.isLab ? 'lab' : 'rgb').correctLightness();
 
-		Object.keys(steps).forEach((step, lightnessIndex) => {
-			const lightness: number = steps[step];
-			const chromaColorWithLightness = getColorFromScale(scale, lightness);
-			const chromaColorWithCorrectedHue = applyHueCorrection(chromaColorWithLightness, bColor.hueCorrection, lightnessIndex);
-			const colorHex: string = chromaColorWithCorrectedHue.hex();
+    Object.keys(steps).forEach((step, lightnessIndex) => {
+      const lightness: number = steps[step];
+      const chromaColorWithLightness = getColorFromScale(scale, lightness);
+      const chromaColorWithCorrectedHue = applyHueCorrection(chromaColorWithLightness, bColor.hueCorrection, lightnessIndex);
+      const colorHex: string = chromaColorWithCorrectedHue.hex();
 
       const paletteColor: Palette = {
         color: colorHex,
@@ -36,9 +36,9 @@ export function generatePalette(baseColors: BaseColor[], steps: LightnessInterfa
         name: bColor.name
       };
 
-			p.push(paletteColor);
-		});
-	});
+      p.push(paletteColor);
+    });
+  });
 
-	return p;
+  return p;
 }

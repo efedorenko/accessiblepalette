@@ -1,9 +1,14 @@
 <script>
-	export let bColor, changeHueCorrection;
+  export let bColor, changeHueCorrection;
 
-	let value = bColor.hueCorrection;
+  let value = bColor.hueCorrection;
 </script>
 
 <div>
-	<input type="number" size="5" bind:value={value} on:change={() => changeHueCorrection(bColor.name, value)} min=-180 max=180>
+  <input type='number'
+         size='5'
+         bind:value={value}
+         on:change={() => changeHueCorrection(bColor.name, value)}
+         min='-180'
+         max='180'>
 </div>

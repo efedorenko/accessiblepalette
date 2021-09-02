@@ -1,22 +1,22 @@
 <script>
-	import chroma from 'chroma-js';
+  import chroma from 'chroma-js';
   import { bgColor, defaultBgColor } from '../stores';
-	import { roundTo10th } from '../helpers';
+  import { roundTo10th } from '../helpers';
 
-	export let color, shade;
+  export let color, shade;
 
-	// let lightness = roundTo100th(color.lch()[0]);
-	let c = roundTo10th(chroma(color.color).lch()[1]);
-	let h = roundTo10th(chroma(color.color).lch()[2]);
+  // let lightness = roundTo100th(color.lch()[0]);
+  let c = roundTo10th(chroma(color.color).lch()[1]);
+  let h = roundTo10th(chroma(color.color).lch()[2]);
 
-	let originalBgColor = $bgColor;
+  let originalBgColor = $bgColor;
   let isSelected = false;
 
   let currentBgColor;
-  bgColor.subscribe(store => currentBgColor = store)
+  bgColor.subscribe(store => currentBgColor = store);
 
   $: if (currentBgColor === color.color) {
-    console.log('selected color: ' + color.color)
+    console.log('selected color: ' + color.color);
     isSelected = true;
   } else {
     isSelected = false;
@@ -33,25 +33,25 @@
 
 <div style='background-color: {color.color};'
      on:click={selectColor}
-		 class={isSelected ? 'selected' : ''}
+     class={isSelected ? 'selected' : ''}
      data-shade={shade}
-		 title='Chroma: {c}, Hue: {h}'
+     title='Chroma: {c}, Hue: {h}'
 >
-	{color.color.toUpperCase()}
+  {color.color.toUpperCase()}
 </div>
 
 <style>
-	div {
+  div {
     display: flex;
     align-items: center;
     justify-content: center;
 
     padding: .5em .75em;
-		font: 0.75rem 'iA Writer Duo', monospace, sans-serif;
-		letter-spacing: 0.1em;
-		text-align: center;
+    font: 0.75rem 'iA Writer Duo', monospace, sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
     cursor: pointer;
-	}
+  }
 
   /* TODO: Lightness levels can vary, so instead we should create CSS vars behind the scenes */
   /* Maintain 50 CR */
@@ -59,38 +59,47 @@
     color: #868686;
     color: rgba(0, 0, 0, 0.47);
   }
+
   [data-shade="100"] {
     color: #777;
     color: rgba(0, 0, 0, 0.53);
   }
+
   [data-shade="200"] {
     color: #646464;
     color: rgba(0, 0, 0, 0.61);
   }
+
   [data-shade="300"] {
     color: #444;
     color: rgba(0, 0, 0, 0.73);
   }
+
   [data-shade="400"] {
     color: #101010;
     color: rgba(0, 0, 0, 0.94);
   }
+
   [data-shade="500"] {
     color: #f9f9f9;
     color: rgba(255, 255, 255, .98);
   }
+
   [data-shade="600"] {
     color: #e4e4e4;
     color: rgba(255, 255, 255, .89);
   }
+
   [data-shade="700"] {
     color: #d2d2d2;
     color: rgba(255, 255, 255, .82);
   }
+
   [data-shade="800"] {
     color: #c2c2c2;
     color: rgba(255, 255, 255, .76);
   }
+
   [data-shade="900"] {
     color: #b6b6b6;
     color: rgba(255, 255, 255, .71);

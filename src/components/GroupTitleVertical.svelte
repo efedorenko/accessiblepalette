@@ -2,7 +2,7 @@
   export let title;
 </script>
 
-<div class="container">
+<div class='container'>
   <h2>
     <span>{title}</span>
   </h2>
@@ -12,6 +12,7 @@
   .container {
     width: 1.75em;
   }
+
   h2 {
     display: flex;
     height: 100%;
@@ -23,6 +24,7 @@
     font-weight: bold;
     font-size: 0.875rem; /* 14px */
   }
+
   h2::before,
   h2::after {
     content: '';
@@ -30,12 +32,15 @@
     width: 1px;
     background-color: var(--c-rulers);
   }
+
   h2::before {
     margin-bottom: .5em;
   }
+
   h2::after {
     margin-top: .5em;
   }
+
   span {
     flex-shrink: 0;
     padding: 0 .5em;

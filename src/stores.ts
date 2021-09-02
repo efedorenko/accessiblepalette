@@ -22,6 +22,7 @@ export interface LightnessInterface {
   '800': number;
   '900': number;
 }
+
 const _lightnessSteps: LightnessInterface = {
   50: 98,
   100: 93.3,
@@ -48,6 +49,7 @@ export interface BaseColor {
   isLab: boolean;
   hueCorrection: number;
 }
+
 const _baseColors: BaseColor[] = [
   {
     name: 'red',
