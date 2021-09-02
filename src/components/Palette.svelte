@@ -116,9 +116,9 @@
 <style>
   .palette {
     display: grid;
-    grid-template-columns: auto repeat(calc(1 + var(--num-of-colors)), 1fr) auto;
+    /* Lightness & Contrast title | LighrnessControl | BaseControl | AddButton */
+    grid-template-columns: auto auto repeat(var(--num-of-colors), 1fr) auto;
     grid-auto-rows: auto;
-    margin: 20px;
     color: var(--c-meta);
   }
 
@@ -128,13 +128,7 @@
   }
 
   .add-color-cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0 10px 10px;
-    border: 1px solid var(--c-rulers);
-    border-radius: 3px;
-    padding: 20px;
+    padding: 10px;
   }
 
   .palette_shades,

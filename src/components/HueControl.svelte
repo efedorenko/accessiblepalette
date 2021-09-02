@@ -1,5 +1,6 @@
 <script>
   import { baseColors } from '../stores';
+  import RemoveColor from './RemoveColor.svelte';
 
   export let bColor;
 
@@ -14,7 +15,7 @@
       if (bColorIndex !== -1) {
         newStore[bColorIndex].hueCorrection = value;
       } else {
-        throw 'Color not found.'
+        throw 'Color not found.';
       }
 
       return newStore;
@@ -22,6 +23,9 @@
   };
 </script>
 
+<div class='remove-color'>
+  <RemoveColor bColor={bColor} />
+</div>
 <div class='hue-ctrl'>
   <input type='number'
          size='5'
@@ -32,8 +36,12 @@
 </div>
 
 <style>
+  .remove-color {
+    padding: .5em;
+    text-align: center;
+  }
   .hue-ctrl {
-    padding: 1em .5em .5em;
+    padding: .5em;
     text-align: center;
   }
   input[type="number"] {

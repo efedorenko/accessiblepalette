@@ -46,7 +46,7 @@
     align-items: center;
     justify-content: center;
 
-    padding: .5em .75em;
+    padding: .5em .25em;
     font: 0.75rem 'iA Writer Duo', monospace, sans-serif;
     letter-spacing: 0.1em;
     text-align: center;

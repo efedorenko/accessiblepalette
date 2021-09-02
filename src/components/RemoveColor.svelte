@@ -33,10 +33,14 @@
     margin: 0;
     border: 0;
     padding: 0;
-    background: url(../assets/btn-remove.svg) no-repeat 50% 50%;
+    background: url(../assets/btn-remove.svg) no-repeat 50% 30%;
     text-indent: -999em;
     overflow: hidden;
     appearance: none;
     cursor: pointer;
+    opacity: .66;
+  }
+  button:hover {
+    opacity: 1;
   }
 </style>

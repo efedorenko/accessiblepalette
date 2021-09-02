@@ -64,7 +64,7 @@
     flex-direction: column;
     justify-content: center;
     font-size: 0.75rem; /* 12px */
-    padding: .75em 1em .75em 1.5em;
+    padding: .75em 1em;
   }
 
   .shade {
@@ -74,13 +74,12 @@
   }
 
   .shade label {
-    flex: 1;
+    min-width: 2.2em; /* To keep 50’s input aligned with the rest */
     margin-right: .25em;
   }
 
   input {
     width: 4em;
-    font: 1em Inter, sans-serif;
   }
 
   .contrast-ratio {

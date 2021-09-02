@@ -68,7 +68,6 @@
   <div class='hex-input'>
     <Preview color={color} style='margin-right: .5em;' />
     <input type='text' size='7' value={color.toUpperCase()} class={isHexInvalid ? 'error' : ''} on:change={setHex}>
-    <RemoveColor bColor={bColor} style='margin-left: .5em;' />
   </div>
 
   <div class='level-input'>
@@ -121,10 +120,8 @@
     margin-top: .5em;
   }
 
-  input[type="text"],
-  input[type="number"] {
-    width: 5em;
-    font: 1em Inter, sans-serif;
+  input[type="text"] {
+    width: 4.75em;
   }
   input[type="number"] {
     width: 4em;

@@ -30,9 +30,23 @@
   }
 </script>
 
-<button on:click={addColor} title='Add color'>Add color</button>
+<div class='wrapper'>
+  <button on:click={addColor} title='Add color'>Add color</button>
+</div>
 
 <style>
+  .wrapper {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--c-rulers);
+    border-radius: 3px;
+    padding: .75rem;
+
+  }
   button {
     display: inline-block;
     width: 20px;
