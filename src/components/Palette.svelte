@@ -57,7 +57,7 @@
     </div>
   {/each}
 
-  <div class='palette_head'>
+  <div class='add-color-cell'>
     <AddColor />
   </div>
 
@@ -98,7 +98,7 @@
 <style>
   .palette {
     display: grid;
-    grid-template-columns: auto repeat(calc(1 + var(--num-of-colors) + 1), 1fr);
+    grid-template-columns: auto repeat(calc(1 + var(--num-of-colors)), 1fr) auto;
     grid-auto-rows: auto;
     margin: 20px;
     color: var(--c-meta);
@@ -109,8 +109,14 @@
     grid-column-end: span var(--num-of-colors);
   }
 
-  .palette_head {
-
+  .add-color-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 10px 10px;
+    border: 1px solid var(--c-rulers);
+    border-radius: 3px;
+    padding: 20px;
   }
 
   .palette_shades,

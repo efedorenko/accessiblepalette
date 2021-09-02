@@ -97,8 +97,10 @@
   }
   .hex-input {
     margin-bottom: .5em;
+    white-space: nowrap;
   }
   .level-input {
+    white-space: nowrap;
   }
   .level-input label {
     display: inline-block;

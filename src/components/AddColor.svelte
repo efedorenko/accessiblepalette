@@ -30,4 +30,20 @@
   }
 </script>
 
-<button on:click={addColor}>Add color</button>
+<button on:click={addColor} title='Add color'>Add color</button>
+
+<style>
+  button {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: url(../assets/btn-add.svg) no-repeat;
+    text-indent: -999em;
+    overflow: hidden;
+    appearance: none;
+    cursor: pointer;
+  }
+</style>
