@@ -1,4 +1,4 @@
-import { get, readable, writable } from 'svelte/store';
+import { get, readable, writable, derived } from 'svelte/store';
 
 /* Background Color & Contrast Check
 ---------------------------------------- */
@@ -98,3 +98,11 @@ const _baseColors: BaseColor[] = [
   }
 ];
 export const baseColors = writable(_baseColors);
+
+export const baseColorsEncodedURL = derived(baseColors, ($baseColors) =>
+  $baseColors.map(color => {
+    const name = encodeURIComponent(color.name);
+    const hex = encodeURIComponent(color.color);
+    return `${name}=${hex},${color.isLab ? 1 : 0},${color.hueCorrection}`;
+  }).join('&')
+);

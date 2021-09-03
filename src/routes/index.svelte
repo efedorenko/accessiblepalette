@@ -1,6 +1,61 @@
-<script>
+<script lang="ts">
   import Palette from '../components/Palette.svelte';
   import Description from '../components/Description.svelte';
+  import { onMount } from 'svelte';
+  import { baseColors, baseColorsEncodedURL } from '../stores';
+  import type { BaseColor } from '../stores';
+
+  function saveStateToURL(params) {
+    console.log('saveStateToURL');
+    window.history.pushState($baseColors, '',  '?' + params);
+  }
+
+  function decodeColorsFromURL(): BaseColor[] {
+    const params = new URLSearchParams(window.location.search.substring(1));
+    const newBaseColors = [];
+    params.forEach((shorthand, color) => {
+      const values   = shorthand.split(',');
+      newBaseColors.push({
+        name: color,
+        color: values[0],
+        isLab: values[1] == '1',
+        hueCorrection: parseInt(values[2], 10)
+      });
+    });
+    return newBaseColors;
+  }
+
+  onMount(() => {
+    console.log('Page is mounted.')
+
+    // Whenever state is changed, save it to the URL — except for the first load
+    let isFirstLoad = true;
+    baseColorsEncodedURL.subscribe((store) => {
+      console.log('baseColorsEncodedURL was refreshed.');
+      if (!isFirstLoad) { saveStateToURL(store); }
+      isFirstLoad = false;
+    });
+
+    if (window.location.search !== '') {
+      console.log('There are URL params to parse');
+
+      // TODO: check if they're valid colors
+
+      // TODO: add support for lightness
+
+      // Replace baseColors with parsed colors.
+      const urlBaseColors = decodeColorsFromURL();
+      baseColors.set(urlBaseColors);
+
+    } else {
+      console.log('No params. Load default state.');
+    }
+
+    window.addEventListener('popstate', (event) => {
+      // TODO: Reload state from event.state when navigating back/forth
+      console.log('popstate event');
+    });
+  });
 </script>
 
 <div class="palette-container">
