@@ -68,15 +68,15 @@
   </div>
 
   <div class="level-input">
-    <label for="l-{bColor.name}">L:</label>
+    <label for="l-{bColor.name}" title="Lightness">L:</label>
     <input type="number" id="l-{bColor.name}" size="5" value={l} on:change={setLightness} min={0} max={100} />
   </div>
   <div class="level-input">
-    <label for="c-{bColor.name}">C:</label>
+    <label for="c-{bColor.name}" title="Chroma">C:</label>
     <input type="number" id="c-{bColor.name}" size="5" value={c} on:change={setChroma} min={0} max={150} />
   </div>
   <div class="level-input">
-    <label for="h-{bColor.name}">H:</label>
+    <label for="h-{bColor.name}" title="Hue">H:</label>
     <input type="number" id="h-{bColor.name}" size="5" value={h} on:change={setHue} min={0} max={360} />
   </div>
 
