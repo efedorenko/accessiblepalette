@@ -51,6 +51,9 @@
     box-shadow: 0 0 0 2px #DCEFF8;
   }
   .palette-container {
+    box-sizing: border-box;
+    width: max-content;
+    min-width: 100%;
     padding: 40px 20px;
     overflow-x: auto;
     background-color: #FFF;
