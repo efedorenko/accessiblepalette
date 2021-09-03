@@ -1,15 +1,14 @@
 <script lang="ts">
   import chroma from 'chroma-js';
   import { roundTo10th, roundToWhole } from '../helpers';
-  import { lightnessSteps, bgColor } from '../stores';
+  import { lightnessShades, bgColor } from '../stores';
   import type { LightnessInterface } from '../stores';
   import { APCAcontrast } from '../vendor/APCAonly.98e_d12e';
   import Preview from './Preview.svelte';
 
-  export let step: string;
+  export let shade: string;
 
   // TODO: make a little more consistent?
-  // TODO: rename "steps" to "shades"?
 
   let bg: string;
   bgColor.subscribe((store: string) => {
@@ -17,8 +16,8 @@
   });
 
   let lightness: number;
-  lightnessSteps.subscribe((store: LightnessInterface) => {
-    lightness = store[step];
+  lightnessShades.subscribe((store: LightnessInterface) => {
+    lightness = store[shade];
   });
 
   $: previewColor = chroma('#808080').set('lch.l', lightness) as chroma.Color;
@@ -39,9 +38,9 @@
   const changeLightness = (event: Event) => {
     const value: number = parseFloat((event.target as HTMLInputElement).value);
 
-    lightnessSteps.update(
+    lightnessShades.update(
       (store: LightnessInterface): LightnessInterface => {
-        store[step] = value;
+        store[shade] = value;
         return store;
       }
     );
@@ -52,8 +51,8 @@
   <div class="shade">
     <Preview color={bg} style="margin-left: -0.75em; margin-right: .125em;" />
     <Preview color={previewColor} style="margin-right: .25em;" />
-    <label for="step-{step}">{step}:</label>
-    <input type="number" id="step-{step}" size="5" value={lightness} on:change={changeLightness} min="0" max="100" />
+    <label for="shade-{shade}">{shade}:</label>
+    <input type="number" id="shade-{shade}" size="5" value={lightness} on:change={changeLightness} min="0" max="100" />
   </div>
 
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>

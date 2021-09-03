@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { BaseColor, LightnessInterface } from '../stores';
-  import { baseColors, lightnessSteps } from '../stores';
+  import { baseColors, lightnessShades } from '../stores';
   import LightnessControl from './LightnessControl.svelte';
   import ColorCell from './ColorCell.svelte';
   import HueControl from './HueControl.svelte';
@@ -19,7 +19,7 @@
   ---------------------------------------- */
 
   let shades: LightnessInterface;
-  lightnessSteps.subscribe((store: LightnessInterface): void => {
+  lightnessShades.subscribe((store: LightnessInterface): void => {
     shades = store;
   });
 
@@ -45,8 +45,8 @@
   ---------------------------------------- */
 
   $: palette = generatePalette(colors, shades) as Palette[];
-  const getPaletteColor = (name: string, step: string): Palette =>
-    palette.filter((c: Palette) => c.name === name).filter((c: Palette) => c.step === step)[0];
+  const getPaletteColor = (name: string, shade: string): Palette =>
+    palette.filter((c: Palette) => c.name === name).filter((c: Palette) => c.shade === shade)[0];
 </script>
 
 <div class="palette" style="--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(shades).length}">
@@ -71,15 +71,15 @@
   <GroupTitleVertical title="Lightness & Contrast" />
 
   <div class="palette_shades">
-    {#each Object.keys(shades) as step}
-      <LightnessControl {step} />
+    {#each Object.keys(shades) as shade}
+      <LightnessControl {shade} />
     {/each}
   </div>
 
   {#each colors as bColor (bColor.name)}
     <div class="palette_colors" in:fade={transitionParams}>
-      {#each Object.keys(shades) as step}
-        <ColorCell color={getPaletteColor(bColor.name, step)} shade={step} />
+      {#each Object.keys(shades) as shade}
+        <ColorCell color={getPaletteColor(bColor.name, shade)} {shade} />
       {/each}
     </div>
   {/each}

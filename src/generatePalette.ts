@@ -3,11 +3,11 @@ import type { BaseColor, LightnessInterface } from './stores';
 
 export interface Palette {
   color: string;
-  step: string;
+  shade: string;
   name: string;
 }
 
-export function generatePalette(baseColors: BaseColor[], steps: LightnessInterface): Palette[] {
+export function generatePalette(baseColors: BaseColor[], shades: LightnessInterface): Palette[] {
   const p = [];
 
   function getColorFromScale(scale: chroma.Scale, lightness: number): chroma.Color {
@@ -16,8 +16,8 @@ export function generatePalette(baseColors: BaseColor[], steps: LightnessInterfa
   }
 
   function applyHueCorrection(chromaColor: chroma.Color, hueCorrection: number, index: number): chroma.Color {
-    const lightnessStepsTotal = Object.keys(steps).length;
-    const hueAdjustment = (hueCorrection / lightnessStepsTotal) * (index + 1);
+    const totalShades = Object.keys(shades).length;
+    const hueAdjustment = (hueCorrection / totalShades) * (index + 1);
     return chromaColor.set('lch.h', chromaColor.lch()[2] + hueAdjustment);
   }
 
@@ -27,8 +27,8 @@ export function generatePalette(baseColors: BaseColor[], steps: LightnessInterfa
       .mode(bColor.isLab ? 'lab' : 'rgb')
       .correctLightness();
 
-    Object.keys(steps).forEach((step, lightnessIndex) => {
-      const lightness: number = steps[step];
+    Object.keys(shades).forEach((shade, lightnessIndex) => {
+      const lightness: number = shades[shade];
       const chromaColorWithLightness = getColorFromScale(scale, lightness);
       const chromaColorWithCorrectedHue = applyHueCorrection(
         chromaColorWithLightness,
@@ -39,7 +39,7 @@ export function generatePalette(baseColors: BaseColor[], steps: LightnessInterfa
 
       const paletteColor: Palette = {
         color: colorHex,
-        step: step,
+        shade: shade,
         name: bColor.name
       };
 

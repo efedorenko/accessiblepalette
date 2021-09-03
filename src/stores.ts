@@ -23,7 +23,7 @@ export interface LightnessInterface {
   '900': number;
 }
 
-const _lightnessSteps: LightnessInterface = {
+const shades: LightnessInterface = {
   50: 98,
   100: 93.3,
   200: 88.6,
@@ -35,7 +35,7 @@ const _lightnessSteps: LightnessInterface = {
   800: 27.0,
   900: 15.6
 };
-export const lightnessSteps = writable(_lightnessSteps);
+export const lightnessShades = writable(shades);
 
 /* Base Colors
 ---------------------------------------- */
