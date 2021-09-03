@@ -1,10 +1,13 @@
 <script>
   import Palette from '../components/Palette.svelte';
+  import Description from '../components/Description.svelte';
 </script>
 
 <div class='palette-container'>
   <Palette />
 </div>
+
+<Description />
 
 <style>
   :global(:root) {
