@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
   import { baseColors } from '../stores';
   import type { BaseColor } from '../stores';
 
@@ -9,7 +9,7 @@
     if (confirm(`You really want to remove color ${bColor.color.toUpperCase()}?`)) {
       baseColors.update((oldStore: BaseColor[]): BaseColor[] => {
         let newStore = oldStore;
-        let index = newStore.findIndex(el => el.name === bColor.name);
+        let index = newStore.findIndex((el) => el.name === bColor.name);
 
         if (index !== -1) {
           newStore.splice(index, 1);
@@ -23,7 +23,7 @@
   }
 </script>
 
-<button on:click={removeColor} title='Remove color'>Remove color</button>
+<button on:click={removeColor} title="Remove color">Remove color</button>
 
 <style>
   button {
@@ -38,7 +38,7 @@
     overflow: hidden;
     appearance: none;
     cursor: pointer;
-    opacity: .66;
+    opacity: 0.66;
   }
   button:hover {
     opacity: 1;

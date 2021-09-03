@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
   import chroma from 'chroma-js';
   import { roundTo10th, roundToWhole } from '../helpers';
   import { lightnessSteps, bgColor } from '../stores';
@@ -21,7 +21,6 @@
     lightness = store[step];
   });
 
-
   $: previewColor = chroma('#808080').set('lch.l', lightness) as chroma.Color;
 
   const minContrastRatioWCAG2 = 4.5;
@@ -31,7 +30,7 @@
   const colorToHex = (color: string): number => {
     color = color.replace('#', '0x');
     return parseInt(color, 16);
-  }
+  };
   $: contrastAPCA = APCAcontrast(colorToHex(bg), colorToHex(previewColor.toString())) as number;
   $: contrastWCAG3 = roundToWhole(contrastAPCA) as number;
 
@@ -40,26 +39,30 @@
   const changeLightness = (event: Event) => {
     const value: number = parseFloat((event.target as HTMLInputElement).value);
 
-    lightnessSteps.update((store: LightnessInterface): LightnessInterface => {
-      store[step] = value;
-      return store;
-    });
+    lightnessSteps.update(
+      (store: LightnessInterface): LightnessInterface => {
+        store[step] = value;
+        return store;
+      }
+    );
   };
 </script>
 
-<div class='lightness'>
-  <div class='shade'>
-    <Preview color={bg} style='margin-left: -0.75em; margin-right: .125em;' />
-    <Preview color={previewColor} style='margin-right: .25em;' />
-    <label for='step-{step}'>{step}:</label>
-    <input type='number' id='step-{step}' size='5' value={lightness} on:change={changeLightness} min='0' max='100'>
+<div class="lightness">
+  <div class="shade">
+    <Preview color={bg} style="margin-left: -0.75em; margin-right: .125em;" />
+    <Preview color={previewColor} style="margin-right: .25em;" />
+    <label for="step-{step}">{step}:</label>
+    <input type="number" id="step-{step}" size="5" value={lightness} on:change={changeLightness} min="0" max="100" />
   </div>
 
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>
     WCAG 2: <span class={contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}>{@html contrastWCAG2}</span>
   </div>
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>
-    WCAG 3: <span class={Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}>{@html contrastWCAG3.toString().replace('-', '\u2212')}</span>
+    WCAG 3: <span class={Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}
+      >{@html contrastWCAG3.toString().replace('-', '\u2212')}</span
+    >
   </div>
 </div>
 
@@ -69,7 +72,7 @@
     flex-direction: column;
     justify-content: center;
     font-size: 0.75rem; /* 12px */
-    padding: .75em 1em;
+    padding: 0.75em 1em;
   }
 
   .shade {
@@ -80,7 +83,7 @@
 
   .shade label {
     min-width: 2.2em; /* To keep 50’s input aligned with the rest */
-    margin-right: .25em;
+    margin-right: 0.25em;
   }
 
   input {
@@ -88,11 +91,11 @@
   }
 
   .contrast-ratio {
-    margin-top: .3636em;
+    margin-top: 0.3636em;
   }
 
   .zero {
-    opacity: .33;
+    opacity: 0.33;
   }
 
   .pass {
@@ -101,7 +104,7 @@
   }
 
   .fail {
-    color: #AF6334;
+    color: #af6334;
     text-decoration: line-through;
   }
 </style>

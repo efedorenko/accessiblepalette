@@ -1,4 +1,4 @@
-<div class='content'>
+<div class="content">
   <h1>
     <strong>🌈 Accessible Palette:</strong>
     Create color systems with consistent lightness and contrast

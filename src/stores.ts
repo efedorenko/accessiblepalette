@@ -7,7 +7,6 @@ import { get, readable, writable } from 'svelte/store';
 export const defaultBgColor = readable<string>('#FFFFFF');
 export const bgColor = writable<string>(get(defaultBgColor));
 
-
 /* Lightness
 ---------------------------------------- */
 
@@ -37,7 +36,6 @@ const _lightnessSteps: LightnessInterface = {
   900: 15.6
 };
 export const lightnessSteps = writable(_lightnessSteps);
-
 
 /* Base Colors
 ---------------------------------------- */

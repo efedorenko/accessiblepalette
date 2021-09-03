@@ -21,13 +21,20 @@ export function generatePalette(baseColors: BaseColor[], steps: LightnessInterfa
     return chromaColor.set('lch.h', chromaColor.lch()[2] + hueAdjustment);
   }
 
-  baseColors.forEach(function(bColor) {
-    const scale: chroma.Scale = chroma.scale(['black', bColor.color, 'white']).mode(bColor.isLab ? 'lab' : 'rgb').correctLightness();
+  baseColors.forEach(function (bColor) {
+    const scale: chroma.Scale = chroma
+      .scale(['black', bColor.color, 'white'])
+      .mode(bColor.isLab ? 'lab' : 'rgb')
+      .correctLightness();
 
     Object.keys(steps).forEach((step, lightnessIndex) => {
       const lightness: number = steps[step];
       const chromaColorWithLightness = getColorFromScale(scale, lightness);
-      const chromaColorWithCorrectedHue = applyHueCorrection(chromaColorWithLightness, bColor.hueCorrection, lightnessIndex);
+      const chromaColorWithCorrectedHue = applyHueCorrection(
+        chromaColorWithLightness,
+        bColor.hueCorrection,
+        lightnessIndex
+      );
       const colorHex: string = chromaColorWithCorrectedHue.hex();
 
       const paletteColor: Palette = {

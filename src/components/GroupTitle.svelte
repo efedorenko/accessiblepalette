@@ -10,7 +10,7 @@
     flex-direction: row;
     align-items: center;
     margin: 0;
-    padding: .5em 0;
+    padding: 0.5em 0;
     color: #000;
     font-weight: 600;
     font-size: 0.875rem; /* 14px */
@@ -27,10 +27,10 @@
   }
 
   h2::before {
-    margin-right: .5em;
+    margin-right: 0.5em;
   }
 
   h2::after {
-    margin-left: .5em;
+    margin-left: 0.5em;
   }
 </style>

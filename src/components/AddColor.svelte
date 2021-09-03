@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
   import chroma, { Color } from 'chroma-js';
   import { baseColors } from '../stores';
   import type { BaseColor } from '../stores';
@@ -30,8 +30,8 @@
   }
 </script>
 
-<div class='wrapper'>
-  <button on:click={addColor} title='Add color'>Add color</button>
+<div class="wrapper">
+  <button on:click={addColor} title="Add color">Add color</button>
 </div>
 
 <style>
@@ -44,8 +44,7 @@
     height: 100%;
     border: 1px solid var(--c-rulers);
     border-radius: 3px;
-    padding: .75rem;
-
+    padding: 0.75rem;
   }
   button {
     display: inline-block;

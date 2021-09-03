@@ -2,7 +2,7 @@
   export let title;
 </script>
 
-<div class='container'>
+<div class="container">
   <h2>
     <span>{title}</span>
   </h2>
@@ -19,7 +19,7 @@
     flex-direction: column;
     align-items: center;
     margin: 0;
-    padding: 0 .5em;
+    padding: 0 0.5em;
     color: #000;
     font-weight: 600;
     font-size: 0.875rem; /* 14px */
@@ -34,19 +34,19 @@
   }
 
   h2::before {
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
   }
 
   h2::after {
-    margin-top: .5em;
+    margin-top: 0.5em;
   }
 
   span {
     flex-shrink: 0;
-    padding: 0 .5em;
+    padding: 0 0.5em;
     transform: rotate(-90deg);
     transform-origin: center;
     white-space: nowrap;
-    background-color: #FFF;
+    background-color: #fff;
   }
 </style>

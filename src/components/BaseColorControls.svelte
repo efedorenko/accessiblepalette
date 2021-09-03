@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
   import chroma from 'chroma-js';
   import { roundToWhole } from '../helpers';
   import { baseColors } from '../stores';
@@ -17,7 +17,7 @@
   const updateBaseColor = (newColor: string): void => {
     baseColors.update((oldStore: BaseColor[]): BaseColor[] => {
       let newStore = oldStore;
-      let index = newStore.findIndex(el => el.name === bColor.name);
+      let index = newStore.findIndex((el) => el.name === bColor.name);
       newStore[index].color = newColor;
       return newStore;
     });
@@ -61,27 +61,27 @@
   }
 </script>
 
-<div class='base-color-ctrl'>
-  <div class='hex-input'>
-    <Preview color={color} style='margin-right: .5em;' />
-    <input type='text' size='7' value={color.toUpperCase()} class={isHexInvalid ? 'error' : ''} on:change={setHex}>
+<div class="base-color-ctrl">
+  <div class="hex-input">
+    <Preview {color} style="margin-right: .5em;" />
+    <input type="text" size="7" value={color.toUpperCase()} class={isHexInvalid ? 'error' : ''} on:change={setHex} />
   </div>
 
-  <div class='level-input'>
-    <label for='l-{bColor.name}'>L:</label>
-    <input type='number' id='l-{bColor.name}' size='5' value={l} on:change={setLightness} min={0} max={100}>
+  <div class="level-input">
+    <label for="l-{bColor.name}">L:</label>
+    <input type="number" id="l-{bColor.name}" size="5" value={l} on:change={setLightness} min={0} max={100} />
   </div>
-  <div class='level-input'>
-    <label for='c-{bColor.name}'>C:</label>
-    <input type='number' id='c-{bColor.name}' size='5' value={c} on:change={setChroma} min={0} max={150}>
+  <div class="level-input">
+    <label for="c-{bColor.name}">C:</label>
+    <input type="number" id="c-{bColor.name}" size="5" value={c} on:change={setChroma} min={0} max={150} />
   </div>
-  <div class='level-input'>
-    <label for='h-{bColor.name}'>H:</label>
-    <input type='number' id='h-{bColor.name}' size='5' value={h} on:change={setHue} min={0} max={360}>
+  <div class="level-input">
+    <label for="h-{bColor.name}">H:</label>
+    <input type="number" id="h-{bColor.name}" size="5" value={h} on:change={setHue} min={0} max={360} />
   </div>
 
-  <div class='lab-pref'>
-    <LabPref bColor={bColor} />
+  <div class="lab-pref">
+    <LabPref {bColor} />
   </div>
 </div>
 
@@ -91,14 +91,14 @@
     flex-direction: column;
     justify-content: center;
     font-size: 0.75rem; /* 12px */
-    padding: .5em 1em .5em 0;
+    padding: 0.5em 1em 0.5em 0;
   }
   .hex-input {
     display: flex;
     flex-direction: row;
     align-items: center;
 
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     white-space: nowrap;
   }
   .level-input {
@@ -114,17 +114,17 @@
   }
 
   .lab-pref {
-    margin-top: .5em;
+    margin-top: 0.5em;
   }
 
-  input[type="text"] {
+  input[type='text'] {
     width: 4.75em;
   }
-  input[type="number"] {
+  input[type='number'] {
     width: 4em;
   }
 
   input.error {
-    background-color: #FFE7D6;
+    background-color: #ffe7d6;
   }
 </style>

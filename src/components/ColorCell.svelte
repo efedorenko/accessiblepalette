@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
   import chroma from 'chroma-js';
   import { bgColor, defaultBgColor } from '../stores';
   import { roundTo10th } from '../helpers';
@@ -12,7 +12,7 @@
   let isSelected = false;
 
   bgColor.subscribe((store: string) => {
-    isSelected = (store === color.color);
+    isSelected = store === color.color;
   });
 
   function selectColor(): void {
@@ -24,11 +24,12 @@
   }
 </script>
 
-<div style='background-color: {color.color};'
-     on:click={selectColor}
-     class={isSelected ? 'selected' : ''}
-     data-shade={shade}
-     title='Chroma: {c}, Hue: {h}'
+<div
+  style="background-color: {color.color};"
+  on:click={selectColor}
+  class={isSelected ? 'selected' : ''}
+  data-shade={shade}
+  title="Chroma: {c}, Hue: {h}"
 >
   {color.color.toUpperCase()}
 </div>
@@ -39,7 +40,7 @@
     align-items: center;
     justify-content: center;
 
-    padding: .5em .25em;
+    padding: 0.5em 0.25em;
     font: 0.75rem 'iA Writer Duo', monospace, sans-serif;
     letter-spacing: 0.1em;
     text-align: center;
@@ -48,57 +49,57 @@
 
   /* TODO: Lightness levels can vary, so instead we should create CSS vars behind the scenes */
   /* Maintain 50 CR */
-  [data-shade="50"] {
+  [data-shade='50'] {
     color: #868686;
     color: rgba(0, 0, 0, 0.47);
   }
 
-  [data-shade="100"] {
+  [data-shade='100'] {
     color: #777;
     color: rgba(0, 0, 0, 0.53);
   }
 
-  [data-shade="200"] {
+  [data-shade='200'] {
     color: #646464;
     color: rgba(0, 0, 0, 0.61);
   }
 
-  [data-shade="300"] {
+  [data-shade='300'] {
     color: #444;
     color: rgba(0, 0, 0, 0.73);
   }
 
-  [data-shade="400"] {
+  [data-shade='400'] {
     color: #101010;
     color: rgba(0, 0, 0, 0.94);
   }
 
-  [data-shade="500"] {
+  [data-shade='500'] {
     color: #f9f9f9;
-    color: rgba(255, 255, 255, .98);
+    color: rgba(255, 255, 255, 0.98);
   }
 
-  [data-shade="600"] {
+  [data-shade='600'] {
     color: #e4e4e4;
-    color: rgba(255, 255, 255, .89);
+    color: rgba(255, 255, 255, 0.89);
   }
 
-  [data-shade="700"] {
+  [data-shade='700'] {
     color: #d2d2d2;
-    color: rgba(255, 255, 255, .82);
+    color: rgba(255, 255, 255, 0.82);
   }
 
-  [data-shade="800"] {
+  [data-shade='800'] {
     color: #c2c2c2;
-    color: rgba(255, 255, 255, .76);
+    color: rgba(255, 255, 255, 0.76);
   }
 
-  [data-shade="900"] {
+  [data-shade='900'] {
     color: #b6b6b6;
-    color: rgba(255, 255, 255, .71);
+    color: rgba(255, 255, 255, 0.71);
   }
 
   .selected {
-    box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .75);
+    box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.75);
   }
 </style>

@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
   import { baseColors } from '../stores';
   import type { BaseColor } from '../stores';
   import RemoveColor from './RemoveColor.svelte';
@@ -12,7 +12,7 @@
 
     baseColors.update((oldStore: BaseColor[]): BaseColor[] => {
       const newStore: BaseColor[] = oldStore;
-      const bColorIndex = newStore.findIndex(el => el.name === bColor.name);
+      const bColorIndex = newStore.findIndex((el) => el.name === bColor.name);
       if (bColorIndex !== -1) {
         newStore[bColorIndex].hueCorrection = value;
       } else {
@@ -24,29 +24,24 @@
   };
 </script>
 
-<div class='remove-color'>
-  <RemoveColor bColor={bColor} />
+<div class="remove-color">
+  <RemoveColor {bColor} />
 </div>
-<div class='hue-ctrl'>
-  <input type='number'
-         size='5'
-         value={hueCorrection}
-         on:change={changeHueCorrection}
-         min='-180'
-         max='180'>
+<div class="hue-ctrl">
+  <input type="number" size="5" value={hueCorrection} on:change={changeHueCorrection} min="-180" max="180" />
 </div>
 
 <style>
   .remove-color {
-    padding: .5em;
+    padding: 0.5em;
     text-align: center;
   }
   .hue-ctrl {
-    padding: .5em;
+    padding: 0.5em;
     text-align: center;
   }
-  input[type="number"] {
+  input[type='number'] {
     width: 4em;
-    font: .75em Inter, sans-serif;
+    font: 0.75em Inter, sans-serif;
   }
 </style>

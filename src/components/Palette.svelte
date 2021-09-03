@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
   import type { BaseColor, LightnessInterface } from '../stores';
   import { baseColors, lightnessSteps } from '../stores';
   import LightnessControl from './LightnessControl.svelte';
@@ -45,71 +45,57 @@
   ---------------------------------------- */
 
   $: palette = generatePalette(colors, shades) as Palette[];
-  const getPaletteColor = (name: string, step: string): Palette => palette.filter((c: Palette) => c.name === name).filter((c: Palette) => c.step === step)[0];
+  const getPaletteColor = (name: string, step: string): Palette =>
+    palette.filter((c: Palette) => c.name === name).filter((c: Palette) => c.step === step)[0];
 </script>
 
-<div class='palette'
-     style='--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(shades).length}'>
-
+<div class="palette" style="--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(shades).length}">
   <!-- Base Colors -->
 
-  <div class='base-colors-title'>
-    <GroupTitle title='Set starting colors:' />
+  <div class="base-colors-title">
+    <GroupTitle title="Set starting colors:" />
   </div>
 
   {#each colors as bColor, index (bColor.name)}
-    <div
-      class='palette_head'
-      style={index === 0 ? 'grid-column-start: 3' : ''}
-      in:fade={transitionParams}
-    >
-      <BaseColorControls bColor={bColor} />
+    <div class="palette_head" style={index === 0 ? 'grid-column-start: 3' : ''} in:fade={transitionParams}>
+      <BaseColorControls {bColor} />
     </div>
   {/each}
 
-  <div class='add-color-cell'>
+  <div class="add-color-cell">
     <AddColor />
   </div>
 
-
   <!-- Colors -->
 
-  <GroupTitleVertical title='Lightness & Contrast' />
+  <GroupTitleVertical title="Lightness & Contrast" />
 
-  <div class='palette_shades'>
+  <div class="palette_shades">
     {#each Object.keys(shades) as step}
-      <LightnessControl step={step} />
+      <LightnessControl {step} />
     {/each}
   </div>
 
   {#each colors as bColor (bColor.name)}
-    <div
-      class='palette_colors'
-      in:fade={transitionParams}
-    >
+    <div class="palette_colors" in:fade={transitionParams}>
       {#each Object.keys(shades) as step}
         <ColorCell color={getPaletteColor(bColor.name, step)} shade={step} />
       {/each}
     </div>
   {/each}
 
-
   <!-- Hue Correction -->
 
   {#each colors as bColor, index (bColor.name)}
-    <div class='palette_hue'
-         style={index === 0 ? 'grid-column-start: 3' : ''}
-         in:fade={transitionParams}
-    >
-      <HueControl bColor={bColor} />
+    <div class="palette_hue" style={index === 0 ? 'grid-column-start: 3' : ''} in:fade={transitionParams}>
+      <HueControl {bColor} />
     </div>
   {/each}
 
-  <div class='hue-ctrl-title'>
-    <GroupTitle title='Adjust Hue in a color range' />
+  <div class="hue-ctrl-title">
+    <GroupTitle title="Adjust Hue in a color range" />
   </div>
 </div>
-
 
 <style>
   .palette {
