@@ -40,8 +40,6 @@ export const lightnessShades = writable(shades);
 /* Base Colors
 ---------------------------------------- */
 
-// TODO: remove pre-defined names
-
 export interface BaseColor {
   name: string;
   color: string;
