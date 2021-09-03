@@ -1,32 +1,25 @@
-<script>
+<script lang='ts'>
   import chroma from 'chroma-js';
   import { bgColor, defaultBgColor } from '../stores';
   import { roundTo10th } from '../helpers';
+  import type { Palette } from '../generatePalette';
 
-  export let color, shade;
+  export let color: Palette, shade: string;
 
-  // let lightness = roundTo100th(color.lch()[0]);
-  let c = roundTo10th(chroma(color.color).lch()[1]);
-  let h = roundTo10th(chroma(color.color).lch()[2]);
+  let c: number = roundTo10th(chroma(color.color).get('lch.c'));
+  let h: number = roundTo10th(chroma(color.color).get('lch.h'));
 
-  let originalBgColor = $bgColor;
   let isSelected = false;
 
-  let currentBgColor;
-  bgColor.subscribe(store => currentBgColor = store);
+  bgColor.subscribe((store: string) => {
+    isSelected = (store === color.color);
+  });
 
-  $: if (currentBgColor === color.color) {
-    console.log('selected color: ' + color.color);
-    isSelected = true;
-  } else {
-    isSelected = false;
-  }
-
-  function selectColor() {
+  function selectColor(): void {
     if (!isSelected) {
-      bgColor.update(store => color.color);
+      bgColor.update(() => color.color);
     } else {
-      bgColor.update(store => $defaultBgColor);
+      bgColor.update(() => $defaultBgColor);
     }
   }
 </script>

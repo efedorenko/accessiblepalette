@@ -1,16 +1,17 @@
-<script>
+<script lang='ts'>
   import { baseColors } from '../stores';
+  import type { BaseColor } from '../stores';
   import RemoveColor from './RemoveColor.svelte';
 
-  export let bColor;
+  export let bColor: BaseColor;
 
   let { hueCorrection } = bColor;
 
-  const changeHueCorrection = (event) => {
-    const value = event.target.value;
+  const changeHueCorrection = (event: Event) => {
+    const value: number = parseFloat((event.target as HTMLInputElement).value);
 
-    baseColors.update(oldStore => {
-      const newStore = oldStore;
+    baseColors.update((oldStore: BaseColor[]): BaseColor[] => {
+      const newStore: BaseColor[] = oldStore;
       const bColorIndex = newStore.findIndex(el => el.name === bColor.name);
       if (bColorIndex !== -1) {
         newStore[bColorIndex].hueCorrection = value;

@@ -1,41 +1,46 @@
-<script>
+<script lang='ts'>
   import chroma from 'chroma-js';
   import { roundTo10th, roundToWhole } from '../helpers';
-  import { lightnessSteps, bgColor, defaultBgColor } from '../stores';
+  import { lightnessSteps, bgColor } from '../stores';
+  import type { LightnessInterface } from '../stores';
   import { APCAcontrast } from '../vendor/APCAonly.98e_d12e';
   import Preview from './Preview.svelte';
 
-  export let step;
+  export let step: string;
 
   // TODO: make a little more consistent?
   // TODO: rename "steps" to "shades"?
 
-  let bg;
-  bgColor.subscribe(store => {
+  let bg: string;
+  bgColor.subscribe((store: string) => {
     bg = store;
   });
 
-  let lightness;
-  lightnessSteps.subscribe(store => {
+  let lightness: number;
+  lightnessSteps.subscribe((store: LightnessInterface) => {
     lightness = store[step];
   });
 
 
-  $: previewColor = chroma('#808080').set('lch.l', lightness);
+  $: previewColor = chroma('#808080').set('lch.l', lightness) as chroma.Color;
 
   const minContrastRatioWCAG2 = 4.5;
-  $: contrastWCAG2 = roundTo10th(chroma.contrast(previewColor, bg));
+  $: contrastWCAG2 = roundTo10th(chroma.contrast(previewColor, bg)) as number;
 
   const minContrastRatioWCAG3 = 60;
-  $: contrastAPCA = APCAcontrast(bg.replace('#', '0x'), previewColor.toString().replace('#', '0x'));
-  $: contrastWCAG3 = roundToWhole(contrastAPCA);
+  const colorToHex = (color: string): number => {
+    color = color.replace('#', '0x');
+    return parseInt(color, 16);
+  }
+  $: contrastAPCA = APCAcontrast(colorToHex(bg), colorToHex(previewColor.toString())) as number;
+  $: contrastWCAG3 = roundToWhole(contrastAPCA) as number;
 
-  $: noContrast = (contrastWCAG2 === 1 && contrastWCAG3 >= -1 && contrastWCAG3 <= 1);
+  $: noContrast = (contrastWCAG2 === 1 && contrastWCAG3 >= -1 && contrastWCAG3 <= 1) as boolean;
 
-  const changeLightness = (event) => {
-    const value = event.target.value;
+  const changeLightness = (event: Event) => {
+    const value: number = parseFloat((event.target as HTMLInputElement).value);
 
-    lightnessSteps.update(store => {
+    lightnessSteps.update((store: LightnessInterface): LightnessInterface => {
       store[step] = value;
       return store;
     });

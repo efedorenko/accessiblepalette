@@ -10,7 +10,7 @@ export interface Palette {
 export function generatePalette(baseColors: BaseColor[], steps: LightnessInterface): Palette[] {
   const p = [];
 
-  function getColorFromScale(scale, lightness): chroma.Color {
+  function getColorFromScale(scale: chroma.Scale, lightness: number): chroma.Color {
     const color = scale(lightness / 100);
     return chroma(color);
   }
@@ -22,7 +22,7 @@ export function generatePalette(baseColors: BaseColor[], steps: LightnessInterfa
   }
 
   baseColors.forEach(function(bColor) {
-    const scale = chroma.scale(['black', bColor.color, 'white']).mode(bColor.isLab ? 'lab' : 'rgb').correctLightness();
+    const scale: chroma.Scale = chroma.scale(['black', bColor.color, 'white']).mode(bColor.isLab ? 'lab' : 'rgb').correctLightness();
 
     Object.keys(steps).forEach((step, lightnessIndex) => {
       const lightness: number = steps[step];

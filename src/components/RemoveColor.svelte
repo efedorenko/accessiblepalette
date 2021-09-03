@@ -2,7 +2,7 @@
   import { baseColors } from '../stores';
   import type { BaseColor } from '../stores';
 
-  export let bColor, style;
+  export let bColor: BaseColor;
 
   function removeColor() {
     console.log(`➖ Remove color ${bColor.name}`);
@@ -23,7 +23,7 @@
   }
 </script>
 
-<button on:click={removeColor} style={style} title='Remove color'>Remove color</button>
+<button on:click={removeColor} title='Remove color'>Remove color</button>
 
 <style>
   button {

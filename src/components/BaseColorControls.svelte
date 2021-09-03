@@ -1,11 +1,10 @@
 <script lang='ts'>
   import chroma from 'chroma-js';
-  import { roundTo10th, roundToWhole } from '../helpers';
+  import { roundToWhole } from '../helpers';
   import { baseColors } from '../stores';
   import type { BaseColor } from '../stores';
   import LabPref from './LabPref.svelte';
   import Preview from './Preview.svelte';
-  import RemoveColor from './RemoveColor.svelte';
 
   export let bColor: BaseColor;
 
@@ -24,20 +23,18 @@
     });
   };
 
-  function setHex(event) {
-    const hex: string = event.target.value;
-
+  function setHex(event: Event): void {
+    const hex: string = (event.target as HTMLInputElement).value;
     if (chroma.valid(hex)) {
       isHexInvalid = false;
       updateBaseColor(hex);
-
     } else {
       isHexInvalid = true;
     }
   }
 
-  function setLightness(event) {
-    const lightness = event.target.value;
+  function setLightness(event: Event): void {
+    const lightness: number = parseFloat((event.target as HTMLInputElement).value);
     if (lightness < 0 || lightness > 100) {
       alert('Lightness is out of range (0-100).');
       return;
@@ -45,8 +42,8 @@
     updateBaseColor(chroma(color).set('lch.l', lightness).toString());
   }
 
-  function setChroma(event) {
-    const chromatic = event.target.value;
+  function setChroma(event: Event): void {
+    const chromatic: number = parseFloat((event.target as HTMLInputElement).value);
     if (chromatic < 0 || chromatic > 150) {
       alert('Chroma is out of range (0-150).');
       return;
@@ -54,8 +51,8 @@
     updateBaseColor(chroma(color).set('lch.c', chromatic).toString());
   }
 
-  function setHue(event) {
-    const hue = event.target.value;
+  function setHue(event: Event): void {
+    const hue: number = parseFloat((event.target as HTMLInputElement).value);
     if (hue < 0 || hue > 360) {
       alert('Hue is out of range (0-360).');
       return;

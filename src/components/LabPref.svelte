@@ -1,11 +1,12 @@
-<script>
+<script lang='ts'>
   import { baseColors } from '../stores';
+  import type { BaseColor } from '../stores';
 
-  export let bColor;
+  export let bColor: BaseColor;
 
   let isLab = bColor.isLab;
 
-  const changeLabPref = (event) => {
+  const changeLabPref = () => {
     baseColors.update(oldStore => {
       let newStore = oldStore;
       let index = newStore.findIndex(el => el.name === bColor.name);

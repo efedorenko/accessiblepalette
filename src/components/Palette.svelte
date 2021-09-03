@@ -1,10 +1,11 @@
 <script lang='ts'>
-  import type { BaseColor } from '../stores';
+  import type { BaseColor, LightnessInterface } from '../stores';
   import { baseColors, lightnessSteps } from '../stores';
   import LightnessControl from './LightnessControl.svelte';
   import ColorCell from './ColorCell.svelte';
   import HueControl from './HueControl.svelte';
   import { generatePalette } from '../generatePalette';
+  import type { Palette } from '../generatePalette';
   import GroupTitle from './GroupTitle.svelte';
   import GroupTitleVertical from './GroupTitleVertical.svelte';
   import AddColor from './AddColor.svelte';
@@ -14,17 +15,13 @@
   import { quintInOut } from 'svelte/easing';
   import { fade } from 'svelte/transition';
 
-  const transitionParams = {
-    duration: 400,
-    easing: quintInOut
-  };
-
   /* Lightness
   ---------------------------------------- */
 
-  let shades;
-  lightnessSteps.subscribe(store => shades = store);
-
+  let shades: LightnessInterface;
+  lightnessSteps.subscribe((store: LightnessInterface): void => {
+    shades = store;
+  });
 
   /* Base Colors
   ---------------------------------------- */
@@ -35,23 +32,24 @@
   baseColors.subscribe((store: BaseColor[]): void => {
     colors = store.sort(sortBaseColors);
     numOfColors = store.length;
-
-    console.log('Base colors were updated:');
-    console.log(store);
   });
+
+  // Transition
+
+  const transitionParams = {
+    duration: 400,
+    easing: quintInOut
+  };
 
   /* Palette
   ---------------------------------------- */
 
-  $: palette = generatePalette(colors, shades);
-  // $: console.log('New palette:');
-  // $: console.log(palette);
-  const getPaletteColor = (name, step) => palette.filter(c => c.name === name).filter(c => c.step === step)[0];
-
+  $: palette = generatePalette(colors, shades) as Palette[];
+  const getPaletteColor = (name: string, step: string): Palette => palette.filter((c: Palette) => c.name === name).filter((c: Palette) => c.step === step)[0];
 </script>
 
-
-<div class='palette' style='--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(shades).length}'>
+<div class='palette'
+     style='--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(shades).length}'>
 
   <!-- Base Colors -->
 
@@ -84,7 +82,7 @@
     {/each}
   </div>
 
-  {#each colors as bColor, index (bColor.name)}
+  {#each colors as bColor (bColor.name)}
     <div
       class='palette_colors'
       in:fade={transitionParams}
@@ -110,8 +108,8 @@
   <div class='hue-ctrl-title'>
     <GroupTitle title='Adjust Hue in a color range' />
   </div>
-
 </div>
+
 
 <style>
   .palette {
@@ -137,16 +135,8 @@
     grid-template-rows: repeat(var(--num-of-shades), 1fr);
   }
 
-  .palette_colors {
-  }
-
-  .palette_hue {
-
-  }
   .hue-ctrl-title {
     grid-column-start: 3;
     grid-column-end: span var(--num-of-colors);
   }
-
-
 </style>

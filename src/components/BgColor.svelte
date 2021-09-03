@@ -1,27 +1,27 @@
-<script>
+<script lang='ts'>
   /*
-    white and black should be presented on lightness scale.
+    TODO: white and black should be presented on lightness scale.
     every level should be selectable and then all contrast ratios should be recalculated from it.
   */
 
   import { bgColor } from '../stores';
   import chroma from 'chroma-js';
 
-  let color;
-  bgColor.subscribe(store => color = store);
+  let color: string;
+  bgColor.subscribe((store: string) => color = store);
 
   let isError = false;
 
-  const changeBgColor = (event) => {
-    const value = event.target.value;
+  function changeBgColor (event: Event): void {
+    const value: string = (event.target as HTMLInputElement).value
 
     if (chroma.valid(value)) {
       isError = false;
-      bgColor.update(store => value);
+      bgColor.update(() => value);
     } else {
       isError = true;
     }
-  };
+  }
 </script>
 
 <label style='padding: 1em; background-color: {color}'>
@@ -29,8 +29,7 @@
 </label>
 
 <style>
-  input[type="text"],
-  input[type="number"] {
+  input[type="text"] {
     width: 5em;
   }
 
