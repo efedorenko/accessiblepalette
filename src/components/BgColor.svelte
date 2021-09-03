@@ -1,9 +1,4 @@
 <script lang="ts">
-  /*
-    TODO: white and black should be presented on lightness scale.
-    every level should be selectable and then all contrast ratios should be recalculated from it.
-  */
-
   import { bgColor } from '../stores';
   import chroma from 'chroma-js';
 
