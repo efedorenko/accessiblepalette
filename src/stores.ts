@@ -7,6 +7,7 @@ import { get, readable, writable, derived } from 'svelte/store';
 export const defaultBgColor = readable<string>('#FFFFFF');
 export const bgColor = writable<string>(get(defaultBgColor));
 
+
 /* Lightness
 ---------------------------------------- */
 
@@ -23,7 +24,7 @@ export interface LightnessInterface {
   '900': number;
 }
 
-const shades: LightnessInterface = {
+export const defaultLightness: LightnessInterface = {
   50: 98,
   100: 93,
   200: 88,
@@ -35,7 +36,9 @@ const shades: LightnessInterface = {
   800: 26,
   900: 14
 };
-export const lightnessShades = writable(shades);
+Object.freeze(defaultLightness);
+export const lightnessShades = writable(Object.assign({}, defaultLightness));
+
 
 /* Base Colors
 ---------------------------------------- */
@@ -47,7 +50,7 @@ export interface BaseColor {
   hueCorrection: number;
 }
 
-const _baseColors: BaseColor[] = [
+export const defaultColors: BaseColor[] = [
   {
     name: 'red',
     color: '#fe6f5c',
@@ -91,15 +94,20 @@ const _baseColors: BaseColor[] = [
     hueCorrection: 0
   }
 ];
-export const baseColors = writable(_baseColors);
+const colors = defaultColors.map((color: BaseColor) => Object.assign({}, color));
+export const baseColors = writable(colors);
 
-export const encodeStoreAsURL = derived([baseColors, lightnessShades], ([$baseColors, $lightnessShades]) => {
-  const colors: string = $baseColors.map(color => {
+
+/* Store encoded as URL
+---------------------------------------- */
+
+const encodeStoreAsURL = ([shades, colors]: [LightnessInterface, BaseColor[]]): string => {
+  const encodedColors: string = colors.map((color: BaseColor) => {
     const hex = color.color.substring(1);
     return `${hex}=${color.isLab ? 1 : 0},${color.hueCorrection}`;
   }).join('&');
-
-  const lightness: string = 'lightness=' + Object.values($lightnessShades).join(',');
-
-  return lightness + '&' + colors;
-});
+  const encodedShades: string = 'lightness=' + Object.values(shades).join(',');
+  return encodedShades + '&' + encodedColors;
+}
+export const defaultStateAsURL: string = encodeStoreAsURL([defaultLightness, defaultColors]);
+export const storeAsURL = derived([lightnessShades, baseColors], encodeStoreAsURL);

@@ -1,23 +1,31 @@
 <script lang="ts">
   import Palette from '../components/Palette.svelte';
   import Description from '../components/Description.svelte';
-  import { onMount } from 'svelte';
-  import { baseColors, lightnessShades, encodeStoreAsURL } from '../stores';
+  import { onDestroy, onMount } from 'svelte';
+  import {
+    baseColors,
+    lightnessShades,
+    storeAsURL,
+    defaultColors,
+    defaultLightness,
+    defaultStateAsURL
+  } from '../stores';
   import type { BaseColor, LightnessInterface } from '../stores';
   import { nanoid } from 'nanoid';
-  import chroma, { Color } from 'chroma-js';
+  import chroma from 'chroma-js';
+  import type { Unsubscriber } from 'svelte/store';
 
-  function saveStateToURL(params) {
-    window.history.pushState($baseColors, '',  '?' + params);
+  function saveStateToURL(params: string): void {
+    window.history.pushState([$lightnessShades, $baseColors], '', '?' + params);
   }
 
-  function decodeStoreFromURL(): [LightnessInterface, BaseColor[]] {
-    const params = new URLSearchParams(window.location.search.substring(1));
+  function decodeStoreFromParams(params: string): [LightnessInterface, BaseColor[]] {
+    const paramsObj = new URLSearchParams(params);
     let lightness: LightnessInterface = Object.assign({}, $lightnessShades);
     let colors: BaseColor[] = [];
     let failed = false;
 
-    params.forEach((value, key) => {
+    paramsObj.forEach((value, key) => {
       const values = value.split(',');
 
       if (key === 'lightness') {
@@ -53,29 +61,56 @@
     }
   }
 
+  function updateState(newLightness: LightnessInterface, newBaseColors: BaseColor[]) {
+    lightnessShades.set(newLightness);
+    baseColors.set(newBaseColors);
+  }
+
+  function recoverState(event: PopStateEvent) {
+    const { state } = event;
+
+    if (state && Object.keys(state).length === 0) {
+      // console.log('🏁 Blank state. Nothing to restore.');
+      updateState(defaultLightness, defaultColors);
+
+    } else {
+      // console.log('↔️ We have state to recover!');
+      updateState(state[0], state[1]);
+    }
+  }
+
+  let unsubscribeFromStoreAsURL: Unsubscriber;
+
   onMount(() => {
-    // Whenever state is changed, save it to the URL — except for the first load
-    let isFirstLoad = true;
-    encodeStoreAsURL.subscribe((store) => {
-      if (!isFirstLoad) { saveStateToURL(store); }
-      isFirstLoad = false;
+    // Whenever state is changed, save it to the URL
+    unsubscribeFromStoreAsURL = storeAsURL.subscribe((state: string): void => {
+      if (state === defaultStateAsURL) {
+        // console.log('State set to the default.');
+      } else if (state === window.location.search.substring(1)) {
+        // console.log('State changed. No need to update browser history as URL params match state.');
+      } else {
+        // console.log('State changed. Update browser history.');
+        saveStateToURL(state)
+      }
     });
 
-    if (window.location.search !== '') {
-      // Replace base colors and lightness shades with parsed colors
-      const decodedState = decodeStoreFromURL();
+    // Get state from URL parameters
+    if (window.location.search.substring(1) !== '' && window.location.search.substring(1) !== $storeAsURL) {
+      const decodedState = decodeStoreFromParams(window.location.search.substring(1));
       if (decodedState) {
-        const newLightness = decodedState[0];
-        const newBaseColors = decodedState[1];
-        baseColors.set(newBaseColors);
-        lightnessShades.set(newLightness);
+        // console.log('URL params were successfully decoded.')
+        updateState(decodedState[0], decodedState[1]);
       }
     }
 
-    window.addEventListener('popstate', (event) => {
-      // TODO: Reload state from event.state when navigating back/forth
-      console.log('popstate event');
-    });
+    window.addEventListener('popstate', recoverState, false);
+  });
+
+  onDestroy(() => {
+    if (typeof window !== 'undefined') {
+      unsubscribeFromStoreAsURL();
+      window.removeEventListener('popstate', recoverState, false);
+    }
   });
 </script>
 

@@ -3,7 +3,7 @@
   import { bgColor, defaultBgColor, lightnessShades } from '../stores';
   import { roundTo10th } from '../helpers';
   import type { Palette } from '../generatePalette';
-  import { afterUpdate, onMount } from 'svelte';
+  import { afterUpdate } from 'svelte';
 
   export let color: Palette, shade: string;
 
