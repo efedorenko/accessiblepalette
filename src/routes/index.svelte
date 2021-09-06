@@ -5,9 +5,9 @@
   import { baseColors, lightnessShades, encodeStoreAsURL } from '../stores';
   import type { BaseColor, LightnessInterface } from '../stores';
   import { nanoid } from 'nanoid';
+  import chroma, { Color } from 'chroma-js';
 
   function saveStateToURL(params) {
-    console.log('saveStateToURL');
     window.history.pushState($baseColors, '',  '?' + params);
   }
 
@@ -15,51 +15,61 @@
     const params = new URLSearchParams(window.location.search.substring(1));
     let lightness: LightnessInterface = Object.assign({}, $lightnessShades);
     let colors: BaseColor[] = [];
+    let failed = false;
 
     params.forEach((value, key) => {
       const values = value.split(',');
 
       if (key === 'lightness') {
         // Parse lightness
-        Object.keys(lightness).forEach((key: string, index: number) => {
-          lightness[key] = parseFloat(values[index]);
-        })
+        if (values.length === Object.keys(lightness).length) {
+          Object.keys(lightness).forEach((key: string, index: number) => {
+            lightness[key] = parseFloat(values[index]);
+          });
+        } else {
+          failed = true;
+          console.log('Unexpected number of lightness shades in the URL.')
+        }
       } else {
         // Parse color
-        colors.push({
-          name: nanoid(8),
-          color: '#' + key,
-          isLab: values[0] == '1',
-          hueCorrection: parseInt(values[1], 10)
-        });
+        if (chroma.valid(key)) {
+          colors.push({
+            name: nanoid(8),
+            color: '#' + key,
+            isLab: values[0] == '1',
+            hueCorrection: parseInt(values[1], 10) || 0
+          });
+        } else {
+          failed = true;
+          console.log(`${key} is not a valid color`);
+        }
       }
     });
 
-    return [lightness, colors];
+    if (failed) {
+      return undefined;
+    } else {
+      return [lightness, colors];
+    }
   }
 
   onMount(() => {
-    console.log('Page is mounted.')
-
     // Whenever state is changed, save it to the URL — except for the first load
     let isFirstLoad = true;
     encodeStoreAsURL.subscribe((store) => {
-      console.log('baseColorsEncodedURL was refreshed.');
       if (!isFirstLoad) { saveStateToURL(store); }
       isFirstLoad = false;
     });
 
     if (window.location.search !== '') {
-      console.log('There are URL params to parse');
-
-      // TODO: check if they're valid colors
-
       // Replace base colors and lightness shades with parsed colors
       const decodedState = decodeStoreFromURL();
-      const newLightness = decodedState[0];
-      const newBaseColors = decodedState[1];
-      baseColors.set(newBaseColors);
-      lightnessShades.set(newLightness);
+      if (decodedState) {
+        const newLightness = decodedState[0];
+        const newBaseColors = decodedState[1];
+        baseColors.set(newBaseColors);
+        lightnessShades.set(newLightness);
+      }
     }
 
     window.addEventListener('popstate', (event) => {
