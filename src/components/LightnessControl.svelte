@@ -8,8 +8,6 @@
 
   export let shade: string;
 
-  // TODO: make a little more consistent?
-
   let bg: string;
   bgColor.subscribe((store: string) => {
     bg = store;
