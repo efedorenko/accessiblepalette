@@ -4,6 +4,8 @@
 
   export let bColor: BaseColor;
 
+  $: isDisabled = $baseColors.length === 1;
+
   function removeColor() {
     console.log(`➖ Remove color ${bColor.name}`);
     if (confirm(`You really want to remove color ${bColor.color.toUpperCase()}?`)) {
@@ -23,7 +25,7 @@
   }
 </script>
 
-<button on:click={removeColor} title="Remove color">Remove color</button>
+<button on:click={removeColor} title="Remove color" disabled={isDisabled}>Remove color</button>
 
 <style>
   button {
@@ -39,6 +41,10 @@
     appearance: none;
     cursor: pointer;
     opacity: 0.66;
+  }
+  button[disabled] {
+    cursor: auto;
+    opacity: 0.2 !important;
   }
   button:hover {
     opacity: 1;
