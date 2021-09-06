@@ -3,6 +3,7 @@
   import { bgColor, defaultBgColor, lightnessShades } from '../stores';
   import { roundTo10th } from '../helpers';
   import type { Palette } from '../generatePalette';
+  import { afterUpdate, onMount } from 'svelte';
 
   export let color: Palette, shade: string;
 
@@ -17,6 +18,7 @@
     isSelected = store === color.color;
   });
 
+  // Update bgColor when color is selected
   function selectColor(): void {
     if (!isSelected) {
       bgColor.set(color.color);
@@ -24,6 +26,13 @@
       bgColor.set($defaultBgColor);
     }
   }
+
+  // Update bgColor when color was selected and then changed by adjusting lightness
+  afterUpdate(() => {
+    if (isSelected && $bgColor !== color.color) {
+      bgColor.set(color.color);
+    }
+  });
 </script>
 
 <div

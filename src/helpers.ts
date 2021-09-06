@@ -31,3 +31,8 @@ export function sortBaseColors(a: BaseColor, b: BaseColor): number {
     return 1;
   }
 }
+
+export const colorStringToHex = (color: string): number => {
+  color = color.replace('#', '0x');
+  return parseInt(color, 16);
+};
