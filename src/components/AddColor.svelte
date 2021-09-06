@@ -30,7 +30,9 @@
   }
 </script>
 
-<button on:click={addColor} title="Add color">Add color</button>
+<button on:click={addColor} title="Add color">
+  <span class='icon'>Add color</span>
+</button>
 
 <style>
   button {
@@ -38,19 +40,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    flex-shrink: 0;
     height: 100%;
     margin: 0;
     border: 1px solid var(--c-rulers);
     border-radius: 3px;
     padding: 0.75rem;
-    background: url(../assets/btn-add.svg) no-repeat 50% 50% / 20px 20px;
-    text-indent: -999em;
-    overflow: hidden;
+    background: transparent none;
     appearance: none;
     cursor: pointer;
   }
   button:hover {
     border-color: #717C8F80;
+  }
+  .icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../assets/btn-add.svg) no-repeat;
+    text-indent: -999em;
+    overflow: hidden;
   }
 </style>
