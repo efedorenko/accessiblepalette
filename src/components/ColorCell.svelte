@@ -61,12 +61,20 @@
     cursor: pointer;
   }
   .light {
+    --shade: rgba(255, 255, 255, 0.15);
     color: rgba(255, 255, 255, .66);
   }
   .dark {
+    --shade: rgba(0, 0, 0, 0.15);
     color: rgba(0, 0, 0, .66);
   }
   .selected {
-    box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .75);
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0) 6px,
+      var(--shade) 6px,
+      var(--shade) 7px
+    );
   }
 </style>
