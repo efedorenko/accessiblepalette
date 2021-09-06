@@ -25,15 +25,15 @@ export interface LightnessInterface {
 
 const shades: LightnessInterface = {
   50: 98,
-  100: 93.3,
-  200: 88.6,
-  300: 79.9,
-  400: 71.2,
-  500: 60.5,
-  600: 49.8,
-  700: 38.4,
-  800: 27.0,
-  900: 15.6
+  100: 93,
+  200: 88,
+  300: 80,
+  400: 70,
+  500: 60,
+  600: 50,
+  700: 38,
+  800: 26,
+  900: 14
 };
 export const lightnessShades = writable(shades);
 
