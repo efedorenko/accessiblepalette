@@ -30,33 +30,27 @@
   }
 </script>
 
-<div class="wrapper">
-  <button on:click={addColor} title="Add color">Add color</button>
-</div>
+<button on:click={addColor} title="Add color">Add color</button>
 
 <style>
-  .wrapper {
+  button {
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
+    margin: 0;
     border: 1px solid var(--c-rulers);
     border-radius: 3px;
     padding: 0.75rem;
-  }
-  button {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    background: url(../assets/btn-add.svg) no-repeat;
+    background: url(../assets/btn-add.svg) no-repeat 50% 50% / 20px 20px;
     text-indent: -999em;
     overflow: hidden;
     appearance: none;
     cursor: pointer;
+  }
+  button:hover {
+    border-color: #717C8F80;
   }
 </style>
