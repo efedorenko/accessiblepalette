@@ -2,8 +2,8 @@
   import Palette from '../components/Palette.svelte';
   import Description from '../components/Description.svelte';
   import { onMount } from 'svelte';
-  import { baseColors, baseColorsEncodedURL } from '../stores';
-  import type { BaseColor } from '../stores';
+  import { baseColors, lightnessShades, encodeStoreAsURL } from '../stores';
+  import type { BaseColor, LightnessInterface } from '../stores';
   import { nanoid } from 'nanoid';
 
   function saveStateToURL(params) {
@@ -11,19 +11,31 @@
     window.history.pushState($baseColors, '',  '?' + params);
   }
 
-  function decodeColorsFromURL(): BaseColor[] {
+  function decodeStoreFromURL(): [LightnessInterface, BaseColor[]] {
     const params = new URLSearchParams(window.location.search.substring(1));
-    const newBaseColors = [];
-    params.forEach((shorthand, hex) => {
-      const values   = shorthand.split(',');
-      newBaseColors.push({
-        name: nanoid(8),
-        color: '#' + hex,
-        isLab: values[0] == '1',
-        hueCorrection: parseInt(values[1], 10)
-      });
+    let lightness: LightnessInterface = Object.assign({}, $lightnessShades);
+    let colors: BaseColor[] = [];
+
+    params.forEach((value, key) => {
+      const values = value.split(',');
+
+      if (key === 'lightness') {
+        // Parse lightness
+        Object.keys(lightness).forEach((key: string, index: number) => {
+          lightness[key] = parseFloat(values[index]);
+        })
+      } else {
+        // Parse color
+        colors.push({
+          name: nanoid(8),
+          color: '#' + key,
+          isLab: values[0] == '1',
+          hueCorrection: parseInt(values[1], 10)
+        });
+      }
     });
-    return newBaseColors;
+
+    return [lightness, colors];
   }
 
   onMount(() => {
@@ -31,7 +43,7 @@
 
     // Whenever state is changed, save it to the URL — except for the first load
     let isFirstLoad = true;
-    baseColorsEncodedURL.subscribe((store) => {
+    encodeStoreAsURL.subscribe((store) => {
       console.log('baseColorsEncodedURL was refreshed.');
       if (!isFirstLoad) { saveStateToURL(store); }
       isFirstLoad = false;
@@ -42,14 +54,12 @@
 
       // TODO: check if they're valid colors
 
-      // TODO: add support for lightness
-
-      // Replace baseColors with parsed colors.
-      const urlBaseColors = decodeColorsFromURL();
-      baseColors.set(urlBaseColors);
-
-    } else {
-      console.log('No params. Load default state.');
+      // Replace base colors and lightness shades with parsed colors
+      const decodedState = decodeStoreFromURL();
+      const newLightness = decodedState[0];
+      const newBaseColors = decodedState[1];
+      baseColors.set(newBaseColors);
+      lightnessShades.set(newLightness);
     }
 
     window.addEventListener('popstate', (event) => {

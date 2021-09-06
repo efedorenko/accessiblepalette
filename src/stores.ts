@@ -93,9 +93,13 @@ const _baseColors: BaseColor[] = [
 ];
 export const baseColors = writable(_baseColors);
 
-export const baseColorsEncodedURL = derived(baseColors, ($baseColors) =>
-  $baseColors.map(color => {
+export const encodeStoreAsURL = derived([baseColors, lightnessShades], ([$baseColors, $lightnessShades]) => {
+  const colors: string = $baseColors.map(color => {
     const hex = color.color.substring(1);
     return `${hex}=${color.isLab ? 1 : 0},${color.hueCorrection}`;
-  }).join('&')
-);
+  }).join('&');
+
+  const lightness: string = 'lightness=' + Object.values($lightnessShades).join(',');
+
+  return lightness + '&' + colors;
+});
