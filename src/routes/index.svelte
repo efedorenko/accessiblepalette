@@ -17,7 +17,7 @@
       const values   = shorthand.split(',');
       newBaseColors.push({
         name: color,
-        color: values[0],
+        color: '#' + values[0],
         isLab: values[1] == '1',
         hueCorrection: parseInt(values[2], 10)
       });
