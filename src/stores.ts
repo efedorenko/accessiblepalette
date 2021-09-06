@@ -95,8 +95,7 @@ export const baseColors = writable(_baseColors);
 
 export const baseColorsEncodedURL = derived(baseColors, ($baseColors) =>
   $baseColors.map(color => {
-    const name = encodeURIComponent(color.name);
     const hex = color.color.substring(1);
-    return `${name}=${hex},${color.isLab ? 1 : 0},${color.hueCorrection}`;
+    return `${hex}=${color.isLab ? 1 : 0},${color.hueCorrection}`;
   }).join('&')
 );

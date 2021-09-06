@@ -4,6 +4,7 @@
   import { onMount } from 'svelte';
   import { baseColors, baseColorsEncodedURL } from '../stores';
   import type { BaseColor } from '../stores';
+  import { nanoid } from 'nanoid';
 
   function saveStateToURL(params) {
     console.log('saveStateToURL');
@@ -13,13 +14,13 @@
   function decodeColorsFromURL(): BaseColor[] {
     const params = new URLSearchParams(window.location.search.substring(1));
     const newBaseColors = [];
-    params.forEach((shorthand, color) => {
+    params.forEach((shorthand, hex) => {
       const values   = shorthand.split(',');
       newBaseColors.push({
-        name: color,
-        color: '#' + values[0],
-        isLab: values[1] == '1',
-        hueCorrection: parseInt(values[2], 10)
+        name: nanoid(8),
+        color: '#' + hex,
+        isLab: values[0] == '1',
+        hueCorrection: parseInt(values[1], 10)
       });
     });
     return newBaseColors;
