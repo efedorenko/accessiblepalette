@@ -12,7 +12,7 @@
 
     if (chroma.valid(value)) {
       isError = false;
-      bgColor.update(() => value);
+      bgColor.set(value);
     } else {
       isError = true;
     }

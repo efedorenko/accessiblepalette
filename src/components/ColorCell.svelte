@@ -19,9 +19,9 @@
 
   function selectColor(): void {
     if (!isSelected) {
-      bgColor.update(() => color.color);
+      bgColor.set(color.color);
     } else {
-      bgColor.update(() => $defaultBgColor);
+      bgColor.set($defaultBgColor);
     }
   }
 </script>
