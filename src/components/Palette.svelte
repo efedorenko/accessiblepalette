@@ -112,7 +112,8 @@
   }
 
   .add-color-cell {
-    padding: 10px;
+    padding: .5em;
+    font-size: .75rem;
   }
 
   .palette_shades,
