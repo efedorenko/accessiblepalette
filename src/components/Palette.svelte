@@ -45,9 +45,8 @@
   ---------------------------------------- */
 
   $: palette = generatePalette(colors, shades) as Palette[];
-  const getPaletteColor = (name: string, shade: string): Palette => palette
-    .filter((c: Palette) => c.name === name)
-    .filter((c: Palette) => c.shade === shade)[0];
+  const getPaletteColor = (name: string, shade: string): Palette =>
+    palette.filter((c: Palette) => c.name === name).filter((c: Palette) => c.shade === shade)[0];
 </script>
 
 <div class="palette" style="--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(shades).length}">

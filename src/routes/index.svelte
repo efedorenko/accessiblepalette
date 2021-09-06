@@ -36,7 +36,7 @@
           });
         } else {
           failed = true;
-          console.log('Unexpected number of lightness shades in the URL.')
+          console.log('Unexpected number of lightness shades in the URL.');
         }
       } else {
         // Parse color
@@ -72,7 +72,6 @@
     if (state && Object.keys(state).length === 0) {
       // console.log('🏁 Blank state. Nothing to restore.');
       updateState(defaultLightness, defaultColors);
-
     } else {
       // console.log('↔️ We have state to recover!');
       updateState(state[0], state[1]);
@@ -90,7 +89,7 @@
         // console.log('State changed. No need to update browser history as URL params match state.');
       } else {
         // console.log('State changed. Update browser history.');
-        saveStateToURL(state)
+        saveStateToURL(state);
       }
     });
 

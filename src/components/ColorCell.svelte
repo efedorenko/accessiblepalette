@@ -38,10 +38,7 @@
 <div
   style="background-color: {color.color};"
   on:click={selectColor}
-  class={[
-    isSelected ? 'selected' : '',
-    lightness >= 60 ? 'dark' : 'light'
-  ].join(' ')}
+  class={[isSelected ? 'selected' : '', lightness >= 60 ? 'dark' : 'light'].join(' ')}
   data-shade={shade}
   title="Chroma: {c}, Hue: {h}"
 >
@@ -62,11 +59,11 @@
   }
   .light {
     --shade: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, .66);
+    color: rgba(255, 255, 255, 0.66);
   }
   .dark {
     --shade: rgba(0, 0, 0, 0.15);
-    color: rgba(0, 0, 0, .66);
+    color: rgba(0, 0, 0, 0.66);
   }
   .selected {
     background: repeating-linear-gradient(

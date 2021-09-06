@@ -7,7 +7,6 @@ import { get, readable, writable, derived } from 'svelte/store';
 export const defaultBgColor = readable<string>('#FFFFFF');
 export const bgColor = writable<string>(get(defaultBgColor));
 
-
 /* Lightness
 ---------------------------------------- */
 
@@ -38,7 +37,6 @@ export const defaultLightness: LightnessInterface = {
 };
 Object.freeze(defaultLightness);
 export const lightnessShades = writable(Object.assign({}, defaultLightness));
-
 
 /* Base Colors
 ---------------------------------------- */
@@ -97,17 +95,18 @@ export const defaultColors: BaseColor[] = [
 const colors = defaultColors.map((color: BaseColor) => Object.assign({}, color));
 export const baseColors = writable(colors);
 
-
 /* Store encoded as URL
 ---------------------------------------- */
 
 const encodeStoreAsURL = ([shades, colors]: [LightnessInterface, BaseColor[]]): string => {
-  const encodedColors: string = colors.map((color: BaseColor) => {
-    const hex = color.color.substring(1);
-    return `${hex}=${color.isLab ? 1 : 0},${color.hueCorrection}`;
-  }).join('&');
+  const encodedColors: string = colors
+    .map((color: BaseColor) => {
+      const hex = color.color.substring(1);
+      return `${hex}=${color.isLab ? 1 : 0},${color.hueCorrection}`;
+    })
+    .join('&');
   const encodedShades: string = 'lightness=' + Object.values(shades).join(',');
   return encodedShades + '&' + encodedColors;
-}
+};
 export const defaultStateAsURL: string = encodeStoreAsURL([defaultLightness, defaultColors]);
 export const storeAsURL = derived([lightnessShades, baseColors], encodeStoreAsURL);

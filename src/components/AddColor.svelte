@@ -31,7 +31,7 @@
 </script>
 
 <button on:click={addColor} title="Add color">
-  <span class='icon'>Add color</span>
+  <span class="icon">Add color</span>
 </button>
 
 <style>
@@ -51,7 +51,7 @@
     cursor: pointer;
   }
   button:hover {
-    border-color: #717C8F80;
+    border-color: #717c8f80;
   }
   .icon {
     display: inline-block;
