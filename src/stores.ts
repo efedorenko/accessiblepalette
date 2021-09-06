@@ -51,24 +51,18 @@ const _baseColors: BaseColor[] = [
   {
     name: 'red',
     color: '#fe6f5c',
-    isLab: true,
+    isLab: false,
     hueCorrection: 0
   },
   {
-    name: 'orange',
-    color: '#f59432',
+    name: 'yellow',
+    color: '#f8d147',
     isLab: true,
     hueCorrection: -10
   },
   {
-    name: 'yellow',
-    color: '#e3d90b',
-    isLab: true,
-    hueCorrection: -15
-  },
-  {
     name: 'green',
-    color: '#44c74c',
+    color: '#56d25b',
     isLab: false,
     hueCorrection: 0
   },
