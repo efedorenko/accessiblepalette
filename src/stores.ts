@@ -58,7 +58,7 @@ export const defaultColors: BaseColor[] = [
   {
     name: 'yellow',
     color: '#f8d147',
-    isLab: true,
+    isLab: false,
     hueCorrection: -10
   },
   {
@@ -76,7 +76,7 @@ export const defaultColors: BaseColor[] = [
   {
     name: 'purple',
     color: '#397ae5',
-    isLab: false,
+    isLab: true,
     hueCorrection: 15
   },
   {

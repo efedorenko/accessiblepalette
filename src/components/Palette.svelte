@@ -93,7 +93,7 @@
   {/each}
 
   <div class="hue-ctrl-title">
-    <GroupTitle title="Adjust Hue in a color range" />
+    <GroupTitle title="Shift color range Hue" />
   </div>
 </div>
 

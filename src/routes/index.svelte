@@ -113,24 +113,30 @@
   });
 </script>
 
+<div class="rainbow"></div>
+
 <div class="palette-container">
   <Palette />
 </div>
 
+<div class="rainbow"></div>
+
 <Description />
 
 <style>
+  /* http://localhost:3000/?lightness=98,93,88,80,70,60,50,38,22,14&0088c9=0,0&647899=1,0 */
+
   :global(:root) {
-    --c-slate-50: #f9f9fa;
-    --c-slate-100: #eaecef;
-    --c-slate-200: #dbdfe4;
-    --c-slate-300: #c1c6d1;
-    --c-slate-400: #a7afbd;
-    --c-slate-500: #8793a6;
-    --c-slate-600: #6b778c;
-    --c-slate-700: #525b6b;
-    --c-slate-800: #3a404c;
-    --c-slate-900: #23272e;
+    --c-slate-50: #F9F9FB;
+    --c-slate-100: #E9EBF0;
+    --c-slate-200: #D9DDE6;
+    --c-slate-300: #C0C7D5;
+    --c-slate-400: #A1ACC1;
+    --c-slate-500: #8291AD;
+    --c-slate-600: #647899;
+    --c-slate-700: #4C5A72;
+    --c-slate-800: #2E3542;
+    --c-slate-900: #20242B;
 
     --c-rulers: #e8ebf0;
     --c-meta: #6b778c;
@@ -139,8 +145,6 @@
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #353149;
-    color: #fff;
     font: 1rem Inter, sans-serif;
   }
   :global(input[type='number'], input[type='text']) {
@@ -156,6 +160,10 @@
   :global(input[type='number']:focus, input[type='text']:focus) {
     outline: none;
     box-shadow: 0 0 0 2px #dceff8;
+  }
+  .rainbow {
+    height: 4px;
+    background-image: linear-gradient(to right, #E76B4F, #B18B32, #43A447, #21A19C, #2C9ACC, #9085DE);
   }
   .palette-container {
     box-sizing: border-box;
