@@ -9,6 +9,7 @@
     display: inline-block;
     width: 0.625rem; /* 10px */
     height: 0.625rem; /* 10px */
+    border-radius: 1px;
     background-color: #eee;
   }
 </style>
