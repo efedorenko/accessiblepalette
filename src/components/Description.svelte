@@ -123,12 +123,18 @@
   }
   ul {
     margin: 0;
-    padding: 0 0 0 1.2em;
+    padding: 0;
   }
   ul li {
     margin: .4em 0 .8em;
     padding: 0;
-    list-style-type: circle;
+    list-style: none;
+  }
+  ul li::before {
+    content: '‣';
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
   }
   strong,
   a:link,
