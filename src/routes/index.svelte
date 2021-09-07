@@ -145,48 +145,6 @@
     --c-meta: #6b778c;
   }
 
-  /* Fonts */
-
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('../../static/fonts/inter/Inter-Regular.woff2?v=3.19') format('woff2'),
-         url('../../static/fonts/inter/Inter-Regular.woff?v=3.19') format('woff');
-  }
-  @font-face {
-    font-family: 'Inter';
-    font-style: italic;
-    font-weight: 400;
-    font-display: swap;
-    src: url('../../static/fonts/inter/Inter-Italic.woff2?v=3.19') format('woff2'),
-         url('../../static/fonts/inter/Inter-Italic.woff?v=3.19') format('woff');
-  }
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url('../../static/fonts/inter/Inter-SemiBold.woff2?v=3.19') format('woff2'),
-         url('../../static/fonts/inter/Inter-SemiBold.woff?v=3.19') format('woff');
-  }
-  @font-face {
-    font-family: 'Inter';
-    font-style: italic;
-    font-weight: 600;
-    font-display: swap;
-    src: url('../../static/fonts/inter/Inter-SemiBoldItalic.woff2?v=3.19') format('woff2'),
-         url('../../static/fonts/inter/Inter-SemiBoldItalic.woff?v=3.19') format('woff');
-  }
-  @font-face {
-    font-family: 'iA Writer Duo';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('../../static/fonts/ia-writer/iAWriterDuoS-Regular.woff2') format('woff2'),
-         url('../../static/fonts/ia-writer/iAWriterDuoS-Bold.woff') format('woff');
-  }
 
   /* Global */
 
