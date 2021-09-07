@@ -165,10 +165,10 @@
     height: 4px;
     background-image: linear-gradient(to right, #E76B4F, #B18B32, #43A447, #21A19C, #2C9ACC, #9085DE);
   }
+
   .palette-container {
     box-sizing: border-box;
-    width: max-content;
-    min-width: 100%;
+    min-width: 100vw;
     padding: 40px 20px;
     overflow-x: auto;
     background-color: #fff;
