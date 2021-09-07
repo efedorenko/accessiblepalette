@@ -14,6 +14,7 @@
   import { nanoid } from 'nanoid';
   import chroma from 'chroma-js';
   import type { Unsubscriber } from 'svelte/store';
+  import Rainbow from '../components/Rainbow.svelte';
 
   function saveStateToURL(params: string): void {
     window.history.pushState([$lightnessShades, $baseColors], '', '?' + params);
@@ -113,15 +114,17 @@
   });
 </script>
 
-<div class="rainbow"></div>
 
-<div class="palette-container">
-  <Palette />
-</div>
+<Rainbow />
 
-<div class="rainbow"></div>
+<Palette />
+
+<Rainbow />
 
 <Description />
+
+<Rainbow />
+
 
 <style>
   /* http://localhost:3000/?lightness=98,93,88,80,70,60,50,38,22,14&0088c9=0,0&647899=1,0 */
@@ -141,6 +144,52 @@
     --c-rulers: #e8ebf0;
     --c-meta: #6b778c;
   }
+
+  /* Fonts */
+
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../static/fonts/inter/Inter-Regular.woff2?v=3.19') format('woff2'),
+         url('../../static/fonts/inter/Inter-Regular.woff?v=3.19') format('woff');
+  }
+  @font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../static/fonts/inter/Inter-Italic.woff2?v=3.19') format('woff2'),
+         url('../../static/fonts/inter/Inter-Italic.woff?v=3.19') format('woff');
+  }
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../../static/fonts/inter/Inter-SemiBold.woff2?v=3.19') format('woff2'),
+         url('../../static/fonts/inter/Inter-SemiBold.woff?v=3.19') format('woff');
+  }
+  @font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../../static/fonts/inter/Inter-SemiBoldItalic.woff2?v=3.19') format('woff2'),
+         url('../../static/fonts/inter/Inter-SemiBoldItalic.woff?v=3.19') format('woff');
+  }
+  @font-face {
+    font-family: 'iA Writer Duo';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../static/fonts/ia-writer/iAWriterDuoS-Regular.woff2') format('woff2'),
+         url('../../static/fonts/ia-writer/iAWriterDuoS-Bold.woff') format('woff');
+  }
+
+  /* Global */
+
   :global(body) {
     min-height: 100vh;
     margin: 0;
@@ -160,18 +209,5 @@
   :global(input[type='number']:focus, input[type='text']:focus) {
     outline: none;
     box-shadow: 0 0 0 2px #dceff8;
-  }
-  .rainbow {
-    height: 4px;
-    background-image: linear-gradient(to right, #E76B4F, #B18B32, #43A447, #21A19C, #2C9ACC, #9085DE);
-  }
-
-  .palette-container {
-    box-sizing: border-box;
-    min-width: 100vw;
-    padding: 40px 20px;
-    overflow-x: auto;
-    background-color: #fff;
-    color: #000;
   }
 </style>

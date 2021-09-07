@@ -49,61 +49,71 @@
     palette.filter((c: Palette) => c.name === name).filter((c: Palette) => c.shade === shade)[0];
 </script>
 
-<div class="palette" style="--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(shades).length}">
-  <!-- Base Colors -->
+<div class="palette-container">
+  <div class="palette" style="--num-of-colors: {numOfColors}; --num-of-shades: {Object.keys(shades).length}">
+    <!-- Base Colors -->
 
-  <div class="base-colors-title">
-    <GroupTitle title="Set starting colors:" />
-  </div>
-
-  {#each colors as bColor, index (bColor.name)}
-    <div class="palette_head" style={index === 0 ? 'grid-column-start: 3' : ''} in:fade={transitionParams}>
-      <BaseColorControls {bColor} />
+    <div class="base-colors-title">
+      <GroupTitle title="Set starting colors:" />
     </div>
-  {/each}
 
-  <div class="add-color-cell">
-    <AddColor />
-  </div>
-
-  <!-- Colors -->
-
-  <GroupTitleVertical title="Lightness & Contrast" />
-
-  <div class="palette_shades">
-    {#each Object.keys(shades) as shade}
-      <LightnessControl {shade} />
+    {#each colors as bColor, index (bColor.name)}
+      <div class="palette_head" style={index === 0 ? 'grid-column-start: 3' : ''} in:fade={transitionParams}>
+        <BaseColorControls {bColor} />
+      </div>
     {/each}
-  </div>
 
-  {#each colors as bColor (bColor.name)}
-    <div class="palette_colors" in:fade={transitionParams}>
+    <div class="add-color-cell">
+      <AddColor />
+    </div>
+
+    <!-- Colors -->
+
+    <GroupTitleVertical title="Lightness & Contrast" />
+
+    <div class="palette_shades">
       {#each Object.keys(shades) as shade}
-        <ColorCell color={getPaletteColor(bColor.name, shade)} {shade} />
+        <LightnessControl {shade} />
       {/each}
     </div>
-  {/each}
 
-  <!-- Hue Correction -->
+    {#each colors as bColor (bColor.name)}
+      <div class="palette_colors" in:fade={transitionParams}>
+        {#each Object.keys(shades) as shade}
+          <ColorCell color={getPaletteColor(bColor.name, shade)} {shade} />
+        {/each}
+      </div>
+    {/each}
 
-  {#each colors as bColor, index (bColor.name)}
-    <div class="palette_hue" style={index === 0 ? 'grid-column-start: 3' : ''} in:fade={transitionParams}>
-      <HueControl {bColor} />
+    <!-- Hue Correction -->
+
+    {#each colors as bColor, index (bColor.name)}
+      <div class="palette_hue" style={index === 0 ? 'grid-column-start: 3' : ''} in:fade={transitionParams}>
+        <HueControl {bColor} />
+      </div>
+    {/each}
+
+    <div class="hue-ctrl-title">
+      <GroupTitle title="Shift color range Hue" />
     </div>
-  {/each}
-
-  <div class="hue-ctrl-title">
-    <GroupTitle title="Shift color range Hue" />
   </div>
 </div>
 
 <style>
+  .palette-container {
+    box-sizing: border-box;
+    min-width: 100vw;
+    padding: 40px 20px;
+    overflow-x: auto;
+    background-color: #fff;
+    color: var(--c-meta);
+  }
+
   .palette {
     display: grid;
     /* Lightness & Contrast title | LighrnessControl | BaseControl | AddButton */
     grid-template-columns: auto auto repeat(var(--num-of-colors), 1fr) auto;
     grid-auto-rows: auto;
-    color: var(--c-meta);
   }
 
   .base-colors-title {

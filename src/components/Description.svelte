@@ -105,11 +105,13 @@
   }
     h1 strong {
       color: inherit;
+      font-weight: 600;
     }
 
   h2 {
     margin: 2em 0 .75em;
     color: #FFF;
+    font-weight: 600;
     font-size: 1.125rem; /* 18px */
   }
     h2:first-child {
@@ -131,7 +133,7 @@
   strong,
   a:link,
   a:visited {
-    color: var(--c-slate-200);
+    color: var(--c-slate-100);
   }
   a:hover,
   a:active {
