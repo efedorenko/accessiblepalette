@@ -43,7 +43,7 @@
     flex-shrink: 0;
     height: 100%;
     margin: 0;
-    border: 1px solid var(--c-rulers);
+    border: 1px solid var(--c-slate-100);
     border-radius: 3px;
     padding: 0.75rem;
     background: transparent none;
@@ -51,7 +51,7 @@
     cursor: pointer;
   }
   button:hover {
-    border-color: #717c8f80;
+    border-color: var(--c-slate-200);
   }
   .icon {
     display: inline-block;

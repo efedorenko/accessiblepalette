@@ -92,12 +92,12 @@
   }
 
   .pass {
-    color: #308559;
+    color: var(--c-green-600);
     font-weight: 600;
   }
 
   .fail {
-    color: #af6334;
+    color: var(--c-red-600);
     text-decoration: line-through;
   }
 </style>

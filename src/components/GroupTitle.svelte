@@ -23,7 +23,7 @@
     flex: 1;
     height: 1px;
     margin-bottom: -1px;
-    background-color: var(--c-rulers);
+    background-color: var(--c-slate-100);
   }
 
   h2::before {

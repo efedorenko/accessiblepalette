@@ -106,7 +106,7 @@
     padding: 40px 20px;
     overflow-x: auto;
     background-color: #fff;
-    color: var(--c-meta);
+    color: var(--c-slate-600);
   }
 
   .palette {

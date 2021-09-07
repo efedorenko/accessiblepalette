@@ -34,19 +34,19 @@
     height: 20px;
     margin: 0;
     border: 0;
+    border-radius: 2px;
     padding: 0;
     background: url(../assets/btn-remove.svg) no-repeat 50% 30%;
     text-indent: -999em;
     overflow: hidden;
     appearance: none;
     cursor: pointer;
-    opacity: 0.66;
+  }
+  button:hover {
+    background-color: var(--c-slate-50);
   }
   button[disabled] {
     cursor: auto;
-    opacity: 0.2 !important;
-  }
-  button:hover {
-    opacity: 1;
+    opacity: 0.33 !important;
   }
 </style>

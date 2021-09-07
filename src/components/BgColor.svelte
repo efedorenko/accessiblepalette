@@ -35,6 +35,6 @@
   }
 
   input.error {
-    background-color: #ffe7d6;
+    background-color: var(--c-red-100);
   }
 </style>

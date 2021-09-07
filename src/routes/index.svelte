@@ -127,7 +127,7 @@
 
 
 <style>
-  /* http://localhost:3000/?lightness=98,93,88,80,70,60,50,38,22,14&0088c9=0,0&647899=1,0 */
+  /* https://accessiblepalette.com/?lightness=98,93,88,80,70,60,50,38,22,14&ff6f50=0,0&34d275=1,0&647899=1,0 */
 
   :global(:root) {
     --c-slate-50: #F9F9FB;
@@ -141,8 +141,11 @@
     --c-slate-800: #2E3542;
     --c-slate-900: #20242B;
 
-    --c-rulers: #e8ebf0;
-    --c-meta: #6b778c;
+    --c-red-100: #FFE5E0;
+    --c-red-600: #C3553D;
+
+    --c-green-100: #D0F4D8;
+    --c-green-600: #2C874E;
   }
 
 
