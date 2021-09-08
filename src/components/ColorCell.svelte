@@ -9,8 +9,8 @@
 
   $: lightness = $lightnessShades[shade] as number;
 
-  let c: number = roundTo10th(chroma(color.color).get('lch.c'));
-  let h: number = roundTo10th(chroma(color.color).get('lch.h'));
+  let c: number = roundTo10th(chroma(color.color).get('lch.c')) || 0;
+  let h: number = roundTo10th(chroma(color.color).get('lch.h')) || 0;
 
   let isSelected = false;
 
