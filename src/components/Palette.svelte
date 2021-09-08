@@ -2,7 +2,7 @@
   import type { BaseColor, LightnessInterface } from '../stores';
   import { baseColors, lightnessShades } from '../stores';
   import LightnessControl from './LightnessControl.svelte';
-  import ColorCell from './ColorCell.svelte';
+  import ColorCell from './ColorSwatch.svelte';
   import HueControl from './HueControl.svelte';
   import { generatePalette } from '../generatePalette';
   import type { Palette } from '../generatePalette';
