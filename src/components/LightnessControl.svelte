@@ -45,16 +45,21 @@
   <div class="shade">
     <Preview color={bg} style="margin-left: -0.75em; margin-right: .125em;" />
     <Preview color={previewColor} style="margin-right: .25em;" />
-    <label for="shade-{shade}">{shade}:</label>
+    <!-- <label for="shade-{shade}">{shade}:</label> -->
     <input type="number" id="shade-{shade}" size="5" value={lightness} on:change={changeLightness} min="0" max="100" />
   </div>
 
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>
-    WCAG 2: <span class={contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}>{@html contrastWCAG2}</span>
+    WCAG 2:
+    <span class={contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}>
+      {@html contrastWCAG2}
+    </span>
   </div>
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>
-    WCAG 3: <span class={Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}
-      >{@html contrastWCAG3.toString().replace('-', '\u2212')}</span
+    WCAG 3:
+    <span class={Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}>
+      {@html contrastWCAG3.toString().replace('-', '\u2212')}
+    </span
     >
   </div>
 </div>
