@@ -69,7 +69,7 @@
 
     <!-- Colors -->
 
-    <GroupTitleVertical title="Lightness & Contrast" />
+    <GroupTitleVertical title="Lightness & WCAG Contrast" />
 
     <div class="palette_shades">
       {#each Object.keys(shades) as shade}
