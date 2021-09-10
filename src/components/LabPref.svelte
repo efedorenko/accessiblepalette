@@ -17,5 +17,5 @@
 </script>
 
 <label>
-  <input type="checkbox" bind:checked={isLab} on:change={changeLabPref} /> Lab
+  <input type="checkbox" bind:checked={isLab} on:change={changeLabPref} /> CIELAB
 </label>
