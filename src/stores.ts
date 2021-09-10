@@ -25,15 +25,15 @@ export interface LightnessInterface {
 
 export const defaultLightness: LightnessInterface = {
   50: 98,
-  100: 93,
-  200: 88,
-  300: 80,
-  400: 70,
-  500: 60,
-  600: 50,
-  700: 38,
-  800: 26,
-  900: 14
+  100: 94,
+  200: 85,
+  300: 76,
+  400: 67,
+  500: 58,
+  600: 48,
+  700: 40,
+  800: 32,
+  900: 25
 };
 Object.freeze(defaultLightness);
 export const lightnessShades = writable(Object.assign({}, defaultLightness));
