@@ -1,9 +1,8 @@
 <script lang="ts">
   import chroma from 'chroma-js';
-  import { colorStringToHex, roundTo10th, roundToWhole } from '../helpers';
+  import { getWcag2CR, getWcag3CR } from '../helpers';
   import type { LightnessInterface } from '../stores';
-  import { bgColor, lightnessShades } from '../stores';
-  import { APCAcontrast } from '../vendor/APCAonly.98e_d12e';
+  import { bgColor, lightnessShades, minContrastRatioWCAG2, minContrastRatioWCAG3 } from '../stores';
   import Preview from './Preview.svelte';
 
   export let shade: string;
@@ -18,14 +17,10 @@
     lightness = store[shade];
   });
 
-  $: previewColor = chroma('#808080').set('lch.l', lightness) as chroma.Color;
+  $: previewColor = chroma('#808080').set('lch.l', lightness).toString();
 
-  const minContrastRatioWCAG2 = 4.5;
-  $: contrastWCAG2 = roundTo10th(chroma.contrast(previewColor, bg)) as number;
-
-  const minContrastRatioWCAG3 = 60;
-  $: contrastAPCA = APCAcontrast(colorStringToHex(bg), colorStringToHex(previewColor.toString())) as number;
-  $: contrastWCAG3 = roundToWhole(contrastAPCA) as number;
+  $: contrastWCAG2 = getWcag2CR(previewColor, bg);
+  $: contrastWCAG3 = getWcag3CR(previewColor, bg);
 
   $: noContrast = (contrastWCAG2 === 1 && contrastWCAG3 >= -1 && contrastWCAG3 <= 1) as boolean;
 

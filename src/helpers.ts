@@ -1,5 +1,6 @@
 import type { BaseColor } from './stores';
 import chroma, { Color } from 'chroma-js';
+import { APCAcontrast } from './vendor/APCAonly.98e_d12e';
 
 const roundTo = (num: number, multiplier: number): number => Math.round(num * multiplier) / multiplier;
 
@@ -36,3 +37,7 @@ export const colorStringToHex = (color: string): number => {
   color = color.replace('#', '0x');
   return parseInt(color, 16);
 };
+
+export const getWcag2CR = (fg: string, bg: string): number => roundTo10th(chroma.contrast(fg, bg));
+
+export const getWcag3CR = (fg: string, bg: string): number => roundToWhole(APCAcontrast(colorStringToHex(bg), colorStringToHex(fg)));

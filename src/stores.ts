@@ -1,4 +1,7 @@
-import { get, readable, writable, derived } from 'svelte/store';
+import { derived, get, readable, writable } from 'svelte/store';
+
+export const minContrastRatioWCAG2 = 4.5;
+export const minContrastRatioWCAG3 = 60;
 
 /* Background Color & Contrast Check
 ---------------------------------------- */
