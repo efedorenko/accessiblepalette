@@ -47,6 +47,6 @@
     transform: rotate(-90deg);
     transform-origin: center;
     white-space: nowrap;
-    background-color: #fff;
+    background-color: var(--c-bg);
   }
 </style>

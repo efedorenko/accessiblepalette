@@ -128,6 +128,8 @@
   /* https://accessiblepalette.com/?lightness=98,93,88,80,70,60,50,38,22,14&ff6f50=0,0&34d275=1,0&647899=1,0 */
 
   :global(:root) {
+    --c-bg: #FBFBFC;
+
     --c-slate-50: #f9f9fb;
     --c-slate-100: #e9ebf0;
     --c-slate-200: #d9dde6;

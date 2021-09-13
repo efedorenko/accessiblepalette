@@ -108,7 +108,7 @@
     min-width: 100vw;
     padding: 40px 20px;
     overflow-x: auto;
-    background-color: #fff;
+    background-color: var(--c-bg);
     color: var(--c-slate-600);
   }
 

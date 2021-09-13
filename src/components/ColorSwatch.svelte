@@ -11,6 +11,7 @@
   import { getWcag2CR, getWcag3CR, roundTo10th } from '../helpers';
   import type { Palette } from '../generatePalette';
   import { afterUpdate } from 'svelte';
+  import Preview from './Preview.svelte';
 
   export let color: Palette, shade: string;
 
@@ -51,55 +52,60 @@
     class={['swatch', isSelected ? 'is-selected' : '', lightness.value >= 60 ? 'dark' : 'light'].join(' ')}
     style="background-color: {color.color};"
   >
-    <span class="lch l">
-      <span class="label">L:</span> <span class="value">{lightness.value}</span>
-    </span>
-    <span class="lch c">
-      <span class="label">C:</span> <span class="value">{c}</span>
-    </span>
-    <span class="lch h">
-      <span class="label">H:</span> <span class="value">{h}</span>
-    </span>
+    <div class="lch">
+      <span class="l">
+        <span class="label">L:</span> <span class="value">{lightness.value}</span>
+      </span>
+      <span class="c">
+        <span class="label">C:</span> <span class="value">{c}</span>
+      </span>
+      <span class="h">
+        <span class="label">H:</span> <span class="value">{h}</span>
+      </span>
+    </div>
 
     <span class="hex">
       {color.color.toUpperCase()}
     </span>
 
-    <span
-      class={[
-        'wcag',
-        'wcag2',
-        !isSelected && lightness.minWcag2 !== lightness.maxWcag2 ? 'is-visible' : 'is-hidden'
-      ].join(' ')}
-    >
-      <span class="label">WCAG 2:</span>
-      <span class="value {contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}">{contrastWCAG2}</span>
-    </span>
-    <span
-      class={[
-        'wcag',
-        'wcag3',
-        !isSelected && lightness.minWcag3 !== lightness.maxWcag3 ? 'is-visible' : 'is-hidden'
-      ].join(' ')}
-    >
-      <span class="label">WCAG 3:</span>
-      <span class="value {contrastWCAG3 >= minContrastRatioWCAG3 ? 'pass' : 'fail'}">{contrastWCAG3}</span>
-    </span>
+    <div class="wcag">
+      <span
+        class={[
+          'wcag2',
+          !isSelected && lightness.minWcag2 !== lightness.maxWcag2 ? 'is-visible' : 'is-hidden'
+        ].join(' ')}
+      >
+        <span class="label">WCAG 2:</span>
+        <span class="value {contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}">{contrastWCAG2}</span>
+      </span>
+      <span class="wcag-preview">
+        <Preview color={$bgColor} style='box-shadow: 0 0 0 1px var(--shade)' />
+      </span>
+      <span
+        class={[
+          'wcag3',
+          !isSelected && lightness.minWcag3 !== lightness.maxWcag3 ? 'is-visible' : 'is-hidden'
+        ].join(' ')}
+      >
+        <span class="label">WCAG 3:</span>
+        <span class="value {contrastWCAG3 >= minContrastRatioWCAG3 ? 'pass' : 'fail'}">{contrastWCAG3}</span>
+      </span>
+    </div>
   </div>
 </div>
 
 <style>
   .light {
-    --shade: rgba(255, 255, 255, 0.15);
+    --shade: rgba(255, 255, 255, 0.125);
     --meta: rgba(255, 255, 255, 0.33);
     --base: rgba(255, 255, 255, 0.66);
-    --accent: rgb(255, 255, 255);
+    --accent: #FFF;
   }
   .dark {
-    --shade: rgba(0, 0, 0, 0.15);
+    --shade: rgba(0, 0, 0, 0.125);
     --meta: rgba(0, 0, 0, 0.33);
     --base: rgba(0, 0, 0, 0.66);
-    --accent: rgb(0, 0, 0);
+    --accent: #000;
   }
 
   .container {
@@ -111,7 +117,7 @@
   .swatch {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 1fr;
     grid-template-rows: 1.25em 1fr 1.25em; /* 1.25em = 15px */
 
     box-sizing: border-box;
@@ -130,7 +136,7 @@
     transform: translate(-50%, -50%);
 
     width: calc(100% + 1.5em);
-    min-width: 15em;
+    min-width: 16em;
     height: calc(100% + 1.5em);
 
     border-radius: 3px;
@@ -145,6 +151,9 @@
       var(--shade) 6px,
       var(--shade) 7px
     );
+  }
+  .is-selected .hex {
+    color: var(--accent);
   }
 
   /* Labels & Values */
@@ -163,7 +172,9 @@
 
   /* LCh */
   .lch {
-    grid-column-end: span 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     opacity: 0;
   }
   .swatch:hover .lch {
@@ -195,7 +206,9 @@
 
   /* WCAG */
   .wcag {
-    grid-column-end: span 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     line-height: 1.25em;
     color: var(--meta);
   }
@@ -217,6 +230,14 @@
   }
   .wcag3 {
     justify-self: end;
+  }
+
+  .wcag-preview {
+    margin: 0 .25em;
+    opacity: 0;
+  }
+  .swatch:hover .wcag-preview {
+    opacity: 1;
   }
 
   .pass {
