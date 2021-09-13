@@ -15,6 +15,13 @@
 @font-face {
   font-family: 'Inter';
   font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('inter/Inter-Medium.woff2?v=3.19') format('woff2'), url('inter/Inter-Medium.woff?v=3.19') format('woff');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
   font-weight: 600;
   font-display: swap;
   src: url('inter/Inter-SemiBold.woff2?v=3.19') format('woff2'), url('inter/Inter-SemiBold.woff?v=3.19') format('woff');
