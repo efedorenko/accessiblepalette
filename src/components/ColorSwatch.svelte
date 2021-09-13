@@ -68,25 +68,25 @@
 </div>
 
 <style>
+  .light {
+    --shade: rgba(255, 255, 255, 0.15);
+    --text: rgb(255, 255, 255);
+  }
+  .dark {
+    --shade: rgba(0, 0, 0, 0.15);
+    --text: rgb(0, 0, 0);
+  }
+
   .swatch {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1.25em;
 
     padding: 0.75em; /* 9px */
+    color: var(--text);
     font-size: 0.75rem; /* 12px */
     white-space: nowrap;
     cursor: pointer;
-  }
-  .light {
-    --shade: rgba(255, 255, 255, 0.15);
-    --text: rgba(255, 255, 255, 0.66);
-    color: var(--text);
-  }
-  .dark {
-    --shade: rgba(0, 0, 0, 0.15);
-    --text: rgba(0, 0, 0, 0.66);
-    color: var(--text);
   }
   .selected {
     background: repeating-linear-gradient(
@@ -105,10 +105,15 @@
     text-align: center;
     font: 1em 'iA Writer Duo', monospace, sans-serif;
     letter-spacing: 0.1em;
+    opacity: 0.66;
+    transition: opacity 0.3s;
+  }
+  .swatch:hover .hex {
+    opacity: 1;
   }
   .wcag {
     line-height: 1.25em;
-    opacity: 0.5;
+    opacity: 0.33;
     transition: opacity 0.3s;
   }
   .swatch:hover .wcag {
