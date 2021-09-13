@@ -83,10 +83,9 @@
   .lightness {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     min-width: 10em;
-    font-size: 0.75rem; /* 12px */
     padding: 0.75em 1em;
+    font-size: 0.75rem; /* 12px */
   }
 
   .shade {
@@ -106,6 +105,7 @@
 
   .contrast-ratio {
     margin-top: 0.3636em;
+    line-height: 1.25em;
   }
 
   .zero {

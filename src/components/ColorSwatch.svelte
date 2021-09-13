@@ -71,9 +71,9 @@
   .swatch {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1em;
+    grid-template-rows: 1fr 1.25em;
 
-    padding: 0.75em;
+    padding: 0.75em; /* 9px */
     font-size: 0.75rem; /* 12px */
     white-space: nowrap;
     cursor: pointer;
@@ -107,7 +107,7 @@
     letter-spacing: 0.1em;
   }
   .wcag {
-    line-height: 1em;
+    line-height: 1.25em;
     opacity: 0.5;
     transition: opacity 0.3s;
   }
