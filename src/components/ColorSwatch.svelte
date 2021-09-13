@@ -133,7 +133,7 @@
     min-width: 15em;
     height: calc(100% + 1.5em);
 
-    border-radius: 2px;
+    border-radius: 3px;
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
     z-index: 1000;
   }
