@@ -40,4 +40,5 @@ export const colorStringToHex = (color: string): number => {
 
 export const getWcag2CR = (fg: string, bg: string): number => roundTo10th(chroma.contrast(fg, bg));
 
-export const getWcag3CR = (fg: string, bg: string): number => roundToWhole(APCAcontrast(colorStringToHex(bg), colorStringToHex(fg)));
+export const getWcag3CR = (fg: string, bg: string): number =>
+  roundToWhole(APCAcontrast(colorStringToHex(bg), colorStringToHex(fg)));

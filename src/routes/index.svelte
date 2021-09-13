@@ -114,7 +114,6 @@
   });
 </script>
 
-
 <Rainbow />
 
 <Palette />
@@ -125,29 +124,27 @@
 
 <Rainbow />
 
-
 <style>
   /* https://accessiblepalette.com/?lightness=98,93,88,80,70,60,50,38,22,14&ff6f50=0,0&34d275=1,0&647899=1,0 */
 
   :global(:root) {
-    --c-slate-50: #F9F9FB;
-    --c-slate-100: #E9EBF0;
-    --c-slate-200: #D9DDE6;
-    --c-slate-300: #C0C7D5;
-    --c-slate-400: #A1ACC1;
-    --c-slate-500: #8291AD;
+    --c-slate-50: #f9f9fb;
+    --c-slate-100: #e9ebf0;
+    --c-slate-200: #d9dde6;
+    --c-slate-300: #c0c7d5;
+    --c-slate-400: #a1acc1;
+    --c-slate-500: #8291ad;
     --c-slate-600: #647899;
-    --c-slate-700: #4C5A72;
-    --c-slate-800: #2E3542;
-    --c-slate-900: #20242B;
+    --c-slate-700: #4c5a72;
+    --c-slate-800: #2e3542;
+    --c-slate-900: #20242b;
 
-    --c-red-100: #FFE5E0;
-    --c-red-600: #C3553D;
+    --c-red-100: #ffe5e0;
+    --c-red-600: #c3553d;
 
-    --c-green-100: #D0F4D8;
-    --c-green-600: #2C874E;
+    --c-green-100: #d0f4d8;
+    --c-green-600: #2c874e;
   }
-
 
   /* Global */
 

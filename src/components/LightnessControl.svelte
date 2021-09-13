@@ -1,7 +1,13 @@
 <script lang="ts">
   import chroma from 'chroma-js';
   import type { LightnessInterface, LightnessWithContrastsInterface, ShadeInterface } from '../stores';
-  import { bgColor, lightnessShades, lightnessWithContrasts, minContrastRatioWCAG2, minContrastRatioWCAG3 } from '../stores';
+  import {
+    bgColor,
+    lightnessShades,
+    lightnessWithContrasts,
+    minContrastRatioWCAG2,
+    minContrastRatioWCAG3
+  } from '../stores';
   import Preview from './Preview.svelte';
 
   export let shade: string;
@@ -36,7 +42,15 @@
     <Preview color={bg} style="margin-left: -0.75em; margin-right: .125em;" />
     <Preview color={previewColor} style="margin-right: .25em;" />
     <label for="shade-{shade}">{shade}:</label>
-    <input type="number" id="shade-{shade}" size="5" value={lightness.value} on:change={changeLightness} min="0" max="100" />
+    <input
+      type="number"
+      id="shade-{shade}"
+      size="5"
+      value={lightness.value}
+      on:change={changeLightness}
+      min="0"
+      max="100"
+    />
   </div>
 
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>
@@ -59,9 +73,9 @@
       {/if}
     </span>
 
-<!--    <span class={Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}>-->
-<!--      {@html contrastWCAG3.toString().replace('-', '\u2212')}-->
-<!--    </span> -->
+    <!--    <span class={Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}>-->
+    <!--      {@html contrastWCAG3.toString().replace('-', '\u2212')}-->
+    <!--    </span> -->
   </div>
 </div>
 

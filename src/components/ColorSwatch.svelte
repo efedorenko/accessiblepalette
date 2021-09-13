@@ -1,6 +1,12 @@
 <script lang="ts">
   import chroma from 'chroma-js';
-  import { bgColor, defaultBgColor, lightnessWithContrasts, minContrastRatioWCAG2, minContrastRatioWCAG3 } from '../stores';
+  import {
+    bgColor,
+    defaultBgColor,
+    lightnessWithContrasts,
+    minContrastRatioWCAG2,
+    minContrastRatioWCAG3
+  } from '../stores';
   import type { ShadeInterface } from '../stores';
   import { getWcag2CR, getWcag3CR, roundTo10th } from '../helpers';
   import type { Palette } from '../generatePalette';
@@ -72,25 +78,25 @@
     white-space: nowrap;
     cursor: pointer;
   }
-    .light {
-      --shade: rgba(255, 255, 255, 0.15);
-      --text: rgba(255, 255, 255, 0.66);
-      color: var(--text);
-    }
-    .dark {
-      --shade: rgba(0, 0, 0, 0.15);
-      --text: rgba(0, 0, 0, 0.66);
-      color: var(--text);
-    }
-    .selected {
-      background: repeating-linear-gradient(
-        45deg,
-        rgba(0, 0, 0, 0) 0,
-        rgba(0, 0, 0, 0) 6px,
-        var(--shade) 6px,
-        var(--shade) 7px
-      );
-    }
+  .light {
+    --shade: rgba(255, 255, 255, 0.15);
+    --text: rgba(255, 255, 255, 0.66);
+    color: var(--text);
+  }
+  .dark {
+    --shade: rgba(0, 0, 0, 0.15);
+    --text: rgba(0, 0, 0, 0.66);
+    color: var(--text);
+  }
+  .selected {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0) 6px,
+      var(--shade) 6px,
+      var(--shade) 7px
+    );
+  }
 
   .hex {
     grid-column-end: span 2;
@@ -102,8 +108,8 @@
   }
   .wcag {
     line-height: 1em;
-    opacity: .5;
-    transition: opacity .3s;
+    opacity: 0.5;
+    transition: opacity 0.3s;
   }
   .swatch:hover .wcag {
     opacity: 1;
