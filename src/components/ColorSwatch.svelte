@@ -112,16 +112,9 @@
     justify-self: end;
   }
 
-
   .pass {
-    /*color: var(--c-green-600);*/
-    /*font-weight: 600;*/
-    /*opacity: .75;*/
   }
-
   .fail {
-    /*color: var(--c-red-600);*/
-    /*opacity: .25;*/
     text-decoration: line-through;
   }
 </style>

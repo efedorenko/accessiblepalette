@@ -1,6 +1,6 @@
-<script>
-  export let color, style;
-</script>
+<script lang="ts">
+  export let color: string, style = '';
+  </script>
 
 <span class="preview" style="background-color: {color}; {style}" />
 
