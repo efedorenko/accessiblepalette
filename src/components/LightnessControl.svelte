@@ -1,8 +1,7 @@
 <script lang="ts">
   import chroma from 'chroma-js';
-  import { getWcag2CR, getWcag3CR } from '../helpers';
-  import type { LightnessInterface } from '../stores';
-  import { bgColor, lightnessShades, minContrastRatioWCAG2, minContrastRatioWCAG3 } from '../stores';
+  import type { LightnessInterface, LightnessWithContrastsInterface, ShadeInterface } from '../stores';
+  import { bgColor, lightnessShades, lightnessWithContrasts, minContrastRatioWCAG2, minContrastRatioWCAG3 } from '../stores';
   import Preview from './Preview.svelte';
 
   export let shade: string;
@@ -12,17 +11,13 @@
     bg = store;
   });
 
-  let lightness: number;
-  lightnessShades.subscribe((store: LightnessInterface) => {
+  let lightness: ShadeInterface;
+  lightnessWithContrasts.subscribe((store: LightnessWithContrastsInterface) => {
     lightness = store[shade];
   });
 
-  $: previewColor = chroma('#808080').set('lch.l', lightness).toString();
-
-  $: contrastWCAG2 = getWcag2CR(previewColor, bg);
-  $: contrastWCAG3 = getWcag3CR(previewColor, bg);
-
-  $: noContrast = (contrastWCAG2 === 1 && contrastWCAG3 >= -1 && contrastWCAG3 <= 1) as boolean;
+  $: noContrast = (lightness.minWcag2 === 1 && lightness.minWcag3 >= -1 && lightness.maxWcag3 <= 1) as boolean;
+  $: previewColor = chroma('#808080').set('lch.l', lightness.value).toString();
 
   const changeLightness = (event: Event) => {
     const value: number = parseFloat((event.target as HTMLInputElement).value);
@@ -41,21 +36,32 @@
     <Preview color={bg} style="margin-left: -0.75em; margin-right: .125em;" />
     <Preview color={previewColor} style="margin-right: .25em;" />
     <label for="shade-{shade}">{shade}:</label>
-    <input type="number" id="shade-{shade}" size="5" value={lightness} on:change={changeLightness} min="0" max="100" />
+    <input type="number" id="shade-{shade}" size="5" value={lightness.value} on:change={changeLightness} min="0" max="100" />
   </div>
 
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>
     WCAG 2:
-    <span class={contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}>
-      {@html contrastWCAG2}
+    <span class={lightness.minWcag2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}>
+      {#if lightness.minWcag2 === lightness.maxWcag2}
+        {lightness.minWcag2}
+      {:else}
+        {lightness.minWcag2}..{lightness.maxWcag2}
+      {/if}
     </span>
   </div>
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>
     WCAG 3:
-    <span class={Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}>
-      {@html contrastWCAG3.toString().replace('-', '\u2212')}
-    </span
-    >
+    <span class={lightness.minWcag3 >= minContrastRatioWCAG3 ? 'pass' : 'fail'}>
+      {#if lightness.minWcag3 === lightness.maxWcag3}
+        {lightness.minWcag3.toString().replace('-', '\u2212')}
+      {:else}
+        {lightness.minWcag3.toString().replace('-', '\u2212')}..{lightness.maxWcag3.toString().replace('-', '\u2212')}
+      {/if}
+    </span>
+
+<!--    <span class={Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}>-->
+<!--      {@html contrastWCAG3.toString().replace('-', '\u2212')}-->
+<!--    </span> -->
   </div>
 </div>
 
@@ -64,6 +70,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 10em;
     font-size: 0.75rem; /* 12px */
     padding: 0.75em 1em;
   }

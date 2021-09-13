@@ -1,13 +1,17 @@
 <script lang="ts">
   import chroma from 'chroma-js';
-  import { bgColor, defaultBgColor, lightnessShades } from '../stores';
-  import { roundTo10th } from '../helpers';
+  import { bgColor, defaultBgColor, lightnessWithContrasts, minContrastRatioWCAG2, minContrastRatioWCAG3 } from '../stores';
+  import type { ShadeInterface } from '../stores';
+  import { getWcag2CR, getWcag3CR, roundTo10th } from '../helpers';
   import type { Palette } from '../generatePalette';
   import { afterUpdate } from 'svelte';
 
   export let color: Palette, shade: string;
 
-  $: lightness = $lightnessShades[shade] as number;
+  $: contrastWCAG2 = getWcag2CR(color.color, $bgColor);
+  $: contrastWCAG3 = getWcag3CR(color.color, $bgColor);
+
+  $: lightness = $lightnessWithContrasts[shade] as ShadeInterface;
 
   let c: number = roundTo10th(chroma(color.color).get('lch.c')) || 0;
   let h: number = roundTo10th(chroma(color.color).get('lch.h')) || 0;
@@ -38,40 +42,86 @@
 <div
   style="background-color: {color.color};"
   on:click={selectColor}
-  class={[isSelected ? 'selected' : '', lightness >= 60 ? 'dark' : 'light'].join(' ')}
+  class={['swatch', isSelected ? 'selected' : '', lightness.value >= 60 ? 'dark' : 'light'].join(' ')}
   data-shade={shade}
-  title="Chroma: {c}, Hue: {h}"
+  title="Chroma: {c}, Hue: {h}, WCAG 2: {contrastWCAG2}:1, WCAG 3: {contrastWCAG3}"
 >
-  {color.color.toUpperCase()}
+  <span class="hex">{color.color.toUpperCase()}</span>
+
+  <span class="wcag wcag2 {contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}">
+    {#if !isSelected && lightness.minWcag2 !== lightness.maxWcag2}
+      {contrastWCAG2}
+    {/if}
+  </span>
+
+  <span class="wcag wcag3 {contrastWCAG3 >= minContrastRatioWCAG3 ? 'pass' : 'fail'}">
+    {#if !isSelected && lightness.minWcag3 !== lightness.maxWcag3}
+      {contrastWCAG3}
+    {/if}
+  </span>
 </div>
 
 <style>
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .swatch {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1em;
 
-    padding: 0.5em 0.25em;
-    font: 0.75rem 'iA Writer Duo', monospace, sans-serif;
-    letter-spacing: 0.1em;
-    text-align: center;
+    padding: 0.75em;
+    font-size: 0.75rem; /* 12px */
+    white-space: nowrap;
     cursor: pointer;
   }
-  .light {
-    --shade: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.66);
+    .light {
+      --shade: rgba(255, 255, 255, 0.15);
+      --text: rgba(255, 255, 255, 0.66);
+      color: var(--text);
+    }
+    .dark {
+      --shade: rgba(0, 0, 0, 0.15);
+      --text: rgba(0, 0, 0, 0.66);
+      color: var(--text);
+    }
+    .selected {
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0) 0,
+        rgba(0, 0, 0, 0) 6px,
+        var(--shade) 6px,
+        var(--shade) 7px
+      );
+    }
+
+  .hex {
+    grid-column-end: span 2;
+    align-self: center;
+
+    text-align: center;
+    font: 1em 'iA Writer Duo', monospace, sans-serif;
+    letter-spacing: 0.1em;
   }
-  .dark {
-    --shade: rgba(0, 0, 0, 0.15);
-    color: rgba(0, 0, 0, 0.66);
+  .wcag {
+    line-height: 1em;
+    opacity: .5;
+    transition: opacity .3s;
   }
-  .selected {
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(0, 0, 0, 0) 0,
-      rgba(0, 0, 0, 0) 6px,
-      var(--shade) 6px,
-      var(--shade) 7px
-    );
+  .swatch:hover .wcag {
+    opacity: 1;
+  }
+  .wcag3 {
+    justify-self: end;
+  }
+
+
+  .pass {
+    /*color: var(--c-green-600);*/
+    /*font-weight: 600;*/
+    /*opacity: .75;*/
+  }
+
+  .fail {
+    /*color: var(--c-red-600);*/
+    /*opacity: .25;*/
+    text-decoration: line-through;
   }
 </style>

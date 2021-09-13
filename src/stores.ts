@@ -1,5 +1,7 @@
 import { derived, get, readable, writable } from 'svelte/store';
 import { generatePalette } from './generatePalette';
+import type { Palette } from './generatePalette';
+import { getWcag2CR, getWcag3CR } from './helpers';
 
 export const minContrastRatioWCAG2 = 4.5;
 export const minContrastRatioWCAG3 = 60;
@@ -119,3 +121,45 @@ export const storeAsURL = derived([lightnessShades, baseColors], encodeStoreAsUR
 ---------------------------------------- */
 
 export const paletteColors = derived([lightnessShades, baseColors], generatePalette);
+
+/* Lightness with CRs
+---------------------------------------- */
+
+export interface ShadeInterface {
+  value: number;
+  minWcag2: number;
+  maxWcag2: number;
+  minWcag3: number;
+  maxWcag3: number;
+}
+export interface LightnessWithContrastsInterface {
+  '50':  ShadeInterface;
+  '100': ShadeInterface;
+  '200': ShadeInterface;
+  '300': ShadeInterface;
+  '400': ShadeInterface;
+  '500': ShadeInterface;
+  '600': ShadeInterface;
+  '700': ShadeInterface;
+  '800': ShadeInterface;
+  '900': ShadeInterface;
+}
+export const lightnessWithContrasts = derived([lightnessShades, paletteColors, bgColor], ([shades, palette, bg]): LightnessWithContrastsInterface => {
+  const obj = {};
+
+  Object.keys(shades).map((shade) => {
+    const colorsByShade = palette.filter((color: Palette) => color.shade === shade) as Palette[];
+    const allWcag2CRs = colorsByShade.map((color: Palette) => getWcag2CR(color.color, bg));
+    const allWcag3CRs = colorsByShade.map((color: Palette) => getWcag3CR(color.color, bg));
+
+    obj[shade] = {
+      value: shades[shade],
+      minWcag2: Math.min(...allWcag2CRs),
+      maxWcag2: Math.max(...allWcag2CRs),
+      minWcag3: Math.min(...allWcag3CRs),
+      maxWcag3: Math.max(...allWcag3CRs)
+    } as ShadeInterface;
+  });
+
+  return obj;
+});
