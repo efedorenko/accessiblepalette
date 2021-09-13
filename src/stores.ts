@@ -1,4 +1,5 @@
 import { derived, get, readable, writable } from 'svelte/store';
+import { generatePalette } from './generatePalette';
 
 export const minContrastRatioWCAG2 = 4.5;
 export const minContrastRatioWCAG3 = 60;
@@ -113,3 +114,8 @@ const encodeStoreAsURL = ([shades, colors]: [LightnessInterface, BaseColor[]]): 
 };
 export const defaultStateAsURL: string = encodeStoreAsURL([defaultLightness, defaultColors]);
 export const storeAsURL = derived([lightnessShades, baseColors], encodeStoreAsURL);
+
+/* Palette
+---------------------------------------- */
+
+export const paletteColors = derived([lightnessShades, baseColors], generatePalette);

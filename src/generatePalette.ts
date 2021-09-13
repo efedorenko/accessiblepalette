@@ -7,7 +7,7 @@ export interface Palette {
   name: string;
 }
 
-export function generatePalette(baseColors: BaseColor[], shades: LightnessInterface): Palette[] {
+export function generatePalette([shades, baseColors]: [LightnessInterface, BaseColor[]]): Palette[] {
   const p = [];
 
   function getColorFromScale(scale: chroma.Scale, lightness: number): chroma.Color {

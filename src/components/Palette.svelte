@@ -1,10 +1,9 @@
 <script lang="ts">
   import type { BaseColor, LightnessInterface } from '../stores';
-  import { baseColors, lightnessShades } from '../stores';
+  import { baseColors, lightnessShades, paletteColors } from '../stores';
   import LightnessControl from './LightnessControl.svelte';
   import ColorCell from './ColorSwatch.svelte';
   import HueControl from './HueControl.svelte';
-  import { generatePalette } from '../generatePalette';
   import type { Palette } from '../generatePalette';
   import GroupTitle from './GroupTitle.svelte';
   import GroupTitleVertical from './GroupTitleVertical.svelte';
@@ -44,7 +43,11 @@
   /* Palette
   ---------------------------------------- */
 
-  $: palette = generatePalette(colors, shades) as Palette[];
+  let palette: Palette[];
+  paletteColors.subscribe((store: Palette[]): void => {
+    palette = store;
+  });
+
   const getPaletteColor = (name: string, shade: string): Palette =>
     palette.filter((c: Palette) => c.name === name).filter((c: Palette) => c.shade === shade)[0];
 </script>
