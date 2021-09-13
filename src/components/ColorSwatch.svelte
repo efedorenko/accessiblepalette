@@ -46,46 +46,46 @@
 </script>
 
 <div class="container">
-<div
-  on:click={selectColor}
-  class={[
-    'swatch',
-    isSelected ? 'is-selected' : '',
-    lightness.value >= 60 ? 'dark' : 'light'
-  ].join(' ')}
-  style="background-color: {color.color};"
->
-  <span class="lch l">
-    <span class="label">L:</span> <span class="value">{lightness.value}</span>
-  </span>
-  <span class="lch c">
-    <span class="label">C:</span> <span class="value">{c}</span>
-  </span>
-  <span class="lch h">
-    <span class="label">H:</span> <span class="value">{h}</span>
-  </span>
+  <div
+    on:click={selectColor}
+    class={['swatch', isSelected ? 'is-selected' : '', lightness.value >= 60 ? 'dark' : 'light'].join(' ')}
+    style="background-color: {color.color};"
+  >
+    <span class="lch l">
+      <span class="label">L:</span> <span class="value">{lightness.value}</span>
+    </span>
+    <span class="lch c">
+      <span class="label">C:</span> <span class="value">{c}</span>
+    </span>
+    <span class="lch h">
+      <span class="label">H:</span> <span class="value">{h}</span>
+    </span>
 
-  <span class="hex">
-    {color.color.toUpperCase()}
-  </span>
+    <span class="hex">
+      {color.color.toUpperCase()}
+    </span>
 
-  <span class={[
-    'wcag',
-    'wcag2',
-    !isSelected && lightness.minWcag2 !== lightness.maxWcag2 ? 'is-visible' : 'is-hidden'
-  ].join(' ')}>
-    <span class="label">WCAG 2:</span>
-    <span class="value {contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}">{contrastWCAG2}</span>
-  </span>
-  <span class={[
-    'wcag',
-    'wcag3',
-    !isSelected && lightness.minWcag3 !== lightness.maxWcag3 ? 'is-visible' : 'is-hidden'
-  ].join(' ')}>
-    <span class="label">WCAG 3:</span>
-    <span class="value {contrastWCAG3 >= minContrastRatioWCAG3 ? 'pass' : 'fail'}">{contrastWCAG3}</span>
-  </span>
-</div>
+    <span
+      class={[
+        'wcag',
+        'wcag2',
+        !isSelected && lightness.minWcag2 !== lightness.maxWcag2 ? 'is-visible' : 'is-hidden'
+      ].join(' ')}
+    >
+      <span class="label">WCAG 2:</span>
+      <span class="value {contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}">{contrastWCAG2}</span>
+    </span>
+    <span
+      class={[
+        'wcag',
+        'wcag3',
+        !isSelected && lightness.minWcag3 !== lightness.maxWcag3 ? 'is-visible' : 'is-hidden'
+      ].join(' ')}
+    >
+      <span class="label">WCAG 3:</span>
+      <span class="value {contrastWCAG3 >= minContrastRatioWCAG3 ? 'pass' : 'fail'}">{contrastWCAG3}</span>
+    </span>
+  </div>
 </div>
 
 <style>
@@ -134,7 +134,7 @@
     height: calc(100% + 1.5em);
 
     border-radius: 2px;
-    box-shadow: 0 0 1em rgba(0, 0, 0, .1);
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
     z-index: 1000;
   }
   .is-selected {
@@ -161,7 +161,7 @@
     color: var(--accent);
   }
 
-   /* LCh */
+  /* LCh */
   .lch {
     grid-column-end: span 2;
     opacity: 0;
