@@ -28,15 +28,14 @@
           > is barely possible when every color pair needs to be checked individually.
         </p>
 
-        <h2>What is CIELAB and HCL/Lch?</h2>
+        <h2>What is CIELAB and LCh?</h2>
         <p>
           Unlike the RGB, the <a href="https://en.wikipedia.org/wiki/CIELAB_color_space" target="_blank"
             >CIELAB color model</a
           >
           is designed to approximate human vision, and <em>L</em> component closely matches the human perception of
-          lightness. It may be tricky to use it directly (just as RGB), but there are alternative representations
-          <strong>HCL</strong>
-          or <strong>Lch</strong> (<em>C</em>&nbsp;is for <em>Chroma</em>) that work similarly to HSL.
+          lightness. It may be tricky to use it directly (just as RGB), but there are alternative representations like
+          <strong>LCh</strong> (<em>C</em>&nbsp;is for <em>Chroma</em>) that work similarly to HSL.
         </p>
         <p>
           In this color model, colors with the same specified <em>Lightness</em> have the same perceived lightness and
