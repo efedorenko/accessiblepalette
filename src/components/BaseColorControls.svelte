@@ -105,6 +105,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: .25em;
 
     white-space: nowrap;
   }
