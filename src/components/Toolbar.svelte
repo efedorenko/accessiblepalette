@@ -1,5 +1,5 @@
 <div class='toolbar'>
-  <h1><strong>Accessible Palette:</strong> Create color systems with consistent lightness and contrast</h1>
+  <h1><strong>Accessible Palette:</strong> Create color systems with consistent lightness and&nbsp;contrast</h1>
 </div>
 
 <style>
@@ -28,5 +28,4 @@
     color: #FFF;
     font-weight: 600;
   }
-
 </style>
