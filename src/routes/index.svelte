@@ -15,6 +15,7 @@
   import chroma from 'chroma-js';
   import type { Unsubscriber } from 'svelte/store';
   import Rainbow from '../components/Rainbow.svelte';
+  import Toolbar from '../components/Toolbar.svelte';
 
   function saveStateToURL(params: string): void {
     window.history.pushState([$lightnessShades, $baseColors], '', '?' + params);
@@ -114,7 +115,7 @@
   });
 </script>
 
-<Rainbow />
+<Toolbar />
 
 <Palette />
 
@@ -146,6 +147,10 @@
 
     --c-green-100: #d0f4d8;
     --c-green-600: #2c874e;
+
+    --rainbow-40: to right, #974634, #795822, #2C6B2E, #166966, #346285, #5E5791;
+    --rainbow-50: to right, #98702B, #b18b32, #37873A, #1B8480, #3B7DAA, #776EB7;
+    --rainbow-60: to right, #e76b4f, #b18b32, #43a447, #21a19c, #2c9acc, #9085de;
   }
 
   /* Global */

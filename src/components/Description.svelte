@@ -5,11 +5,6 @@
 
 <div class="description">
   <div class="content">
-    <h1>
-      <strong>🎨 Accessible Palette:</strong>
-      Create color systems with consistent lightness and contrast
-    </h1>
-
     <div class="columns">
       <div class="column">
         <h2>Stop using HSL for color systems!</h2>
@@ -143,18 +138,6 @@
       column-gap: 3.75rem; /* 60px */
       row-gap: 0;
     }
-  }
-
-  h1 {
-    margin: 0 0 3.333em; /* 80px */
-    color: #fff;
-    font-size: 1.5rem; /* 24px */
-    font-weight: normal;
-    text-align: center;
-  }
-  h1 strong {
-    color: inherit;
-    font-weight: 600;
   }
 
   h2 {
