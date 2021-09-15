@@ -40,7 +40,7 @@
       </div>
 
       <div class="column">
-        <h2>How does <em>Accessible Palette</em> works?</h2>
+        <h2>How does <em>Accessible Palette</em> work?</h2>
         <p>
           This app uses the <a href="https://gka.github.io/chroma.js/">chroma.js</a> library to generate color ranges with
           consistent lightness between levels. A few things to keep in mind:
