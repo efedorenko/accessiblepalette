@@ -148,10 +148,10 @@
     --c-green-100: #d0f4d8;
     --c-green-600: #2c874e;
 
-    /* https://accessiblepalette.com/?lightness=100,100,100,100,60,50,40,0,0,0&e76b4f=0,0&b18b32=0,-10&43a447=0,0&21a19c=0,0&2c9acc=1,15&9085de=0,0 */
-    --rainbow-40: to right, #974634, #795822, #2C6B2E, #166966, #346285, #5E5791;
-    --rainbow-50: to right, #98702B, #b18b32, #37873A, #1B8480, #3B7DAA, #776EB7;
-    --rainbow-60: to right, #e76b4f, #b18b32, #43a447, #21a19c, #2c9acc, #9085de;
+    /* https://accessiblepalette.com/?lightness=100,100,100,100,60,50,40,0,0,0&ea6856=0,0&b18b32=0,-10&43a447=0,0&21a19c=0,0&2c9acc=1,15&9085de=0,0 */
+    --rainbow-40: to right, #994438, #795822, #2C6B2E, #166966, #346285, #5E5791;
+    --rainbow-50: to right, #C15647, #b18b32, #37873A, #1B8480, #3B7DAA, #776EB7;
+    --rainbow-60: to right, #EA6856, #b18b32, #43a447, #21a19c, #2c9acc, #9085de;
   }
 
   /* Global */
