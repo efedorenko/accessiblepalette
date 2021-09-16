@@ -83,7 +83,7 @@
 
   <div class="content footer">
     <a href="https://wildbit.com" target="_blank"><img src={wildbitLogo} alt="Wildbit" class="wildbit-logo" /></a>
-    <p>Copyright © 2021 <a href="https://wildbit.com" target="_blank">Wildbit LLC</a></p>
+    <p>A <a href="https://wildbit.com" target="_blank">Wildbit</a> <em>Labs</em> project by <a href="https://efedorenko.com" target="_blank">Eugene&nbsp;Fedorenko</a></p>
   </div>
 </div>
 
@@ -112,18 +112,20 @@
     flex-direction: row;
     align-items: center;
     margin-top: 80px;
-    color: var(--c-slate-400);
     font-size: 0.75rem; /* 12px */
-    text-align: center;
+    line-height: 1.25;
   }
   .footer p {
-    margin: 0;
+    margin: 0 0 0 1em;
+  }
+  .footer a:link,
+  .footer a:visited {
+    color: inherit;
   }
   .wildbit-logo {
     display: inline-block;
     width: auto;
     height: 28px;
-    margin-right: 15px;
     vertical-align: middle;
   }
 
