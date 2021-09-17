@@ -42,3 +42,5 @@ export const getWcag2CR = (fg: string, bg: string): number => roundTo10th(chroma
 
 export const getWcag3CR = (fg: string, bg: string): number =>
   roundToWhole(APCAcontrast(colorStringToHex(bg), colorStringToHex(fg)));
+
+export const useProperMinus = (num: number): string => num.toString().replace('-', '\u2212');

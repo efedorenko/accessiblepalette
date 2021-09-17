@@ -9,6 +9,7 @@
     minContrastRatioWCAG3
   } from '../stores';
   import Preview from './Preview.svelte';
+  import { useProperMinus } from '../helpers';
 
   export let shade: string;
 
@@ -65,11 +66,11 @@
   </div>
   <div class={`contrast-ratio ${noContrast ? 'zero' : ''}`}>
     WCAG 3:
-    <span class={lightness.minWcag3 >= minContrastRatioWCAG3 ? 'pass' : 'fail'}>
+    <span class={Math.abs(lightness.minWcag3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}>
       {#if lightness.minWcag3 === lightness.maxWcag3}
-        {lightness.minWcag3.toString().replace('-', '\u2212')}
+        {useProperMinus(lightness.minWcag3)}
       {:else}
-        {lightness.minWcag3.toString().replace('-', '\u2212')}..{lightness.maxWcag3.toString().replace('-', '\u2212')}
+        {useProperMinus(lightness.minWcag3)}..{useProperMinus(lightness.maxWcag3)}
       {/if}
     </span>
 

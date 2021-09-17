@@ -8,7 +8,7 @@
     minContrastRatioWCAG3
   } from '../stores';
   import type { ShadeInterface } from '../stores';
-  import { getWcag2CR, getWcag3CR, roundTo10th } from '../helpers';
+  import { useProperMinus, getWcag2CR, getWcag3CR, roundTo10th } from '../helpers';
   import type { Palette } from '../generatePalette';
   import { afterUpdate } from 'svelte';
   import Preview from './Preview.svelte';
@@ -88,7 +88,9 @@
         ].join(' ')}
       >
         <span class="label">WCAG 3:</span>
-        <span class="value {contrastWCAG3 >= minContrastRatioWCAG3 ? 'pass' : 'fail'}">{contrastWCAG3}</span>
+        <span class="value {Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}">
+          {useProperMinus(contrastWCAG3)}
+        </span>
       </span>
     </div>
   </div>
