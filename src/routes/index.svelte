@@ -152,7 +152,33 @@
     --rainbow-40: to right, #994438, #795822, #2C6B2E, #166966, #346285, #5E5791;
     --rainbow-50: to right, #C15647, #b18b32, #37873A, #1B8480, #3B7DAA, #776EB7;
     --rainbow-60: to right, #EA6856, #b18b32, #43a447, #21a19c, #2c9acc, #9085de;
+
+    /* Padding */
+    --pad: 1.25rem; /* 20px */
+    --pad2x: 2.5rem; /* 40px */
   }
+  /*
+  414px: iPhone XR @2x, XS Max @3x, 11 @2x, 11 Pro Max @3x
+  428px: iPhone 12 Pro Max @3x
+  */
+  @media only screen and (min-width: 414px) {
+    :global(:root) {
+      --pad: 1.875rem; /* 30px */
+      --pad2x: 3.75rem; /* 60px */
+    }
+  }
+  /*
+  1194px: Landscape iPad 11" (Pro 1-2nd)
+  1280px: Full-screen MB 13", half-screen iMac 27"
+  */
+  @media only screen and (min-width: 1194px) {
+    :global(:root) {
+      --pad: 2.5rem; /* 40px */
+      --pad2x: 5rem; /* 80px */
+    }
+  }
+
+
 
   /* Global */
 

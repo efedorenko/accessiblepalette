@@ -4,18 +4,13 @@
 
 <style>
   .toolbar {
-    padding: 20px;
+    padding: var(--pad);
     background-color: var(--c-slate-900);
     background-image: linear-gradient(var(--rainbow-50));
     color: #fff;
     box-shadow: inset 0 -1px 1px 0 rgba(0, 0, 0, .1);
     font-weight: normal;
     font-size: 1.125rem; /* 18px */
-  }
-  @media only screen and (min-width: 415px) {
-    .toolbar {
-      padding: 30px;
-    }
   }
   .toolbar h1 {
     margin: 0; /* 80px */

@@ -79,6 +79,16 @@
         </ul>
       </div>
     </div>
+
+    <div class="blog-post">
+      <div class="blog-post_wrap">
+        <p>
+          <span class="blog-post_heading">All the “whys” and “hows” in a blog post:</span>
+          <a target="_blank" href="https://wildbit.com/blog/2021/09/16/accessible-palette-stop-using-hsl-for-color-systems">Accessible Palette: Stop using HSL for color systems</a>
+        </p>
+      </div>
+    </div>
+
   </div>
 
   <div class="content footer">
@@ -89,16 +99,10 @@
 
 <style>
   .description {
-    padding: 60px 30px;
+    padding: var(--pad2x) var(--pad);
     background-color: var(--c-slate-900);
     color: var(--c-slate-300);
   }
-  @media only screen and (min-width: 415px) {
-    .description {
-      padding: 80px 40px;
-    }
-  }
-
   .content {
     width: 100%;
     max-width: 980px;
@@ -111,7 +115,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 80px;
+    margin-top: var(--pad2x);
     font-size: 0.75rem; /* 12px */
     line-height: 1.25;
   }
@@ -134,12 +138,40 @@
     grid-template-columns: 1fr;
     row-gap: 1.6em;
   }
+  .columns :last-child {
+    margin-bottom: 0;
+  }
   @media only screen and (min-width: 769px) {
     .columns {
       grid-template-columns: repeat(2, 1fr);
-      column-gap: 3.75rem; /* 60px */
+      column-gap: var(--pad2x);
       row-gap: 0;
     }
+  }
+
+  /* Blog post */
+  .blog-post {
+    margin-top: var(--pad2x);
+    border-radius: 5px;
+    padding: 2px;
+    background-image: linear-gradient(var(--rainbow-60));
+  }
+  .blog-post_wrap {
+    border-radius: 4px;
+    padding: var(--pad);
+    background-color: var(--c-slate-900);
+    text-align: center;
+  }
+  .blog-post p {
+    display: inline-block;
+    text-align: left;
+  }
+  .blog-post_heading {
+    display: block;
+  }
+  .blog-post a {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 500;
   }
 
   h2 {
