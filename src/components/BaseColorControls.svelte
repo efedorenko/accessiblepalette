@@ -105,7 +105,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: .25em;
+    margin-bottom: 0.25em;
 
     white-space: nowrap;
   }
