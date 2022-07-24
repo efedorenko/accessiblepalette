@@ -84,16 +84,22 @@
       <div class="blog-post_wrap">
         <p>
           <span class="blog-post_heading">All the “whys” and “hows” in a blog post:</span>
-          <a target="_blank" href="https://wildbit.com/blog/2021/09/16/accessible-palette-stop-using-hsl-for-color-systems">Accessible Palette: Stop using HSL for color systems</a>
+          <a
+            target="_blank"
+            href="https://wildbit.com/blog/2021/09/16/accessible-palette-stop-using-hsl-for-color-systems"
+            >Accessible Palette: Stop using HSL for color systems</a
+          >
         </p>
       </div>
     </div>
-
   </div>
 
   <div class="content footer">
     <a href="https://wildbit.com" target="_blank"><img src={wildbitLogo} alt="Wildbit" class="wildbit-logo" /></a>
-    <p>A <a href="https://wildbit.com" target="_blank">Wildbit</a> <em>Labs</em> project by <a href="https://efedorenko.com" target="_blank">Eugene&nbsp;Fedorenko</a></p>
+    <p>
+      A <a href="https://wildbit.com" target="_blank">Wildbit</a> <em>Labs</em> project by
+      <a href="https://efedorenko.com" target="_blank">Eugene&nbsp;Fedorenko</a>
+    </p>
   </div>
 </div>
 
