@@ -4,3 +4,4 @@ build
 .svelte-kit
 package
 .idea
+.netlify
