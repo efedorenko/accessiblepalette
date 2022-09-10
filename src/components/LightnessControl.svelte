@@ -29,18 +29,19 @@
   const changeLightness = (event: Event) => {
     const value: number = parseFloat((event.target as HTMLInputElement).value);
 
-    lightnessShades.update(
-      (store: LightnessInterface): LightnessInterface => {
-        store[shade] = value;
-        return store;
-      }
-    );
+    lightnessShades.update((store: LightnessInterface): LightnessInterface => {
+      store[shade] = value;
+      return store;
+    });
   };
 </script>
 
 <div class="lightness">
   <div class="shade">
-    <Preview color={bg} style="margin-left: -0.875em; margin-right: .25em; box-shadow: inset 0 0 0 1px rgba(128, 128, 128, .25);" />
+    <Preview
+      color={bg}
+      style="margin-left: -0.875em; margin-right: .25em; box-shadow: inset 0 0 0 1px rgba(128, 128, 128, .25);"
+    />
     <Preview color={previewColor} style="margin-right: .25em; box-shadow: inset 0 0 0 1px rgba(128, 128, 128, .25);" />
     <label for="shade-{shade}">{shade}:</label>
     <input

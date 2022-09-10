@@ -70,22 +70,20 @@
 
     <div class="wcag">
       <span
-        class={[
-          'wcag2',
-          !isSelected && lightness.minWcag2 !== lightness.maxWcag2 ? 'is-visible' : 'is-hidden'
-        ].join(' ')}
+        class={['wcag2', !isSelected && lightness.minWcag2 !== lightness.maxWcag2 ? 'is-visible' : 'is-hidden'].join(
+          ' '
+        )}
       >
         <span class="label">WCAG 2:</span>
         <span class="value {contrastWCAG2 >= minContrastRatioWCAG2 ? 'pass' : 'fail'}">{contrastWCAG2}</span>
       </span>
       <span class="wcag-preview">
-        <Preview color={$bgColor} style='box-shadow: 0 0 0 1px var(--shade)' />
+        <Preview color={$bgColor} style="box-shadow: 0 0 0 1px var(--shade)" />
       </span>
       <span
-        class={[
-          'wcag3',
-          !isSelected && lightness.minWcag3 !== lightness.maxWcag3 ? 'is-visible' : 'is-hidden'
-        ].join(' ')}
+        class={['wcag3', !isSelected && lightness.minWcag3 !== lightness.maxWcag3 ? 'is-visible' : 'is-hidden'].join(
+          ' '
+        )}
       >
         <span class="label">WCAG 3:</span>
         <span class="value {Math.abs(contrastWCAG3) >= minContrastRatioWCAG3 ? 'pass' : 'fail'}">
@@ -101,7 +99,7 @@
     --shade: rgba(255, 255, 255, 0.125);
     --meta: rgba(255, 255, 255, 0.33);
     --base: rgba(255, 255, 255, 0.66);
-    --accent: #FFF;
+    --accent: #fff;
   }
   .dark {
     --shade: rgba(0, 0, 0, 0.125);
@@ -235,7 +233,7 @@
   }
 
   .wcag-preview {
-    margin: 0 .25em;
+    margin: 0 0.25em;
     opacity: 0;
   }
   .swatch:hover .wcag-preview {
