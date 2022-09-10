@@ -1,5 +1,6 @@
 import type { BaseColor } from './stores';
-import chroma, { Color } from 'chroma-js';
+import type { Color } from 'chroma-js';
+import chroma from 'chroma-js';
 import { APCAcontrast } from './vendor/APCAonly.98e_d12e';
 
 const roundTo = (num: number, multiplier: number): number => Math.round(num * multiplier) / multiplier;

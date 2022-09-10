@@ -146,7 +146,7 @@ export interface LightnessWithContrastsInterface {
 }
 export const lightnessWithContrasts = derived(
   [lightnessShades, paletteColors, bgColor],
-  ([shades, palette, bg]): LightnessWithContrastsInterface => {
+  ([shades, palette, bg]): LightnessWithContrastsInterface | {} => {
     const obj = {};
 
     Object.keys(shades).map((shade) => {

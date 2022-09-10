@@ -1,5 +1,6 @@
 <script lang="ts">
-  import chroma, { Color } from 'chroma-js';
+  import chroma from 'chroma-js';
+  import type { Color } from 'chroma-js';
   import { baseColors } from '../stores';
   import type { BaseColor } from '../stores';
   import { nanoid } from 'nanoid';
