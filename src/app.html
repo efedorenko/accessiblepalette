@@ -22,14 +22,9 @@
   <body>
     <div id="svelte">%sveltekit.body%</div>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXFVTZ271W"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-CXFVTZ271W');
-    </script>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c3808f97ce1d43e49b9f1459aa1b9138"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
   </body>
 </html>
