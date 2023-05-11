@@ -1,7 +1,8 @@
 import type { BaseColor } from './stores';
 import type { Color } from 'chroma-js';
 import chroma from 'chroma-js';
-import { APCAcontrast } from './vendor/APCAonly.98e_d12e';
+import { APCAcontrast, sRGBtoY } from 'apca-w3';
+import { colorParsley } from 'colorparsley';
 
 const roundTo = (num: number, multiplier: number): number => Math.round(num * multiplier) / multiplier;
 
@@ -34,14 +35,9 @@ export function sortBaseColors(a: BaseColor, b: BaseColor): number {
   }
 }
 
-export const colorStringToHex = (color: string): number => {
-  color = color.replace('#', '0x');
-  return parseInt(color, 16);
-};
-
 export const getWcag2CR = (fg: string, bg: string): number => roundTo10th(chroma.contrast(fg, bg));
 
 export const getWcag3CR = (fg: string, bg: string): number =>
-  roundToWhole(APCAcontrast(colorStringToHex(bg), colorStringToHex(fg)));
+roundToWhole(APCAcontrast(sRGBtoY(colorParsley(fg)), sRGBtoY(colorParsley(bg))));
 
 export const useProperMinus = (num: number): string => num.toString().replace('-', '\u2212');

@@ -31,7 +31,9 @@
   "type": "module",
   "dependencies": {
     "@types/chroma-js": "^2.4.0",
+    "apca-w3": "^0.1.9",
     "chroma-js": "^2.4.2",
+    "colorparsley": "^0.1.8",
     "nanoid": "^4.0.2"
   }
 }
