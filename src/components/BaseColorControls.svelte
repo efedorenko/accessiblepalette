@@ -1,6 +1,6 @@
 <script lang="ts">
   import chroma from 'chroma-js';
-  import { roundToWhole } from '../helpers';
+  import { roundTo10th } from '../helpers';
   import { baseColors } from '../stores';
   import type { BaseColor } from '../stores';
   import LabPref from './LabPref.svelte';
@@ -10,9 +10,9 @@
 
   let isHexInvalid = false;
   $: color = bColor.color;
-  $: l = roundToWhole(chroma(color).get('lch.l'));
-  $: c = roundToWhole(chroma(color).get('lch.c'));
-  $: h = roundToWhole(chroma(color).get('lch.h') || 0);
+  $: l = roundTo10th(chroma(color).get('lch.l'));
+  $: c = roundTo10th(chroma(color).get('lch.c'));
+  $: h = roundTo10th(chroma(color).get('lch.h') || 0);
 
   const updateBaseColor = (newColor: string): void => {
     baseColors.update((oldStore: BaseColor[]): BaseColor[] => {
