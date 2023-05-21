@@ -32,12 +32,12 @@ export interface LightnessInterface {
 export const defaultLightness: LightnessInterface = {
   50: 98.2,
   100: 93.9,
-  200: 85,
+  200: 85.1,
   300: 76.2,
-  400: 67.4,
+  400: 67.8,
   500: 57.8,
   600: 48,
-  700: 40.2,
+  700: 40.6,
   800: 31.8,
   900: 24.9
 };
