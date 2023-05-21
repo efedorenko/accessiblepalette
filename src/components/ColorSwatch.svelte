@@ -20,8 +20,8 @@
 
   $: lightness = $lightnessWithContrasts[shade] as ShadeInterface;
 
-  let c: number = roundTo10th(chroma(color.color).get('lch.c')) || 0;
-  let h: number = roundTo10th(chroma(color.color).get('lch.h')) || 0;
+  $: c = roundTo10th(chroma(color.color).get('lch.c')) || 0;
+  $: h = roundTo10th(chroma(color.color).get('lch.h')) || 0;
 
   let isSelected = false;
 
