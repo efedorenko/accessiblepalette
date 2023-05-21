@@ -31,15 +31,15 @@ export interface LightnessInterface {
 
 export const defaultLightness: LightnessInterface = {
   50: 98.2,
-  100: 93.9,
+  100: 93.95,
   200: 85.1,
-  300: 76.2,
-  400: 67.8,
+  300: 76.5,
+  400: 67.65,
   500: 57.8,
-  600: 48,
-  700: 40.6,
-  800: 31.8,
-  900: 24.9
+  600: 47.6,
+  700: 40.4,
+  800: 32.4,
+  900: 23.55
 };
 Object.freeze(defaultLightness);
 export const lightnessShades = writable(Object.assign({}, defaultLightness));
@@ -81,13 +81,13 @@ export const defaultColors: BaseColor[] = [
   },
   {
     name: 'purple',
-    color: '#397ae5',
+    color: '#387AE6',
     isLab: true,
     hueCorrection: 15
   },
   {
     name: 'slate',
-    color: '#69788f',
+    color: '#66788E',
     isLab: false,
     hueCorrection: 0
   },

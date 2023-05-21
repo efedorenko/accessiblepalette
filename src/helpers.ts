@@ -4,7 +4,7 @@ import chroma from 'chroma-js';
 import { APCAcontrast, sRGBtoY } from 'apca-w3';
 import { colorParsley } from 'colorparsley';
 
-const roundTo = (num: number, multiplier: number): number => Math.round(num * multiplier) / multiplier;
+const roundTo = (num: number, multiplier: number): number => Math.floor(num * multiplier) / multiplier;
 
 export const roundTo100th = (num: number): number => roundTo(num, 100);
 
