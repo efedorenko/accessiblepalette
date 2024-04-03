@@ -2,6 +2,7 @@
 
 :root {
   --c-bg: #fbfbfc;
+  --c-fg: #000;
 
   --c-slate-50: #f9f9fb;
   --c-slate-100: #e9ebf0;
@@ -74,4 +75,3 @@ input[type='text']:focus {
   outline: none;
   box-shadow: 0 0 0 2px #dceff8;
 }
-
