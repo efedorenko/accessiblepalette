@@ -1,5 +1,3 @@
-import chroma from 'chroma-js';
-import type { BaseColor, LightnessInterface } from './stores';
 import type { Palette } from './generatePalette';
 
 function createNestedObjectFromArray(array) {
@@ -17,10 +15,6 @@ function createNestedObjectFromArray(array) {
 }
 
 export function generatePaletteExport(palette: Palette[]): any {
-  console.log('🚀 generatePaletteExport');
-  console.log('palette', palette);
-
   const newPal = createNestedObjectFromArray(palette);
-  console.log('newPal', newPal);
   return newPal;
 }

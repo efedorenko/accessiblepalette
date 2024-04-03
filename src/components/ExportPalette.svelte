@@ -3,19 +3,15 @@
   import type { Palette } from '../generatePalette';
   import { generatePaletteExport } from '../generatePaletteExport';
 
-  /* Palette
-  ---------------------------------------- */
-  let myNewThing;
-  let myNewThingReadable;
+  let paletteObject;
   paletteColors.subscribe((store: Palette[]): void => {
-    console.log('ran')
-    myNewThing = generatePaletteExport(store);
-    console.log('myNewThing', myNewThing)
-    myNewThingReadable = JSON.stringify(myNewThing, null, 2);
+    paletteObject = generatePaletteExport(store);
   });
 
   function logPaletteObject() {
-    console.log('🎨 ', myNewThingReadable);
+    // Make it readable
+    let readablePaletteObject = JSON.stringify(paletteObject, null, 2);
+    console.log('🎨 ', readablePaletteObject);
   }
 </script>
 
