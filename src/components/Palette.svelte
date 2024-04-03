@@ -13,6 +13,7 @@
 
   import { quintInOut } from 'svelte/easing';
   import { fade } from 'svelte/transition';
+  import ExportPalette from './ExportPalette.svelte';
 
   /* Lightness
   ---------------------------------------- */
@@ -97,7 +98,8 @@
     {/each}
 
     <div class="hue-ctrl-title">
-      <GroupTitle title="Shift color range Hue" />
+      <GroupTitle title="👆 Shift color range Hue / Export Palette 👇" />
+      <ExportPalette />
     </div>
   </div>
 </div>
@@ -138,5 +140,12 @@
   .hue-ctrl-title {
     grid-column-start: 3;
     grid-column-end: span var(--num-of-colors);
+    
+    
+    /** 
+      * I have a feeling you will push back on this; 
+      * I'm sorta trying to split the diff between the above and below controls; 
+      * open to other thoughts on how to solve this */
+    padding-top: 1rem; 
   }
 </style>
