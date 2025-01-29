@@ -33,10 +33,11 @@
       const values = value.split(',');
 
       if (key === 'shades') {
+        lightness = {};
         // Parse shades
         values.forEach((value: string) => {
           if (!lightness[value]) {
-            lightness[value] = 50.0;
+            lightness[value] = $lightnessShades[value] || 50.0;
           }
         });
       } else if (key === 'lightness') {
