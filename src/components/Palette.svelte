@@ -75,7 +75,7 @@
     <GroupTitleVertical title="Lightness & WCAG Contrast" />
 
     <div class="palette_shades">
-      {#each Object.keys(shades) as shade}
+      {#each Object.keys(shades) as shade (shade)}
         <LightnessControl {shade} />
       {/each}
     </div>

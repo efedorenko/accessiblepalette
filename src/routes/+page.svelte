@@ -32,7 +32,14 @@
     paramsObj.forEach((value, key) => {
       const values = value.split(',');
 
-      if (key === 'lightness') {
+      if (key === 'shades') {
+        // Parse shades
+        values.forEach((value: string) => {
+          if (!lightness[value]) {
+            lightness[value] = 50.0;
+          }
+        });
+      } else if (key === 'lightness') {
         // Parse lightness
         if (values.length === Object.keys(lightness).length) {
           Object.keys(lightness).forEach((key: string, index: number) => {
