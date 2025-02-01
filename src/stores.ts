@@ -16,18 +16,7 @@ export const bgColor = writable<string>(get(defaultBgColor));
 /* Lightness
 ---------------------------------------- */
 
-export interface LightnessInterface {
-  '50': number;
-  '100': number;
-  '200': number;
-  '300': number;
-  '400': number;
-  '500': number;
-  '600': number;
-  '700': number;
-  '800': number;
-  '900': number;
-}
+export type LightnessInterface = Record<string, number>;
 
 export const defaultLightness: LightnessInterface = {
   50: 98.2,
@@ -111,8 +100,9 @@ const encodeStoreAsURL = ([shades, colors]: [LightnessInterface, BaseColor[]]): 
       return `${hex}=${color.isLab ? 1 : 0},${color.hueCorrection}`;
     })
     .join('&');
-  const encodedShades: string = 'lightness=' + Object.values(shades).join(',');
-  return encodedShades + '&' + encodedColors;
+  const encodedShades = 'shades=' + Object.keys(shades).join(',');
+  const encodedLightnesses: string = 'lightness=' + Object.values(shades).join(',');
+  return encodedShades + '&' + encodedLightnesses + '&' + encodedColors;
 };
 export const defaultStateAsURL: string = encodeStoreAsURL([defaultLightness, defaultColors]);
 export const storeAsURL = derived([lightnessShades, baseColors], encodeStoreAsURL);
