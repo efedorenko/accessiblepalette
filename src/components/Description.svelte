@@ -95,9 +95,8 @@
   </div>
 
   <div class="content footer">
-    <a href="https://wildbit.com" target="_blank"><img src={wildbitLogo} alt="Wildbit" class="wildbit-logo" /></a>
     <p>
-      A <a href="https://wildbit.com" target="_blank">Wildbit</a> <em>Labs</em> project by
+      &copy;
       <a href="https://efedorenko.com" target="_blank">Eugene&nbsp;Fedorenko</a>
     </p>
   </div>
