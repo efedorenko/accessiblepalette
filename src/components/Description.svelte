@@ -86,7 +86,7 @@
           <span class="blog-post_heading">All the “whys” and “hows” in a blog post:</span>
           <a
             target="_blank"
-            href="https://wildbit.com/blog/2021/09/16/accessible-palette-stop-using-hsl-for-color-systems"
+            href="https://www.wildbit.com/blog/accessible-palette-stop-using-hsl-for-color-systems"
             >Accessible Palette: Stop using HSL for color systems</a
           >
         </p>
